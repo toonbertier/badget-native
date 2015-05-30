@@ -13,7 +13,9 @@ class fbLoginController: UIViewController, UIPageViewControllerDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.view.backgroundColor = UIColor.blueColor()
+        
         // Do any additional setup after loading the view.
     }
 

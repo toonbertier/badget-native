@@ -10,7 +10,7 @@ import UIKit
 
 class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
-    let pageTitles = ["Intro", "Facebook", "Checklist"]
+    let pages = ["intro", "facebook", "checklist"]
     var count = 0
     
     var pageViewController:UIPageViewController!
@@ -50,42 +50,51 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-    
-        var index = (viewController as! TutorialContentController).pageIndex!
-        if(index >= self.pageTitles.count){
+        
+        if(self.count >= self.pages.count - 1){
             return nil
         }
-        index++
-        return self.viewControllerAtIndex(index)
+        self.count++
+        return self.viewControllerAtIndex(self.count)
     
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-    
-        var index = (viewController as! TutorialContentController).pageIndex!
-        if(index <= 0){
+        
+        if(self.count <= 0){
             return nil
         }
-        index--
-        return self.viewControllerAtIndex(index)
+        self.count--
+        return self.viewControllerAtIndex(self.count)
     
     }
     
     func viewControllerAtIndex(index : Int) -> UIViewController? {
         
-        if((self.pageTitles.count == 0) || (index >= self.pageTitles.count)) {
+        if((self.pages.count == 0) || (index >= self.pages.count)) {
             return nil
         }
         
-        let tutContController = TutorialContentController()
-        tutContController.titleText = self.pageTitles[index]
-        tutContController.pageIndex = index
         
-        return tutContController
+        switch self.pages[index] {
+            
+            case "intro":
+                return introController()
+            
+            case "facebook":
+                return fbLoginController()
+            
+            case "checklist":
+                return checklistController()
+            
+            default:
+                return introController()
+            
+        }
     }
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return pageTitles.count
+        return pages.count
     }
     
 

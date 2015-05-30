@@ -13,8 +13,7 @@ class introController: UIViewController, UIPageViewControllerDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "INTRO"
-        println("intro")
+        self.view.backgroundColor = UIColor.greenColor()
         
         // Do any additional setup after loading the view.
     }
