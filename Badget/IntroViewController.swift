@@ -1,5 +1,5 @@
 //
-//  checklistController.swift
+//  IntroViewController.swift
 //  Badget
 //
 //  Created by Toon Bertier on 30/05/15.
@@ -8,15 +8,19 @@
 
 import UIKit
 
-class checklistController: UIViewController, TutorialContent {
+class IntroViewController: UIViewController, TutorialContent {
     
     var pageIndex:Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.yellowColor()
-
+        self.view.backgroundColor = UIColor.grayColor()
+        
+        let label = UILabel(frame: CGRectMake(view.center.x-50, view.center.y-200, 100, 44))
+        label.text = "Intro-scherm"
+        view.addSubview(label)
+        
         // Do any additional setup after loading the view.
     }
 

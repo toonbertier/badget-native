@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TutorialViewDelegate {
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
-    func skipTutorial() {
+    func exitTutorial() {
         self.window?.rootViewController = UITabBarController()
     }
     

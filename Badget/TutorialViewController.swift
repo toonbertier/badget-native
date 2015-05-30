@@ -10,7 +10,7 @@ import UIKit
 
 //DELEGATE PROTOCOL
 protocol TutorialViewDelegate:class {
-    func skipTutorial()
+    func exitTutorial()
 }
 
 //TUTORIAL CONTENT PROTOCOL
@@ -37,7 +37,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     }
     
     func tappedSkip() {
-        self.delegate?.skipTutorial()
+        self.delegate?.exitTutorial()
     }
     
     func setupPageViewController() {
@@ -90,22 +90,22 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         switch self.pages[index] {
             
             case "intro":
-                let VC = introController()
+                let VC = IntroViewController()
                 VC.pageIndex = index
                 return VC
             
             case "facebook":
-                let VC = fbLoginController()
+                let VC = FBLoginViewController()
                 VC.pageIndex = index
                 return VC
             
             case "checklist":
-                let VC = checklistController()
+                let VC = ChecklistViewController()
                 VC.pageIndex = index
                 return VC
             
             default:
-                let VC = introController()
+                let VC = IntroViewController()
                 VC.pageIndex = index
                 return VC
             

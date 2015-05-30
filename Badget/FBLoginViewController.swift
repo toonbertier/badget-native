@@ -10,28 +10,26 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class fbLoginController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent {
+class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent {
     
     var loginManager = FBSDKLoginManager()
     var userName:String?
     var pageIndex:Int!
+    var theView:FBLoginView {
+        get{
+            return self.view as! FBLoginView
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let loginView = FBSDKLoginButton()
-        self.view.addSubview(loginView)
-        loginView.center = self.view.center
-        loginView.readPermissions = ["email", "user_friends"]
-        loginView.delegate = self
-        
-        let friendsButton = UIButton(frame: CGRectMake(self.view.center.x-100, self.view.center.y + 50, 200, 44))
-        friendsButton.setTitle("Get my friends!", forState: .Normal)
-        friendsButton.backgroundColor = UIColor.grayColor()
-        friendsButton.addTarget(self, action: "getFriends", forControlEvents: .TouchUpInside)
-        self.view.addSubview(friendsButton)
-        
+        self.theView.loginButton.delegate = self
+    }
+    
+    override func loadView() {
+        self.view = FBLoginView(frame: UIScreen.mainScreen().bounds)
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,7 +48,7 @@ class fbLoginController: UIViewController, FBSDKLoginButtonDelegate, TutorialCon
         else {
             if (result.grantedPermissions.contains("email") && result.grantedPermissions.contains("user_friends")){
                 println("permissions ok and user is logged in")
-                showWelcomeLabel(getUserName())
+                theView.showWelcomeLabel(getUserName())
             } else if (!result.grantedPermissions.contains("user_friends")) {
                 println("permission for friends NOT granted")
                 showFriendPermissionAlert()
@@ -111,20 +109,6 @@ class fbLoginController: UIViewController, FBSDKLoginButtonDelegate, TutorialCon
         
         println("naam printen")
         return name
-    }
-    
-    func showWelcomeLabel(name:String?) {
-        
-        println("naam gebruiken")
-        
-        let welcomeLabel = UILabel(frame: CGRectMake(self.view.center.x, self.view.center.y - 60, 200, 44))
-        welcomeLabel.textAlignment = .Center
-        if let nameUnwrapped = name {
-            welcomeLabel.text = "Welcome " + nameUnwrapped + "!"
-        } else {
-            welcomeLabel.text = "Welcome!"
-        }
-        self.view.addSubview(welcomeLabel)
     }
     
     

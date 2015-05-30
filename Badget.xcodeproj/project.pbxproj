@@ -12,10 +12,12 @@
 		646A87791B14B1B1001F224D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646A87781B14B1B1001F224D /* Images.xcassets */; };
 		646A877C1B14B1B1001F224D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646A877A1B14B1B1001F224D /* LaunchScreen.xib */; };
 		646A87881B14B1B1001F224D /* BadgetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A87871B14B1B1001F224D /* BadgetTests.swift */; };
-		647A606D1B19FECF001DBC0F /* introController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A606C1B19FECF001DBC0F /* introController.swift */; };
-		647A606F1B19FEDE001DBC0F /* fbLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A606E1B19FEDE001DBC0F /* fbLoginController.swift */; };
-		647A60711B19FEEE001DBC0F /* checklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60701B19FEEE001DBC0F /* checklistController.swift */; };
+		647A606D1B19FECF001DBC0F /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A606C1B19FECF001DBC0F /* IntroViewController.swift */; };
+		647A606F1B19FEDE001DBC0F /* FBLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */; };
+		647A60711B19FEEE001DBC0F /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */; };
 		647A60791B1A1913001DBC0F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60781B1A1913001DBC0F /* TutorialViewController.swift */; };
+		647A607B1B1A6730001DBC0F /* ChecklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A607A1B1A6730001DBC0F /* ChecklistView.swift */; };
+		647A607D1B1A68DB001DBC0F /* FBLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A607C1B1A68DB001DBC0F /* FBLoginView.swift */; };
 		E25E26AB21CCF81BA4520913 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBF06853EC1C3B87D521D82 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -40,10 +42,12 @@
 		646A87811B14B1B1001F224D /* BadgetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BadgetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		646A87861B14B1B1001F224D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646A87871B14B1B1001F224D /* BadgetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgetTests.swift; sourceTree = "<group>"; };
-		647A606C1B19FECF001DBC0F /* introController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = introController.swift; sourceTree = "<group>"; };
-		647A606E1B19FEDE001DBC0F /* fbLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fbLoginController.swift; sourceTree = "<group>"; };
-		647A60701B19FEEE001DBC0F /* checklistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checklistController.swift; sourceTree = "<group>"; };
+		647A606C1B19FECF001DBC0F /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginViewController.swift; sourceTree = "<group>"; };
+		647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		647A60781B1A1913001DBC0F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		647A607A1B1A6730001DBC0F /* ChecklistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistView.swift; sourceTree = "<group>"; };
+		647A607C1B1A68DB001DBC0F /* FBLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginView.swift; sourceTree = "<group>"; };
 		CDBF06853EC1C3B87D521D82 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D12FADE53FBFE9677F2501 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,9 +96,11 @@
 			children = (
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
 				647A60781B1A1913001DBC0F /* TutorialViewController.swift */,
-				647A606C1B19FECF001DBC0F /* introController.swift */,
-				647A606E1B19FEDE001DBC0F /* fbLoginController.swift */,
-				647A60701B19FEEE001DBC0F /* checklistController.swift */,
+				647A606C1B19FECF001DBC0F /* IntroViewController.swift */,
+				647A607C1B1A68DB001DBC0F /* FBLoginView.swift */,
+				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
+				647A607A1B1A6730001DBC0F /* ChecklistView.swift */,
+				647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */,
 				646A87781B14B1B1001F224D /* Images.xcassets */,
 				646A877A1B14B1B1001F224D /* LaunchScreen.xib */,
 				646A87751B14B1B1001F224D /* Badget.xcdatamodeld */,
@@ -295,12 +301,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				647A606D1B19FECF001DBC0F /* introController.swift in Sources */,
+				647A607D1B1A68DB001DBC0F /* FBLoginView.swift in Sources */,
+				647A606D1B19FECF001DBC0F /* IntroViewController.swift in Sources */,
 				647A60791B1A1913001DBC0F /* TutorialViewController.swift in Sources */,
 				646A87771B14B1B1001F224D /* Badget.xcdatamodeld in Sources */,
 				646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */,
-				647A60711B19FEEE001DBC0F /* checklistController.swift in Sources */,
-				647A606F1B19FEDE001DBC0F /* fbLoginController.swift in Sources */,
+				647A60711B19FEEE001DBC0F /* ChecklistViewController.swift in Sources */,
+				647A606F1B19FEDE001DBC0F /* FBLoginViewController.swift in Sources */,
+				647A607B1B1A6730001DBC0F /* ChecklistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
