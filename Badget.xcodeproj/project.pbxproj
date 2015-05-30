@@ -333,6 +333,7 @@
 				INFOPLIST_FILE = Badget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -343,6 +344,7 @@
 				INFOPLIST_FILE = Badget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -399,6 +401,7 @@
 				646A878D1B14B1B1001F224D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		646A878E1B14B1B1001F224D /* Build configuration list for PBXNativeTarget "BadgetTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +410,7 @@
 				646A87901B14B1B1001F224D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

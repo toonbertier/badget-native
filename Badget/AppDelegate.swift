@@ -18,6 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
+        
+        if(NSUserDefaults.standardUserDefaults().boolForKey("tutorialSeen") == true) {
+            println("tutorial seen")
+        } else {
+            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "tutorialSeen")
+            println("tutorial not seen")
+        }
+        
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
         return true
