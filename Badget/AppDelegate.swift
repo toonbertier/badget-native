@@ -19,12 +19,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
         
+        
+        //TEMPORARY TUTORIAL 
+        
+        var tutorialVC = TutorialViewController()
+        self.window?.rootViewController = tutorialVC
+        
+        //CHECK IF TUTORIAL IS SEEN
+        
+        /*
         if(NSUserDefaults.standardUserDefaults().boolForKey("tutorialSeen") == true) {
             println("tutorial seen")
         } else {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "tutorialSeen")
             println("tutorial not seen")
         }
+        */
         
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
