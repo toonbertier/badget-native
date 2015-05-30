@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,12 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-        //TEMPORARY TUTORIAL 
+        //TIJDELIJKE TUTORIAL
         
         var tutorialVC = TutorialViewController()
         self.window?.rootViewController = tutorialVC
         
-        //CHECK IF TUTORIAL IS SEEN
+        //TUTORIAL AL GEZIEN? -> DIRECT NAAR APP
         
         /*
         if(NSUserDefaults.standardUserDefaults().boolForKey("tutorialSeen") == true) {
@@ -38,7 +40,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
-        return true
+        
+        //Application Delegate Facebook instellen - nodig voor het juist werken van FacebookSDK
+        //Wordt gebruikt wanneer er response van Facebook app of browser binnenkomt
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        
+        //zorgt ervoor dat er juist gecommuniceerd wordt met Facebook app of browser
+        return FBSDKApplicationDelegate.sharedInstance().application(
+            application,
+            openURL: url,
+            sourceApplication: sourceApplication,
+            annotation: annotation
+        )
     }
 
     func applicationWillResignActive(application: UIApplication) {

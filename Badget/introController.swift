@@ -8,12 +8,16 @@
 
 import UIKit
 
-class introController: UIViewController, UIPageViewControllerDataSource {
+class introController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.greenColor()
+        self.view.backgroundColor = UIColor.grayColor()
+        
+        let label = UILabel(frame: CGRectMake(view.center.x-50, view.center.y-200, 100, 44))
+        label.text = "Intro-scherm"
+        view.addSubview(label)
         
         // Do any additional setup after loading the view.
     }
@@ -21,14 +25,6 @@ class introController: UIViewController, UIPageViewControllerDataSource {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        return fbLoginController()
-    }
-    
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        return nil
     }
     
 
