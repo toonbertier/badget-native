@@ -8,40 +8,50 @@
 
 import UIKit
 
+//DELEGATE PROTOCOL
+protocol TutorialViewDelegate:class {
+    func skipTutorial()
+}
+
+//TUTORIAL CONTENT PROTOCOL
+protocol TutorialContent:class {
+    var pageIndex:Int! {get}
+}
+
 class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
 
     let pages = ["intro", "facebook", "checklist"]
-    var count = 0
+    weak var delegate:TutorialViewDelegate?
     
     var pageViewController:UIPageViewController!
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupPageViewController()
         
-        self.pageViewController = UIPageViewController()
+        //TODO: APARTE VIEW
+        let skipButton = UIButton(frame: CGRectMake(view.frame.width-100, view.frame.height-50, 80, 44))
+        skipButton.setTitle("SKIP", forState: .Normal)
+        skipButton.addTarget(self, action: "tappedSkip", forControlEvents: .TouchUpInside)
+        self.view.addSubview(skipButton)
+    }
+    
+    func tappedSkip() {
+        self.delegate?.skipTutorial()
+    }
+    
+    func setupPageViewController() {
+        self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
-        
+    
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
-        
-        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height - 30)
+    
+        self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.width, self.view.frame.height)
         self.addChildViewController(pageViewController)
         self.view.addSubview(pageViewController.view)
         self.pageViewController.didMoveToParentViewController(self)
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,21 +61,23 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         
-        if(self.count >= self.pages.count - 1){
+        var index = (viewController as! TutorialContent).pageIndex!
+        index++
+        if(index >= self.pages.count){
             return nil
         }
-        self.count++
-        return self.viewControllerAtIndex(self.count)
+        return self.viewControllerAtIndex(index)
     
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         
-        if(self.count <= 0){
+        var index = (viewController as! TutorialContent).pageIndex!
+        if(index <= 0){
             return nil
         }
-        self.count--
-        return self.viewControllerAtIndex(self.count)
+        index--
+        return self.viewControllerAtIndex(index)
     
     }
     
@@ -75,20 +87,27 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
             return nil
         }
         
-        
         switch self.pages[index] {
             
             case "intro":
-                return introController()
+                let VC = introController()
+                VC.pageIndex = index
+                return VC
             
             case "facebook":
-                return fbLoginController()
+                let VC = fbLoginController()
+                VC.pageIndex = index
+                return VC
             
             case "checklist":
-                return checklistController()
+                let VC = checklistController()
+                VC.pageIndex = index
+                return VC
             
             default:
-                return introController()
+                let VC = introController()
+                VC.pageIndex = index
+                return VC
             
         }
     }

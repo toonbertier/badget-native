@@ -8,7 +8,9 @@
 
 import UIKit
 
-class introController: UIViewController {
+class introController: UIViewController, TutorialContent {
+    
+    var pageIndex:Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()

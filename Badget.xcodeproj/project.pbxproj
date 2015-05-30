@@ -15,7 +15,6 @@
 		647A606D1B19FECF001DBC0F /* introController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A606C1B19FECF001DBC0F /* introController.swift */; };
 		647A606F1B19FEDE001DBC0F /* fbLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A606E1B19FEDE001DBC0F /* fbLoginController.swift */; };
 		647A60711B19FEEE001DBC0F /* checklistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60701B19FEEE001DBC0F /* checklistController.swift */; };
-		647A60771B1A145B001DBC0F /* TutorialContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60761B1A145B001DBC0F /* TutorialContentController.swift */; };
 		647A60791B1A1913001DBC0F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60781B1A1913001DBC0F /* TutorialViewController.swift */; };
 		E25E26AB21CCF81BA4520913 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBF06853EC1C3B87D521D82 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -44,7 +43,6 @@
 		647A606C1B19FECF001DBC0F /* introController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = introController.swift; sourceTree = "<group>"; };
 		647A606E1B19FEDE001DBC0F /* fbLoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fbLoginController.swift; sourceTree = "<group>"; };
 		647A60701B19FEEE001DBC0F /* checklistController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = checklistController.swift; sourceTree = "<group>"; };
-		647A60761B1A145B001DBC0F /* TutorialContentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialContentController.swift; sourceTree = "<group>"; };
 		647A60781B1A1913001DBC0F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		CDBF06853EC1C3B87D521D82 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D12FADE53FBFE9677F2501 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
-				647A60761B1A145B001DBC0F /* TutorialContentController.swift */,
 				647A60781B1A1913001DBC0F /* TutorialViewController.swift */,
 				647A606C1B19FECF001DBC0F /* introController.swift */,
 				647A606E1B19FEDE001DBC0F /* fbLoginController.swift */,
@@ -304,7 +301,6 @@
 				646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */,
 				647A60711B19FEEE001DBC0F /* checklistController.swift in Sources */,
 				647A606F1B19FEDE001DBC0F /* fbLoginController.swift in Sources */,
-				647A60771B1A145B001DBC0F /* TutorialContentController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

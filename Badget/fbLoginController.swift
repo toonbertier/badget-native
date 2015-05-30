@@ -10,10 +10,11 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class fbLoginController: UIViewController, FBSDKLoginButtonDelegate {
+class fbLoginController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent {
     
     var loginManager = FBSDKLoginManager()
     var userName:String?
+    var pageIndex:Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()

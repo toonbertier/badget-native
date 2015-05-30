@@ -8,7 +8,9 @@
 
 import UIKit
 
-class checklistController: UIViewController {
+class checklistController: UIViewController, TutorialContent {
+    
+    var pageIndex:Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
