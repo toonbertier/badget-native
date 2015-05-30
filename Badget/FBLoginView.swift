@@ -37,7 +37,7 @@ class FBLoginView: UIView {
         
         println("naam gebruiken")
         
-        let welcomeLabel = UILabel(frame: CGRectMake(self.center.x, self.center.y - 60, 200, 44))
+        let welcomeLabel = UILabel(frame: CGRectMake(self.center.x - 100, self.center.y - 60, 200, 44))
         welcomeLabel.textAlignment = .Center
         if let nameUnwrapped = name {
             welcomeLabel.text = "Welcome " + nameUnwrapped + "!"

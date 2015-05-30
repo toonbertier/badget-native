@@ -61,6 +61,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         let alert = UIAlertController(title: "Voeg je vrienden toe", message: "Alleen wanneer je je vrienden toevoegt, zullen ze je kunnen terugvinden indien je vermist bent!", preferredStyle: .Alert)
         let okAction = UIAlertAction(title: "Vrienden toelaten", style: .Default, handler: { (action) -> Void in
             println("add-friends")
+            self.reAuthorizeFriends()
             //TODO: NSUserDefaults -> friendListAvalaible op true zetten?
         })
         let cancelAction = UIAlertAction(title: "Niet toelaten", style: .Cancel, handler: { (action) -> Void in
@@ -71,6 +72,12 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func reAuthorizeFriends() {
+        FBSDKLoginManager().logInWithReadPermissions(["user_friends"], handler: { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+            println(result)
+        })
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
