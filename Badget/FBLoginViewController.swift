@@ -1,5 +1,5 @@
 //
-//  fbLoginController.swift
+//  FBLoginViewController.swift
 //  Badget
 //
 //  Created by Toon Bertier on 30/05/15.

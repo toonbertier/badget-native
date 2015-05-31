@@ -1,5 +1,5 @@
 //
-//  checklistController.swift
+//  ChecklistViewController.swift
 //  Badget
 //
 //  Created by Toon Bertier on 30/05/15.
@@ -11,10 +11,21 @@ import UIKit
 class ChecklistViewController: UIViewController, TutorialContent {
     
     var pageIndex:Int!
+    var tableVC:ChecklistTableViewController!
     var theView:ChecklistView {
         get{
             return self.view as! ChecklistView
         }
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        self.tableVC = ChecklistTableViewController(nibName: nil, bundle: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -23,7 +34,8 @@ class ChecklistViewController: UIViewController, TutorialContent {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.tableVC.tableView.frame = CGRectMake(0, 20, self.theView.frame.width, self.theView.frame.height - 150)
+        self.theView.addSubview(self.tableVC.tableView)
         // Do any additional setup after loading the view.
     }
 

@@ -1,0 +1,38 @@
+[
+  {
+    "title": "handdoek",
+    "checked": true,
+  },
+  {
+    "title": "washand",
+    "checked": true,
+  },
+  {
+    "title": "tandenborstel",
+    "checked": false,
+  },
+  {
+    "title": "schoenen",
+    "checked": false,
+  },
+  {
+    "title": "tshirt",
+    "checked": false,
+  },
+  {
+    "title": "deo",
+    "checked": false,
+  },
+  {
+    "title": "tent",
+    "checked": false,
+  },
+  {
+    "title": "zonnebril",
+    "checked": false,
+  },
+  {
+    "title": "zonnecreme",
+    "checked": false,
+  },
+]

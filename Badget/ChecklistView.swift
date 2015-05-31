@@ -12,6 +12,14 @@ class ChecklistView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        /*
+        let friendsButton = UIButton(frame: CGRectMake(self.center.x-100, self.center.y + 50, 200, 44))
+        friendsButton.setTitle("Get my friends!", forState: .Normal)
+        friendsButton.backgroundColor = UIColor.grayColor()
+        friendsButton.addTarget(self, action: "getFriends", forControlEvents: .TouchUpInside)
+        self.addSubview(friendsButton)
+        */
     }
 
     required init(coder aDecoder: NSCoder) {

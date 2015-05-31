@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		642A7E1B1B1B366500B54E7C /* checklist.json in Resources */ = {isa = PBXBuildFile; fileRef = 642A7E1A1B1B366500B54E7C /* checklist.json */; };
+		642A7E1D1B1B36AC00B54E7C /* ChecklistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */; };
+		642A7E1F1B1B36FA00B54E7C /* ChecklistFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */; };
+		642A7E211B1B385900B54E7C /* ChecklistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E201B1B385900B54E7C /* ChecklistTableViewController.swift */; };
+		642A7E231B1B3B9100B54E7C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E221B1B3B9100B54E7C /* SwiftyJSON.swift */; };
+		642A7E251B1B3D4900B54E7C /* ChecklistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E241B1B3D4900B54E7C /* ChecklistCell.swift */; };
 		646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646A87731B14B1B1001F224D /* AppDelegate.swift */; };
 		646A87771B14B1B1001F224D /* Badget.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 646A87751B14B1B1001F224D /* Badget.xcdatamodeld */; };
 		646A87791B14B1B1001F224D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646A87781B14B1B1001F224D /* Images.xcassets */; };
@@ -33,6 +39,12 @@
 
 /* Begin PBXFileReference section */
 		376ACB1B6AF81CD865E530A9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		642A7E1A1B1B366500B54E7C /* checklist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checklist.json; sourceTree = "<group>"; };
+		642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistData.swift; sourceTree = "<group>"; };
+		642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistFactory.swift; sourceTree = "<group>"; };
+		642A7E201B1B385900B54E7C /* ChecklistTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistTableViewController.swift; sourceTree = "<group>"; };
+		642A7E221B1B3B9100B54E7C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		642A7E241B1B3D4900B54E7C /* ChecklistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistCell.swift; sourceTree = "<group>"; };
 		646A876E1B14B1B1001F224D /* Badget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Badget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		646A87721B14B1B1001F224D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		646A87731B14B1B1001F224D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,13 +106,19 @@
 		646A87701B14B1B1001F224D /* Badget */ = {
 			isa = PBXGroup;
 			children = (
+				642A7E221B1B3B9100B54E7C /* SwiftyJSON.swift */,
+				642A7E1A1B1B366500B54E7C /* checklist.json */,
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
 				647A60781B1A1913001DBC0F /* TutorialViewController.swift */,
 				647A606C1B19FECF001DBC0F /* IntroViewController.swift */,
 				647A607C1B1A68DB001DBC0F /* FBLoginView.swift */,
 				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
+				642A7E241B1B3D4900B54E7C /* ChecklistCell.swift */,
 				647A607A1B1A6730001DBC0F /* ChecklistView.swift */,
 				647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */,
+				642A7E201B1B385900B54E7C /* ChecklistTableViewController.swift */,
+				642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */,
+				642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */,
 				646A87781B14B1B1001F224D /* Images.xcassets */,
 				646A877A1B14B1B1001F224D /* LaunchScreen.xib */,
 				646A87751B14B1B1001F224D /* Badget.xcdatamodeld */,
@@ -234,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				642A7E1B1B1B366500B54E7C /* checklist.json in Resources */,
 				646A877C1B14B1B1001F224D /* LaunchScreen.xib in Resources */,
 				646A87791B14B1B1001F224D /* Images.xcassets in Resources */,
 			);
@@ -302,7 +321,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				647A607D1B1A68DB001DBC0F /* FBLoginView.swift in Sources */,
+				642A7E251B1B3D4900B54E7C /* ChecklistCell.swift in Sources */,
 				647A606D1B19FECF001DBC0F /* IntroViewController.swift in Sources */,
+				642A7E1D1B1B36AC00B54E7C /* ChecklistData.swift in Sources */,
+				642A7E231B1B3B9100B54E7C /* SwiftyJSON.swift in Sources */,
+				642A7E1F1B1B36FA00B54E7C /* ChecklistFactory.swift in Sources */,
+				642A7E211B1B385900B54E7C /* ChecklistTableViewController.swift in Sources */,
 				647A60791B1A1913001DBC0F /* TutorialViewController.swift in Sources */,
 				646A87771B14B1B1001F224D /* Badget.xcdatamodeld in Sources */,
 				646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */,
