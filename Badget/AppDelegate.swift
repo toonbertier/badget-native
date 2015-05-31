@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
         
-        
         //TIJDELIJKE TUTORIAL
         
         var tutorialVC = TutorialViewController()

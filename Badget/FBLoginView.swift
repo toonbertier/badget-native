@@ -21,12 +21,7 @@ class FBLoginView: UIView {
         self.addSubview(loginButton)
         self.loginButton.center = self.center
         self.loginButton.readPermissions = ["email", "user_friends"]
-        
-        let friendsButton = UIButton(frame: CGRectMake(self.center.x-100, self.center.y + 50, 200, 44))
-        friendsButton.setTitle("Get my friends!", forState: .Normal)
-        friendsButton.backgroundColor = UIColor.grayColor()
-        friendsButton.addTarget(self, action: "getFriends", forControlEvents: .TouchUpInside)
-        self.addSubview(friendsButton)
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -45,6 +40,13 @@ class FBLoginView: UIView {
             welcomeLabel.text = "Welcome!"
         }
         self.addSubview(welcomeLabel)
+    }
+    
+    func showErrorLabel() {
+        let errorLabel = UILabel(frame: CGRectMake(self.center.x - 100, self.center.y - 60, 200, 44))
+        errorLabel.textAlignment = .Center
+        errorLabel.text = "Er ging iets mis, probeer opnieuw"
+        self.addSubview(errorLabel)
     }
 
     /*

@@ -9,11 +9,21 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import Alamofire
 
 class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent {
     
     var loginManager = FBSDKLoginManager()
-    var userName:String?
+    var userName:String? {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setValue(self.userName, forKey: "userName")
+        }
+    }
+    var facebookId:String? {
+        didSet {
+            NSUserDefaults.standardUserDefaults().setValue(self.facebookId, forKey: "facebookId")
+        }
+    }
     var pageIndex:Int!
     var theView:FBLoginView {
         get{
@@ -26,6 +36,12 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         // Do any additional setup after loading the view, typically from a nib.
         
         self.theView.loginButton.delegate = self
+        
+        let friendsButton = UIButton(frame: CGRectMake(self.view.center.x-100, self.view.center.y + 50, 200, 44))
+        friendsButton.setTitle("Get my friends!", forState: .Normal)
+        friendsButton.backgroundColor = UIColor.grayColor()
+        friendsButton.addTarget(self, action: "getFriends", forControlEvents: .TouchUpInside)
+        self.view.addSubview(friendsButton)
     }
     
     override func loadView() {
@@ -41,16 +57,13 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         
         if ((error) != nil) {
             println(error.description)
-        }
-        else if result.isCancelled {
-            println("login was cancelled")
+            self.theView.showErrorLabel()
         }
         else {
             if (result.grantedPermissions.contains("email") && result.grantedPermissions.contains("user_friends")){
                 println("permissions ok and user is logged in")
-                theView.showWelcomeLabel(getUserName())
+                setUser()
             } else if (!result.grantedPermissions.contains("user_friends")) {
-                println("permission for friends NOT granted")
                 showFriendPermissionAlert()
             }
         }
@@ -59,12 +72,12 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
     func showFriendPermissionAlert() {
         
         let alert = UIAlertController(title: "Voeg je vrienden toe", message: "Alleen wanneer je je vrienden toevoegt, zullen ze je kunnen terugvinden indien je vermist bent!", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "Vrienden toelaten", style: .Default, handler: { (action) -> Void in
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
             println("add-friends")
             self.reAuthorizeFriends()
             //TODO: NSUserDefaults -> friendListAvalaible op true zetten?
         })
-        let cancelAction = UIAlertAction(title: "Niet toelaten", style: .Cancel, handler: { (action) -> Void in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
             println("vrienden geweigerd")
             //TODO: NSUserDefaults -> friendListAvalaible op false zetten?
         })
@@ -81,8 +94,8 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        println("User Logged Out")
-        println(FBSDKProfile.currentProfile())
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("userName")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("facebookId")
     }
     
     func getFriends() {
@@ -98,7 +111,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         }
     }
     
-    func getUserName() -> String? {
+    func setUser() {
         
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         var name:String?
@@ -109,15 +122,27 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
                 println("Error: \(error)")
             }
             else {
-                name = result.valueForKey("name") as? String
-                println("naam ontvangen")
+                self.userName = result.valueForKey("name") as? String
+                self.facebookId = result.valueForKey("id") as? String
+                self.uploadUserToDatabase()
             }
         })
-        
-        println("naam printen")
-        return name
     }
     
+    func uploadUserToDatabase() {
+        if let user = self.userName {
+            if let id = self.facebookId {
+                Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users", parameters: ["name": user, "facebook_id": id])
+                         .response { (request, response, data, error) in
+                            if(response?.statusCode == 200) {
+                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsUploaded")
+                            } else {
+                                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsUploaded")
+                            }
+                        }
+                }
+        }
+    }
     
     /*
     // MARK: - Navigation
