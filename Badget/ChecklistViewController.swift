@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChecklistViewController: UIViewController, TutorialContent {
+class ChecklistViewController: UIViewController, TutorialContent, ChecklistDelegate {
     
     var pageIndex:Int!
     var tableVC:ChecklistTableViewController!
@@ -30,6 +30,11 @@ class ChecklistViewController: UIViewController, TutorialContent {
     
     override func loadView() {
         self.view = ChecklistView(frame: UIScreen.mainScreen().bounds)
+        self.theView.delegate = self
+    }
+    
+    func exitTutorial() {
+        self.view.window?.rootViewController = UITabBarController()
     }
 
     override func viewDidLoad() {

@@ -32,12 +32,13 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         //TODO: APARTE VIEW
         let skipButton = UIButton(frame: CGRectMake(view.frame.width-100, view.frame.height-50, 80, 44))
         skipButton.setTitle("SKIP", forState: .Normal)
+        skipButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         skipButton.addTarget(self, action: "tappedSkip", forControlEvents: .TouchUpInside)
         self.view.addSubview(skipButton)
     }
     
     func tappedSkip() {
-        self.delegate?.exitTutorial()
+        self.view.window?.rootViewController = UITabBarController()
     }
     
     func setupPageViewController() {

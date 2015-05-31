@@ -12,10 +12,9 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, TutorialViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -25,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TutorialViewDelegate {
         //TIJDELIJKE TUTORIAL
         
         var tutorialVC = TutorialViewController()
-        tutorialVC.delegate = self
         self.window?.rootViewController = tutorialVC
         
         //TUTORIAL AL GEZIEN? -> DIRECT NAAR APP
@@ -45,10 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, TutorialViewDelegate {
         //Application Delegate Facebook instellen - nodig voor het juist werken van FacebookSDK
         //Wordt gebruikt wanneer er response van Facebook app of browser binnenkomt
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-    }
-    
-    func exitTutorial() {
-        self.window?.rootViewController = UITabBarController()
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
