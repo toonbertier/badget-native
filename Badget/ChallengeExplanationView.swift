@@ -19,6 +19,8 @@ class ChallengeExplanationView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = UIColor.whiteColor()
+        
         let expLabel = UILabel(frame: CGRectMake(self.center.x - 50, self.center.y - 100, 100, 44))
         expLabel.textAlignment = .Center
         expLabel.text = "uitleg uitleg"

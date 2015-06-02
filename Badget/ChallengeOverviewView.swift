@@ -24,6 +24,8 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
         
         super.init(frame: frame)
         
+        self.backgroundColor = UIColor.whiteColor()
+        
         setScrollableTickets()
         
         self.scrollView.showsHorizontalScrollIndicator = false
@@ -47,7 +49,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
             
             let image = UIImage(named: "kaart")
             var imageView = UIImageView(image: image!)
-            imageView.frame = CGRectMake(CGFloat(xPos + 80), 20, image!.size.width, image!.size.height)
+            imageView.frame = CGRectMake(CGFloat(xPos + 87), 20, image!.size.width, image!.size.height)
             imageView.userInteractionEnabled = true
             imageView.tag = i
             
