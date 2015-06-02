@@ -38,11 +38,12 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     }
     
     func tappedSkip() {
-        self.view.window?.rootViewController = UITabBarController()
+        self.view.window?.rootViewController = MainTabBarController()
     }
     
     func setupPageViewController() {
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        self.pageViewController.view.backgroundColor = UIColor.grayColor()
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
     
@@ -115,6 +116,10 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     
     func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
         return pages.count
+    }
+    
+    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
+        return 0
     }
     
 

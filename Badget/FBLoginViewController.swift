@@ -129,6 +129,8 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         })
     }
     
+    
+    
     func uploadUserToDatabase() {
         if let user = self.userName {
             if let id = self.facebookId {

@@ -1,27 +1,33 @@
 //
-//  ChecklistViewController.swift
+//  ChallengeOverviewViewController.swift
 //  Badget
 //
-//  Created by Toon Bertier on 30/05/15.
+//  Created by Toon Bertier on 02/06/15.
 //  Copyright (c) 2015 Toon Bertier. All rights reserved.
 //
 
 import UIKit
 
-class ChecklistViewController: UIViewController, TutorialContent, ChecklistDelegate {
+enum ChallengeName:String {
     
-    var pageIndex:Int!
-    var tableVC:ChecklistTableViewController!
-    var theView:ChecklistView {
-        get{
-            return self.view as! ChecklistView
+    case StraightLine = "In rechte lijn"
+    case CrowdSurfing = "Crowdsurfen"
+    case Quiz = "Quiz"
+    
+}
+
+class ChallengeOverviewViewController: UIViewController, ChallengeOverviewViewDelegate {
+    
+    var theView:ChallengeOverviewView {
+        get {
+            return self.view as! ChallengeOverviewView
         }
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        self.tableVC = ChecklistTableViewController(nibName: nil, bundle: nil)
+        self.title = "Challenges"
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -29,18 +35,18 @@ class ChecklistViewController: UIViewController, TutorialContent, ChecklistDeleg
     }
     
     override func loadView() {
-        self.view = ChecklistView(frame: UIScreen.mainScreen().bounds)
+        self.view = ChallengeOverviewView(frame: UIScreen.mainScreen().bounds)
         self.theView.delegate = self
     }
     
-    func exitTutorial() {
-        self.view.window?.rootViewController = MainTabBarController()
+    func didChooseChallenge(name:ChallengeName) {
+        self.navigationController?.pushViewController(ChallengeExplanationViewController(name: name), animated: true)
+        
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableVC.tableView.frame = CGRectMake(0, 20, self.theView.frame.width, self.theView.frame.height - 150)
-        self.theView.addSubview(self.tableVC.tableView)
+
         // Do any additional setup after loading the view.
     }
 

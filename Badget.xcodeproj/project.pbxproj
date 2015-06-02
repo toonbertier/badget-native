@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6422D2AB1B1DFCCC006E7A98 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */; };
+		6422D2AD1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2AC1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift */; };
+		6422D2AF1B1E0031006E7A98 /* ChallengeOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */; };
+		6422D2B11B1E428D006E7A98 /* ChallengeExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2B01B1E428D006E7A98 /* ChallengeExplanationViewController.swift */; };
+		6422D2B31B1E457B006E7A98 /* ChallengeExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */; };
+		6422D2B51B1E4B72006E7A98 /* StraightLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2B41B1E4B72006E7A98 /* StraightLineViewController.swift */; };
+		6422D2B71B1E4B85006E7A98 /* CrowdSurfingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2B61B1E4B85006E7A98 /* CrowdSurfingViewController.swift */; };
+		6422D2B91B1E4B90006E7A98 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2B81B1E4B90006E7A98 /* QuizViewController.swift */; };
 		642A7E1B1B1B366500B54E7C /* checklist.json in Resources */ = {isa = PBXBuildFile; fileRef = 642A7E1A1B1B366500B54E7C /* checklist.json */; };
 		642A7E1D1B1B36AC00B54E7C /* ChecklistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */; };
 		642A7E1F1B1B36FA00B54E7C /* ChecklistFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */; };
@@ -39,6 +47,14 @@
 
 /* Begin PBXFileReference section */
 		376ACB1B6AF81CD865E530A9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		6422D2AC1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeOverviewViewController.swift; sourceTree = "<group>"; };
+		6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeOverviewView.swift; sourceTree = "<group>"; };
+		6422D2B01B1E428D006E7A98 /* ChallengeExplanationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeExplanationViewController.swift; sourceTree = "<group>"; };
+		6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeExplanationView.swift; sourceTree = "<group>"; };
+		6422D2B41B1E4B72006E7A98 /* StraightLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StraightLineViewController.swift; sourceTree = "<group>"; };
+		6422D2B61B1E4B85006E7A98 /* CrowdSurfingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdSurfingViewController.swift; sourceTree = "<group>"; };
+		6422D2B81B1E4B90006E7A98 /* QuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		642A7E1A1B1B366500B54E7C /* checklist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checklist.json; sourceTree = "<group>"; };
 		642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistData.swift; sourceTree = "<group>"; };
 		642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistFactory.swift; sourceTree = "<group>"; };
@@ -83,6 +99,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6422D2A91B1DFBC0006E7A98 /* FirstTimeTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				647A60781B1A1913001DBC0F /* TutorialViewController.swift */,
+				647A606C1B19FECF001DBC0F /* IntroViewController.swift */,
+				647A607C1B1A68DB001DBC0F /* FBLoginView.swift */,
+				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
+				642A7E241B1B3D4900B54E7C /* ChecklistCell.swift */,
+				647A607A1B1A6730001DBC0F /* ChecklistView.swift */,
+				647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */,
+				642A7E201B1B385900B54E7C /* ChecklistTableViewController.swift */,
+				642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */,
+				642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */,
+			);
+			name = FirstTimeTutorial;
+			sourceTree = "<group>";
+		};
 		646A87651B14B1B1001F224D = {
 			isa = PBXGroup;
 			children = (
@@ -109,16 +142,15 @@
 				642A7E221B1B3B9100B54E7C /* SwiftyJSON.swift */,
 				642A7E1A1B1B366500B54E7C /* checklist.json */,
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
-				647A60781B1A1913001DBC0F /* TutorialViewController.swift */,
-				647A606C1B19FECF001DBC0F /* IntroViewController.swift */,
-				647A607C1B1A68DB001DBC0F /* FBLoginView.swift */,
-				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
-				642A7E241B1B3D4900B54E7C /* ChecklistCell.swift */,
-				647A607A1B1A6730001DBC0F /* ChecklistView.swift */,
-				647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */,
-				642A7E201B1B385900B54E7C /* ChecklistTableViewController.swift */,
-				642A7E1C1B1B36AC00B54E7C /* ChecklistData.swift */,
-				642A7E1E1B1B36FA00B54E7C /* ChecklistFactory.swift */,
+				6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */,
+				6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */,
+				6422D2B01B1E428D006E7A98 /* ChallengeExplanationViewController.swift */,
+				6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */,
+				6422D2AC1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift */,
+				6422D2B41B1E4B72006E7A98 /* StraightLineViewController.swift */,
+				6422D2B61B1E4B85006E7A98 /* CrowdSurfingViewController.swift */,
+				6422D2B81B1E4B90006E7A98 /* QuizViewController.swift */,
+				6422D2A91B1DFBC0006E7A98 /* FirstTimeTutorial */,
 				646A87781B14B1B1001F224D /* Images.xcassets */,
 				646A877A1B14B1B1001F224D /* LaunchScreen.xib */,
 				646A87751B14B1B1001F224D /* Badget.xcdatamodeld */,
@@ -323,16 +355,24 @@
 				647A607D1B1A68DB001DBC0F /* FBLoginView.swift in Sources */,
 				642A7E251B1B3D4900B54E7C /* ChecklistCell.swift in Sources */,
 				647A606D1B19FECF001DBC0F /* IntroViewController.swift in Sources */,
+				6422D2B51B1E4B72006E7A98 /* StraightLineViewController.swift in Sources */,
 				642A7E1D1B1B36AC00B54E7C /* ChecklistData.swift in Sources */,
 				642A7E231B1B3B9100B54E7C /* SwiftyJSON.swift in Sources */,
+				6422D2AD1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift in Sources */,
 				642A7E1F1B1B36FA00B54E7C /* ChecklistFactory.swift in Sources */,
 				642A7E211B1B385900B54E7C /* ChecklistTableViewController.swift in Sources */,
 				647A60791B1A1913001DBC0F /* TutorialViewController.swift in Sources */,
 				646A87771B14B1B1001F224D /* Badget.xcdatamodeld in Sources */,
+				6422D2B31B1E457B006E7A98 /* ChallengeExplanationView.swift in Sources */,
 				646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */,
+				6422D2AF1B1E0031006E7A98 /* ChallengeOverviewView.swift in Sources */,
+				6422D2AB1B1DFCCC006E7A98 /* MainTabBarController.swift in Sources */,
+				6422D2B91B1E4B90006E7A98 /* QuizViewController.swift in Sources */,
 				647A60711B19FEEE001DBC0F /* ChecklistViewController.swift in Sources */,
 				647A606F1B19FEDE001DBC0F /* FBLoginViewController.swift in Sources */,
 				647A607B1B1A6730001DBC0F /* ChecklistView.swift in Sources */,
+				6422D2B71B1E4B85006E7A98 /* CrowdSurfingViewController.swift in Sources */,
+				6422D2B11B1E428D006E7A98 /* ChallengeExplanationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
