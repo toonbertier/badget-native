@@ -23,6 +23,7 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
     var totalDistance:CLLocationDistance?
     var locationLabel:UILabel!
     var step = 1
+    var hasVibratedWhenLayingDown:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +111,11 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
         if(x > -0.60 && x < 0.60 && y > -0.60 && y < 0.60 && z > 0.70) {
             println("down")
             self.step = 3
-            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+            
+            if(!self.hasVibratedWhenLayingDown) {
+                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                self.hasVibratedWhenLayingDown = true
+            }
             
             startUpdatingLocation()
             
@@ -193,6 +198,8 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
             if let totalDistanceUnwrapped = self.totalDistance {
                 self.totalDistance! += d
                 self.locationLabel.text = "D: " + self.totalDistance!.description
+            } else {
+                self.totalDistance = 0
             }
             
             setRegion(pointB)
