@@ -49,7 +49,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
             
             let image = UIImage(named: "kaart")
             var imageView = UIImageView(image: image!)
-            imageView.frame = CGRectMake(CGFloat(xPos + 87), 20, image!.size.width, image!.size.height)
+            imageView.frame = CGRectMake(CGFloat(xPos + 87), 40, image!.size.width, image!.size.height)
             imageView.userInteractionEnabled = true
             imageView.tag = i
             
@@ -77,7 +77,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
         var ticket = sender.view!
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            ticket.center = CGPointMake(ticket.center.x, 350)
+            ticket.center = CGPointMake(ticket.center.x, 390)
         }) { (completion) -> Void in
             self.delegate?.didChooseChallenge(self.challengeNames[sender.view!.tag])
         }
@@ -92,7 +92,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
         var ticket = sender.view!
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            ticket.center = CGPointMake(ticket.center.x, 135)
+            ticket.center = CGPointMake(ticket.center.x, 155)
         })
         
         self.scrollView.scrollEnabled = true
