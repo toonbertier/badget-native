@@ -13,9 +13,11 @@ import FBSDKLoginKit
 import Pusher
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
 
     var window: UIWindow?
+    var pusherClient:AnyObject!
+    var pusherChannel:PTPusherChannel!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -42,8 +44,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.makeKeyAndVisible()
         
         //Notificaties registreren
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: UIUserNotificationType.Sound |
-            UIUserNotificationType.Alert | UIUserNotificationType.Badge, categories: nil))
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+        
+        //Pusherinstantie aanmaken
+        self.pusherClient = PTPusher.pusherWithKey("652067c9e368032c2208", delegate: self)
+        self.pusherClient.connect()
+        self.pusherChannel = self.pusherClient.subscribeToChannelNamed("MissingPeople")
         
         //Application Delegate Facebook instellen - nodig voor het juist werken van FacebookSDK
         //Wordt gebruikt wanneer er response van Facebook app of browser binnenkomt
@@ -70,6 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        println("going to background")
+        //application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+        //FBLoginViewController.subscribeToFriendEvents()
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

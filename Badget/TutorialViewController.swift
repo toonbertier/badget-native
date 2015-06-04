@@ -97,7 +97,7 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
                 return VC
             
             case "facebook":
-                let VC = FBLoginViewController()
+                let VC = FBLoginViewController(viewToLoad: .FBTutorialLoginView)
                 VC.pageIndex = index
                 return VC
             

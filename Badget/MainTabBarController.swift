@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //subscriben voor notificaties als vriend vermist is
+        if(FBSDKAccessToken.currentAccessToken() != nil) {
+            println("[MainTAB] - subscribing to friend events")
+            FBLoginViewController.subscribeToFriendEvents()
+        }
         
         //Challenges
         var challengeNavVC = UINavigationController(rootViewController: ChallengeOverviewViewController(nibName: nil, bundle: nil))
@@ -30,7 +38,6 @@ class MainTabBarController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

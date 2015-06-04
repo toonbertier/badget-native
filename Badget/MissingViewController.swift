@@ -14,7 +14,6 @@ import Alamofire
 
 class MissingViewController: UIViewController, MissingViewDelegate {
     
-    
     var theView:MissingView {
         get {
             return self.view as! MissingView
@@ -31,18 +30,6 @@ class MissingViewController: UIViewController, MissingViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateUserToMissing() {
-        
-        /*
-        if(FBSDKAccessToken.currentAccessToken() != nil) {
-            
-            Alamofire.request(.POST, <#URLString: URLStringConvertible#>, parameters: <#[String : AnyObject]?#>, encoding: <#ParameterEncoding#>)
-            
-        }
-        */
-        
-    }
-    
     override func loadView() {
         self.view = MissingView(frame: CGRectMake(0, 44, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 93))
         self.theView.delegate = self
@@ -51,7 +38,39 @@ class MissingViewController: UIViewController, MissingViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(FBSDKAccessToken.currentAccessToken() == nil) {
+            self.parentViewController!.presentViewController(FBLoginViewController(viewToLoad: .MissingLoginView), animated: true, completion: nil)
+        }
+        
         // Do any additional setup after loading the view.
+    }
+    
+    func updateUserToMissing() {
+        
+        if(FBSDKAccessToken.currentAccessToken() != nil) {
+            
+            var url = "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users/missing/" + FBSDKAccessToken.currentAccessToken().userID
+            println(url)
+            
+            Alamofire.request(.PUT, url, parameters: ["missing": 1]).response { (request, response, data, error) in
+                if(response?.statusCode == 200) {
+                    println("alert sended")
+                }
+                if(response?.statusCode == 500) {
+                    println("server error")
+                    println(response)
+                }
+                else {
+                    println(error)
+                    println(response)
+                    println(data)
+                }
+            }
+
+        } else {
+            println("user isn't logged in with FB")
+        }
+    
     }
 
     override func didReceiveMemoryWarning() {

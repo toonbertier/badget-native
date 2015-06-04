@@ -1,8 +1,8 @@
 //
-//  FBLoginView.swift
+//  MissingLoginView.swift
 //  Badget
 //
-//  Created by Toon Bertier on 30/05/15.
+//  Created by Toon Bertier on 04/06/15.
 //  Copyright (c) 2015 Toon Bertier. All rights reserved.
 //
 
@@ -10,36 +10,25 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
-class FBLoginView: UIView {
+class MissingLoginView: UIView, BadgetLoginView {
     
     var loginButton:FBSDKLoginButton!
+    var popViewControllerAfterLogin = true
     
-    override init(frame: CGRect) {
+    override required init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.backgroundColor = UIColor.whiteColor()
         
         self.loginButton = FBSDKLoginButton()
         self.addSubview(loginButton)
         self.loginButton.center = self.center
         self.loginButton.readPermissions = ["email", "user_friends"]
-
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        
     }
     
-    func showWelcomeLabel(name:String?) {
-        
-        println("naam gebruiken")
-        
-        let welcomeLabel = UILabel(frame: CGRectMake(self.center.x - 100, self.center.y - 60, 200, 44))
-        welcomeLabel.textAlignment = .Center
-        if let nameUnwrapped = name {
-            welcomeLabel.text = "Welcome " + nameUnwrapped + "!"
-        } else {
-            welcomeLabel.text = "Welcome!"
-        }
-        self.addSubview(welcomeLabel)
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func showErrorLabel() {
@@ -48,6 +37,7 @@ class FBLoginView: UIView {
         errorLabel.text = "Er ging iets mis, probeer opnieuw"
         self.addSubview(errorLabel)
     }
+
 
     /*
     // Only override drawRect: if you perform custom drawing.

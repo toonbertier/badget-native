@@ -35,7 +35,8 @@
 		647A60711B19FEEE001DBC0F /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */; };
 		647A60791B1A1913001DBC0F /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A60781B1A1913001DBC0F /* TutorialViewController.swift */; };
 		647A607B1B1A6730001DBC0F /* ChecklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A607A1B1A6730001DBC0F /* ChecklistView.swift */; };
-		647A607D1B1A68DB001DBC0F /* FBLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647A607C1B1A68DB001DBC0F /* FBLoginView.swift */; };
+		6484340C1B20B4A400ED722C /* FBTutorialLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484340B1B20B4A400ED722C /* FBTutorialLoginView.swift */; };
+		6484340E1B20BEE200ED722C /* MissingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484340D1B20BEE200ED722C /* MissingLoginView.swift */; };
 		64D306821B1F624500B7FD23 /* MissingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D306811B1F624500B7FD23 /* MissingViewController.swift */; };
 		E25E26AB21CCF81BA4520913 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDBF06853EC1C3B87D521D82 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -84,7 +85,8 @@
 		647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		647A60781B1A1913001DBC0F /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		647A607A1B1A6730001DBC0F /* ChecklistView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistView.swift; sourceTree = "<group>"; };
-		647A607C1B1A68DB001DBC0F /* FBLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBLoginView.swift; sourceTree = "<group>"; };
+		6484340B1B20B4A400ED722C /* FBTutorialLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBTutorialLoginView.swift; sourceTree = "<group>"; };
+		6484340D1B20BEE200ED722C /* MissingLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingLoginView.swift; sourceTree = "<group>"; };
 		64D306811B1F624500B7FD23 /* MissingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingViewController.swift; sourceTree = "<group>"; };
 		CDBF06853EC1C3B87D521D82 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D12FADE53FBFE9677F2501 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -114,8 +116,7 @@
 			children = (
 				647A60781B1A1913001DBC0F /* TutorialViewController.swift */,
 				647A606C1B19FECF001DBC0F /* IntroViewController.swift */,
-				647A607C1B1A68DB001DBC0F /* FBLoginView.swift */,
-				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
+				6484340B1B20B4A400ED722C /* FBTutorialLoginView.swift */,
 				642A7E241B1B3D4900B54E7C /* ChecklistCell.swift */,
 				647A607A1B1A6730001DBC0F /* ChecklistView.swift */,
 				647A60701B19FEEE001DBC0F /* ChecklistViewController.swift */,
@@ -152,9 +153,11 @@
 				642A7E221B1B3B9100B54E7C /* SwiftyJSON.swift */,
 				642A7E1A1B1B366500B54E7C /* checklist.json */,
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
+				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
 				64441E691B2075D7001CB673 /* User.swift */,
 				64441E6B1B207615001CB673 /* UserFactory.swift */,
 				6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */,
+				6484340D1B20BEE200ED722C /* MissingLoginView.swift */,
 				64441E6D1B207D88001CB673 /* MissingView.swift */,
 				64D306811B1F624500B7FD23 /* MissingViewController.swift */,
 				6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */,
@@ -368,10 +371,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				64441E6A1B2075D7001CB673 /* User.swift in Sources */,
-				647A607D1B1A68DB001DBC0F /* FBLoginView.swift in Sources */,
 				642A7E251B1B3D4900B54E7C /* ChecklistCell.swift in Sources */,
 				647A606D1B19FECF001DBC0F /* IntroViewController.swift in Sources */,
 				6422D2B51B1E4B72006E7A98 /* StraightLineViewController.swift in Sources */,
+				6484340E1B20BEE200ED722C /* MissingLoginView.swift in Sources */,
+				6484340C1B20B4A400ED722C /* FBTutorialLoginView.swift in Sources */,
 				642A7E1D1B1B36AC00B54E7C /* ChecklistData.swift in Sources */,
 				642A7E231B1B3B9100B54E7C /* SwiftyJSON.swift in Sources */,
 				6422D2AD1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift in Sources */,
