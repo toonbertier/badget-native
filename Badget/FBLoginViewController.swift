@@ -10,10 +10,12 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
+import Pusher
 
-class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent {
+class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent, PTPusherDelegate {
     
     var loginManager = FBSDKLoginManager()
+    var pusherClient:AnyObject!
     var userName:String? {
         didSet {
             NSUserDefaults.standardUserDefaults().setValue(self.userName, forKey: "userName")
@@ -37,11 +39,14 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         
         self.theView.loginButton.delegate = self
         
+        /*
         let friendsButton = UIButton(frame: CGRectMake(self.view.center.x-100, self.view.center.y + 50, 200, 44))
         friendsButton.setTitle("Get my friends!", forState: .Normal)
         friendsButton.backgroundColor = UIColor.grayColor()
         friendsButton.addTarget(self, action: "getFriends", forControlEvents: .TouchUpInside)
         self.view.addSubview(friendsButton)
+        */
+        
     }
     
     override func loadView() {
@@ -63,6 +68,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
             if (result.grantedPermissions.contains("email") && result.grantedPermissions.contains("user_friends")){
                 println("permissions ok and user is logged in")
                 setUser()
+                subscribeToFriendEvents()
             } else if (!result.grantedPermissions.contains("user_friends")) {
                 showFriendPermissionAlert()
             }
@@ -98,17 +104,52 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         NSUserDefaults.standardUserDefaults().removeObjectForKey("facebookId")
     }
     
-    func getFriends() {
+    func subscribeToFriendEvents() {
         
         var path = "/\(FBSDKAccessToken.currentAccessToken().userID)/friends"
         var token = FBSDKAccessToken.currentAccessToken().tokenString
         
-        println(path + "?access_token=" + token)
-        
+        //request naar Graph API van Facebook om vrienden op te halen
         var friendsRequest = FBSDKGraphRequest(graphPath: path, parameters: ["access_token": token])
         friendsRequest.startWithCompletionHandler { (connection, result, error) -> Void in
-            println(result)
+            
+            if(result != nil) {
+                if let resultUnwrapped:AnyObject = result {
+                    self.subscribeToFriendEventsHandler(result)
+                }
+            }
+            if(error != nil) {
+                println(error.description)
+            }
+            
         }
+
+    }
+    
+    func subscribeToFriendEventsHandler(result:AnyObject) {
+    
+        let data = result["data"] as! NSArray
+        
+        self.pusherClient = PTPusher.pusherWithKey("652067c9e368032c2208", delegate: self)
+        self.pusherClient.connect()
+        
+        var channel:PTPusherChannel = self.pusherClient.subscribeToChannelNamed("MissingPeople")
+        
+        for friend in data {
+            
+            let eventName = friend["id"].description + "Missing"
+            println(eventName)
+            channel.bindToEventNamed(eventName, handleWithBlock: { (channelEvent) -> Void in
+                
+                var localNotification = UILocalNotification()
+                localNotification.alertAction = "Unlock"
+                localNotification.alertBody = channelEvent.data["message"] as? String
+                localNotification.fireDate = NSDate(timeIntervalSinceNow: 1)
+                UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+            
+            })
+        }
+    
     }
     
     func setUser() {

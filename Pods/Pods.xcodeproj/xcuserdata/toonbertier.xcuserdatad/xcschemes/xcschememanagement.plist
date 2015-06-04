@@ -29,6 +29,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SocketRocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-libPusher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -36,6 +46,47 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict/>
+	<dict>
+		<key>7F773DDFEA9F9EB801979BF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>841F6D2F6A468D60C2BB587D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD87B3240C3C0464040D8839</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D0CF4B9A13A7DBE924C35B59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4AC89E534D032C76439C1BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EDE1C6E908186CD53B4578AC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4ED79DE5A2CD5A25255A16B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5FA06663E6896C70111C382</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
 </dict>
 </plist>

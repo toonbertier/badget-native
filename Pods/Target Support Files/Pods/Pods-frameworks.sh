@@ -53,6 +53,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'FBSDKCoreKit.framework'
   install_framework 'FBSDKLoginKit.framework'
   install_framework 'FBSDKShareKit.framework'
+  install_framework 'SocketRocket.framework'
+  install_framework 'Pusher.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Alamofire.framework'
@@ -60,4 +62,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'FBSDKCoreKit.framework'
   install_framework 'FBSDKLoginKit.framework'
   install_framework 'FBSDKShareKit.framework'
+  install_framework 'SocketRocket.framework'
+  install_framework 'Pusher.framework'
 fi

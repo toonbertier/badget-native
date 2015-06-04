@@ -19,12 +19,18 @@ PODS:
     - FBSDKCoreKit
   - FBSDKShareKit (4.2.0):
     - FBSDKCoreKit
+  - libPusher (1.6):
+    - libPusher/Core (= 1.6)
+  - libPusher/Core (1.6):
+    - SocketRocket (= 0.3.1-beta2)
+  - SocketRocket (0.3.1-beta2)
 
 DEPENDENCIES:
   - Alamofire (~> 1.2)
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
+  - libPusher (~> 1.6)
 
 SPEC CHECKSUMS:
   Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
@@ -32,5 +38,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 84b3616a361801f190e43a9909caead7bb6087c7
   FBSDKLoginKit: 57e37106af12c9e264e473dcb75d7decdbb07fe4
   FBSDKShareKit: 931746fdf8fb95efd6e12310ec14b2b3295e2aec
+  libPusher: f9367ede8f5141e74adc90ba20536cbc3c7b68e1
+  SocketRocket: 7284ab9370a06c99aba92b2fe3a32aedd0f9a6fa
 
 COCOAPODS: 0.37.2

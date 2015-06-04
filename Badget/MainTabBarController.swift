@@ -13,8 +13,15 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var challengeNavVC = UINavigationController(rootViewController: ChallengeOverviewViewController())
-        self.viewControllers = [challengeNavVC]
+        //Challenges
+        var challengeNavVC = UINavigationController(rootViewController: ChallengeOverviewViewController(nibName: nil, bundle: nil))
+        
+        //Vrienden kwijt
+        var missingVC = MissingViewController(nibName: nil, bundle: nil)
+        
+        //Badges
+        
+        self.viewControllers = [challengeNavVC, missingVC]
         
         // Do any additional setup after loading the view.
     }
