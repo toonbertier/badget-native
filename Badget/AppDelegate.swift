@@ -43,8 +43,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
         
-        //Notificaties registreren
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
+        //Notificaties instellen en registreren & background fetch
+        var notificationActionOk = UIMutableUserNotificationAction()
+        notificationActionOk.identifier = "acceptMissedFriend"
+        notificationActionOk.title = "Vind je vriend"
+        notificationActionOk.destructive = false
+        notificationActionOk.authenticationRequired = false
+        notificationActionOk.activationMode = UIUserNotificationActivationMode.Foreground
+        
+        var notificationActionCancel = UIMutableUserNotificationAction()
+        notificationActionCancel.identifier = "notNow"
+        notificationActionCancel.title = "Niet nu"
+        notificationActionCancel.destructive = true
+        notificationActionCancel.authenticationRequired = false
+        notificationActionCancel.activationMode = UIUserNotificationActivationMode.Background
+        
+        var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
+        notificationCategory.identifier = "missingCategory"
+        //genoeg plaats voor alle acties
+        notificationCategory .setActions([notificationActionCancel,notificationActionOk], forContext: UIUserNotificationActionContext.Default)
+        //weinig plaats voor om acties weer te geven
+        notificationCategory .setActions([notificationActionCancel,notificationActionOk], forContext: UIUserNotificationActionContext.Minimal)
+        
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: NSSet(array:[notificationCategory]) as Set<NSObject> ))
+        
+        UIApplication.sharedApplication().setMinimumBackgroundFetchInterval(900)
         
         //Pusherinstantie aanmaken
         self.pusherClient = PTPusher.pusherWithKey("652067c9e368032c2208", delegate: self)
@@ -67,6 +90,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
             annotation: annotation
         )
     }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        
+        if let identifierUnwrapped = identifier {
+            if(identifier == "acceptMissedFriend") {
+                var MainTabBC = MainTabBarController()
+                MainTabBC.selectedIndex = 1
+                self.window!.rootViewController = MainTabBC
+            }
+        }
+        
+        completionHandler()
+        
+    }
+    
+    func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        println("fetching")
+        self.pusherClient.connect()
+        FBLoginViewController.subscribeToFriendEvents()
+        completionHandler(.NewData)
+    }
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -77,9 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
         
-        println("going to background")
-        //application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: nil))
-        //FBLoginViewController.subscribeToFriendEvents()
+        
+        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

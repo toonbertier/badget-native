@@ -212,6 +212,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
                 println("notification received!")
                 
                 var localNotification = UILocalNotification()
+                localNotification.category = "missingCategory";
                 localNotification.alertAction = "Unlock"
                 localNotification.alertBody = channelEvent.data["message"] as? String
                 localNotification.fireDate = NSDate(timeIntervalSinceNow: 0)

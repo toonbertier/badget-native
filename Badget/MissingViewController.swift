@@ -33,6 +33,7 @@ class MissingViewController: UIViewController, MissingViewDelegate {
     override func loadView() {
         self.view = MissingView(frame: CGRectMake(0, 44, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 93))
         self.theView.delegate = self
+        setMissingInView()
     }
     
     override func viewDidLoad() {
@@ -45,25 +46,40 @@ class MissingViewController: UIViewController, MissingViewDelegate {
         // Do any additional setup after loading the view.
     }
     
-    func updateUserToMissing() {
+    func setMissingInView() {
+        var url = "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users/facebookids/" + FBSDKAccessToken.currentAccessToken().userID
+        Alamofire.request(.GET, url).responseJSON { (request, response, data, error) in
+            if let dataUnwrapped:AnyObject = data {
+                if(data!["missing"] as! Int == 1) {
+                    self.theView.missing = 1
+                } else {
+                    self.theView.missing = 0
+                }
+            }
+        }
+    }
+    
+    func updateMissingStatusUser() {
         
         if(FBSDKAccessToken.currentAccessToken() != nil) {
             
             var url = "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users/missing/" + FBSDKAccessToken.currentAccessToken().userID
-            println(url)
             
-            Alamofire.request(.PUT, url, parameters: ["missing": 1]).response { (request, response, data, error) in
+            var missingParam:Int!
+            
+            if(self.theView.missing == 1) {
+                missingParam = 0
+            } else {
+                missingParam = 1
+            }
+            
+            Alamofire.request(.PUT, url, parameters: ["missing": missingParam]).response { (request, response, data, error) in
                 if(response?.statusCode == 200) {
                     println("alert sended")
+                    self.setMissingInView()
                 }
-                if(response?.statusCode == 500) {
-                    println("server error")
-                    println(response)
-                }
-                else {
-                    println(error)
-                    println(response)
-                    println(data)
+                if((error) != nil) {
+                    println(error?.description)
                 }
             }
 

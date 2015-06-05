@@ -9,27 +9,40 @@
 import UIKit
 
 protocol MissingViewDelegate:class {
-    func updateUserToMissing()
+    func updateMissingStatusUser()
 }
 
 class MissingView: UIView {
     
     weak var delegate:MissingViewDelegate?
+    var missing:Int! {
+        didSet {
+            updateHelpButton()
+        }
+    }
+    var helpButton:UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let helpButton = UIButton(frame: CGRectMake(self.center.x - 50, self.center.y, 100, 44))
-        helpButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        helpButton.backgroundColor = UIColor.redColor()
-        helpButton.setTitle("HELP!", forState: .Normal)
-        helpButton.addTarget(self, action: "tappedHelp:", forControlEvents: .TouchUpInside)
+        self.helpButton = UIButton(frame: CGRectMake(self.center.x - 50, self.center.y, 100, 44))
+        self.helpButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        self.helpButton.backgroundColor = UIColor.redColor()
+        self.helpButton.addTarget(self, action: "tappedHelp:", forControlEvents: .TouchUpInside)
         
-        self.addSubview(helpButton)
+        self.addSubview(self.helpButton)
     }
     
     func tappedHelp(sender:UIButton) {
-        self.delegate?.updateUserToMissing()
+        self.delegate?.updateMissingStatusUser()
+    }
+    
+    func updateHelpButton() {
+        if self.missing == 1 {
+            self.helpButton.setTitle("Terecht", forState: .Normal)
+        } else {
+            self.helpButton.setTitle("Help!", forState: .Normal)
+        }
     }
 
     required init(coder aDecoder: NSCoder) {
