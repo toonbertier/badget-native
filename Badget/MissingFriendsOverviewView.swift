@@ -54,6 +54,7 @@ class MissingFriendsOverviewView: UIView {
             let span = MKCoordinateSpanMake(0.0001, 0.0001)
             let region = MKCoordinateRegionMake(center, span)
             self.mapView.setRegion(region, animated: false)
+            self.mapView.showsUserLocation = true
             
             let pin = PinData(coordinate: CLLocationCoordinate2DMake(location.latitude, location.longitude))
             self.mapView.addAnnotation(pin)

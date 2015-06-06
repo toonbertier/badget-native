@@ -126,7 +126,6 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
     
     func didSelectFriendsList() {
         self.navigationController?.pushViewController(MissingFriendsOverviewViewController(), animated: true)
-        self.stopUpdatingLocation()
     }
     
     //LOCATION FUNCTIES

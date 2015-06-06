@@ -44,6 +44,9 @@ class MissingFriendsOverviewViewController: UIViewController, MissingFriendsOver
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         
+        if annotation.isKindOfClass(MKUserLocation) {
+            return nil
+        }
         var pinView = self.theView.mapView.dequeueReusableAnnotationViewWithIdentifier("pin")
         
         if pinView == nil {
