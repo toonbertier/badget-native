@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
+import Alamofire
 
 //DELEGATE PROTOCOL
 protocol TutorialViewDelegate:class {
@@ -37,10 +40,26 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         self.view.addSubview(skipButton)
     }
     
-    func tappedSkip() {
-        self.view.window?.rootViewController = MainTabBarController()
+    class func uploadUserToDatabaseWithoutFacebook() {
+        if(FBSDKAccessToken.currentAccessToken() == nil) {
+            Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users", parameters: ["device_id": UIDevice.currentDevice().identifierForVendor.UUIDString])
+                .response { (request, response, data, error) in
+                    if(response?.statusCode == 200) {
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsInDatabase")
+                    } else {
+                        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsInDatabase")
+                    }
+            }
+        }
     }
     
+    func tappedSkip() {
+        self.view.window?.rootViewController = MainTabBarController()
+        
+        //als user niet ingelogd is met facebook
+        TutorialViewController.uploadUserToDatabaseWithoutFacebook()
+    }
+
     func setupPageViewController() {
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         self.pageViewController.view.backgroundColor = UIColor.grayColor()

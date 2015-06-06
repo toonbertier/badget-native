@@ -44,6 +44,10 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
         
         self.points = self.theView.points
         self.totalTime = self.theView.totalTime
+        
+        let score = Double(self.points!/self.totalTime!)
+        ChallengeScoreController.sendScoreToDatabase(score)
+        
     }
     
     func stopGyroData() {

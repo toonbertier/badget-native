@@ -11,7 +11,6 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import Alamofire
 import Pusher
-import CoreData
 
 enum FBLoginViews {
     
@@ -33,16 +32,8 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
     
     var loginManager = FBSDKLoginManager()
     var pageIndex:Int!
-    var userName:String? {
-        didSet {
-            NSUserDefaults.standardUserDefaults().setValue(self.userName, forKey: "userName")
-        }
-    }
-    var facebookId:String? {
-        didSet {
-            NSUserDefaults.standardUserDefaults().setValue(self.facebookId, forKey: "facebookId")
-        }
-    }
+    var userName:String?
+    var facebookId:String?
     var viewToLoad:FBLoginViews!
     var theView:BadgetLoginView {
         get{
@@ -99,49 +90,21 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         else {
             if (result.grantedPermissions.contains("email") && result.grantedPermissions.contains("user_friends")){
                 println("permissions ok and user is logged in")
-                setUser()
-                FBLoginViewController.subscribeToFriendEvents()
+                uploadUserToDatabase()
+                FBLoginViewController.doActionOnFacebookFriends(FBLoginViewController.subscribeToFriendEvents)
                 
                 if(viewToLoad! == .MissingLoginView) {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
-                
-            } else if (!result.grantedPermissions.contains("user_friends")) {
-                showFriendPermissionAlert()
             }
         }
     }
     
-    func showFriendPermissionAlert() {
-        
-        let alert = UIAlertController(title: "Voeg je vrienden toe", message: "Alleen wanneer je je vrienden toevoegt, zullen ze je kunnen terugvinden indien je vermist bent!", preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
-            println("add-friends")
-            self.reAuthorizeFriends()
-            //TODO: NSUserDefaults -> friendListAvalaible op true zetten?
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
-            println("vrienden geweigerd")
-            //TODO: NSUserDefaults -> friendListAvalaible op false zetten?
-        })
-        
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
-    
-    func reAuthorizeFriends() {
-        FBSDKLoginManager().logInWithReadPermissions(["user_friends"], handler: { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
-            println(result)
-        })
-    }
-    
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("userName")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("facebookId")
+        println("user logged out with facebook")
     }
     
-    func setUser() {
+    func uploadUserToDatabase() {
         
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         var name:String?
@@ -154,27 +117,53 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
             else {
                 self.userName = result.valueForKey("name") as? String
                 self.facebookId = result.valueForKey("id") as? String
-                self.uploadUserToDatabase()
+                self.uploadUserToDatabaseHandler()
             }
         })
     }
     
-    func uploadUserToDatabase() {
+    func uploadUserToDatabaseHandler() {
+        
         if let user = self.userName {
             if let id = self.facebookId {
-                Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users", parameters: ["name": user, "facebook_id": id])
+                
+                var params = ["name": user, "facebook_id": id, "device_id": UIDevice.currentDevice().identifierForVendor.UUIDString]
+                
+                Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users", parameters: params)
                          .response { (request, response, data, error) in
                             if(response?.statusCode == 200) {
-                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsUploaded")
+                                NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsInDatabase")
                             } else {
-                                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsUploaded")
+                                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsInDatabase")
                             }
                         }
                 }
         }
     }
     
-    class func subscribeToFriendEvents() {
+    class func showFriendPermissionAlert(viewControllerToPresentOn viewController:UIViewController) {
+        
+        let alert = UIAlertController(title: "Voeg je vrienden toe", message: "Alleen wanneer je je vrienden toevoegt, zullen ze je kunnen terugvinden indien je vermist bent!", preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: { (action) -> Void in
+            println("add-friends")
+            FBLoginViewController.reAuthorizeFriends()
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: { (action) -> Void in
+            println("vrienden geweigerd")
+        })
+        
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        viewController.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    class func reAuthorizeFriends() {
+        FBSDKLoginManager().logInWithReadPermissions(["user_friends"], handler: { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+            println(result)
+        })
+    }
+    
+    class func doActionOnFacebookFriends(handler: (NSArray) -> Void) {
         
         var path = "/\(FBSDKAccessToken.currentAccessToken().userID)/friends"
         var token = FBSDKAccessToken.currentAccessToken().tokenString
@@ -185,7 +174,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
             
             if(result != nil) {
                 if let resultUnwrapped:AnyObject = result {
-                    FBLoginViewController.subscribeToFriendEventsCompletionHandler(result)
+                    handler(result["data"] as! NSArray)
                 }
             }
             if(error != nil) {
@@ -196,11 +185,9 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         
     }
     
-    class func subscribeToFriendEventsCompletionHandler(result:AnyObject) {
+    class func subscribeToFriendEvents(friends:NSArray) {
         
-        let data = result["data"] as! NSArray
-        
-        for friend in data {
+        for friend in friends {
             
             //notificatie wanneer de app openstaat
             let eventName = friend.valueForKey("id") as! String + "Missing"
@@ -220,22 +207,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
                 
             })
             
-            /*
-            //save PusherEvent naar coreData voor background notificaties
-            
-            let pusherEventEntity = NSEntityDescription.entityForName("PusherEvent", inManagedObjectContext: appDelegate.managedObjectContext!)
-            let pusherEvent = NSManagedObject(entity: pusherEventEntity!, insertIntoManagedObjectContext: appDelegate.managedObjectContext!)
-            pusherEvent.setValue(eventName, forKey: "eventName")
-            */
-            
         }
-        
-        /*
-        var error: NSError?
-        if !appDelegate.managedObjectContext!.save(&error) {
-        println("could not save: \(error?.userInfo)")
-        }
-        */
         
     }
 

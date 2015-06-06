@@ -38,7 +38,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Zonder uw toestemming kunnen wij afstand niet tracken</string>
+	<string>Sommige features vereisen uw locatie om optimaal gebruikt te kunnen worden</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -18,18 +18,19 @@ class MainTabBarController: UITabBarController {
         //subscriben voor notificaties als vriend vermist is
         if(FBSDKAccessToken.currentAccessToken() != nil) {
             println("[MainTAB] - subscribing to friend events")
-            FBLoginViewController.subscribeToFriendEvents()
+            FBLoginViewController.doActionOnFacebookFriends(FBLoginViewController.subscribeToFriendEvents)
         }
         
         //Challenges
         var challengeNavVC = UINavigationController(rootViewController: ChallengeOverviewViewController(nibName: nil, bundle: nil))
         
         //Vrienden kwijt
-        var missingVC = MissingViewController(nibName: nil, bundle: nil)
+        var missingNavVC = UINavigationController(rootViewController: MissingViewController(nibName: nil, bundle: nil))
         
         //Badges
+        var badgesVC = BadgesOverviewViewController(nibName: nil, bundle: nil)
         
-        self.viewControllers = [challengeNavVC, missingVC]
+        self.viewControllers = [badgesVC, challengeNavVC, missingNavVC]
         
         // Do any additional setup after loading the view.
     }

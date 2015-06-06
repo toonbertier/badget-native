@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         if let identifierUnwrapped = identifier {
             if(identifier == "acceptMissedFriend") {
                 var MainTabBC = MainTabBarController()
-                MainTabBC.selectedIndex = 1
+                MainTabBC.selectedIndex = 2
                 self.window!.rootViewController = MainTabBC
             }
         }
@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         println("fetching")
         self.pusherClient.connect()
-        FBLoginViewController.subscribeToFriendEvents()
+        FBLoginViewController.doActionOnFacebookFriends(FBLoginViewController.subscribeToFriendEvents)
         completionHandler(.NewData)
     }
 

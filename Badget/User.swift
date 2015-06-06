@@ -13,13 +13,17 @@ class User: NSObject {
     var deviceId:String
     var facebookId:String
     var name:String
-    var missing:Bool
+    var missing:Int
+    var latitude:Double
+    var longitude:Double
     
-    init(deviceId:String, facebookId:String, name:String, missing:Bool) {
+    init(deviceId:String, facebookId:String, name:String, missing:Int, latitude:Double, longitude:Double) {
         self.deviceId = deviceId
         self.facebookId = facebookId
         self.name = name
         self.missing = missing
+        self.latitude = latitude
+        self.longitude = longitude
     }
     
 }
