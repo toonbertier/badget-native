@@ -62,8 +62,6 @@ class ChallengeScoreController: NSObject {
         
         var params = ["challenge_id": challengeId, "score": score, "device_id": UIDevice.currentDevice().identifierForVendor.UUIDString]  as [String : AnyObject]
         
-        println(params)
-        
         Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/challenges/", parameters: params).response { (request, response, data, error) -> Void in
             println(response)
         }

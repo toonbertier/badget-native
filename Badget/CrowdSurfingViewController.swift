@@ -18,7 +18,6 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     var motionManager = CMMotionManager()
-    var mapView:MKMapView!
     var pointA:CLLocation?
     var totalDistance:CLLocationDistance?
     var locationLabel:UILabel!
@@ -37,9 +36,6 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
         self.locationLabel.textAlignment = .Center
         self.locationLabel.text = "Yet to calculate distance"
         self.view.addSubview(self.locationLabel)
-        
-        self.mapView = MKMapView(frame: CGRectMake(0, 44, self.view.frame.width, self.view.frame.height-60))
-        self.view.addSubview(self.mapView)
         
         askForLocationServicePermission()
         
@@ -146,16 +142,6 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    func setRegion(point:CLLocation) {
-        
-        let center = CLLocationCoordinate2D(latitude: point.coordinate.latitude, longitude: point.coordinate.longitude)
-        let span = MKCoordinateSpanMake(0.0001, 0.0001)
-        let region = MKCoordinateRegionMake(center, span)
-        self.mapView.setRegion(region, animated: false)
-        self.mapView.showsUserLocation = true
-        
-    }
-    
     func startUpdatingLocation() {
         self.locationManager.startUpdatingLocation()
     }
@@ -204,8 +190,6 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
             } else {
                 self.totalDistance = 0
             }
-            
-            setRegion(pointB)
             
             pointA = pointB
             

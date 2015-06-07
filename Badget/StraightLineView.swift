@@ -30,8 +30,8 @@ class StraightLineView: UIView {
     var pointLabel:UILabel!
     var bol:CAShapeLayer!
     var bound:CAShapeLayer!
-    var totalTime = 0
-    var points = 0
+    var totalTime = Double(0)
+    var points = Double(0)
     weak var delegate:StraightLineViewDelegate?
     
     override init(frame: CGRect) {
@@ -90,7 +90,7 @@ class StraightLineView: UIView {
             self.points++
         }
         
-        self.pointLabel.text = String(points) + "/" + String(totalTime)
+        self.pointLabel.text = String(format:"%.0f", points) + "/" + String(format:"%.0f", totalTime)
         
     }
     

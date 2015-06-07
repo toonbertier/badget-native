@@ -13,8 +13,8 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
 
     let motionManager = CMMotionManager()
     var timer:NSTimer!
-    var points:Int?
-    var totalTime:Int?
+    var points:Double?
+    var totalTime:Double?
     
     var theView:StraightLineView {
         get{
@@ -45,7 +45,7 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
         self.points = self.theView.points
         self.totalTime = self.theView.totalTime
         
-        let score = Double(self.points!/self.totalTime!)
+        let score = self.points!/self.totalTime!
         ChallengeScoreController.handleScore(score, challenge: .StraightLine)
         
     }
@@ -63,7 +63,7 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
                 if(error == nil) {
                     self.handleDeviceMotionUpdate(deviceMotion)
                 } else {
-                    //handle the error
+                    println(error)
                 }
         })
     }
