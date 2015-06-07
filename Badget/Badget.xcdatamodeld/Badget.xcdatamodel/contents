@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="PusherEvent" syncable="YES">
-        <attribute name="eventName" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Badge" syncable="YES">
+        <attribute name="challenge_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="level" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
+    <entity name="Challenge" syncable="YES">
+        <attribute name="challenge_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="score" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PusherEvent" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Badge" positionX="-63" positionY="9" width="128" height="75"/>
+        <element name="Challenge" positionX="-63" positionY="-18" width="128" height="73"/>
     </elements>
 </model>

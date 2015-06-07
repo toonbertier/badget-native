@@ -1,0 +1,65 @@
+[ 
+  {
+    "title": "Zatlap",
+    "level": 1,
+    "description": "Misschien net iets teveel gedronken? Probeer de volgende keer wat minder te morsen.",
+    "challenge_id": 1,
+    "challenge_name": "In rechte lijn"
+  },
+  {
+    "title": "Sommelier",
+    "level": 2,
+    "description": "Hou de plateau iets meer in evenwicht en je kan een echte pro worden!",
+    "challenge_id": 1,
+    "challenge_name": "In rechte lijn"
+  },
+  {
+    "title": "Maître D'Hôtel",
+    "level": 3,
+    "description": "Efficiënt en zonder morsen, zoals een echte maître d'hôtel doorheen een restaurant loopt!",
+    "challenge_id": 1,
+    "challenge_name": "In rechte lijn"
+  },
+  {
+    "title": "Surf Benny",
+    "level": 1,
+    "description": "Misschien toch eerst de rustige wateren proberen? Geef zeker niet op, je komt er wel!",
+    "challenge_id": 2,
+    "challenge_name": "Geniet van de rit"
+  },
+  {
+    "title": "Surf Dude",
+    "level": 2,
+    "description": "Je begint het onder de knie te krijgen, nog iets langer de zee van mensen bedwingen en je kan een pro worden!",
+    "challenge_id": 2,
+    "challenge_name": "Geniet van de rit"
+  },
+  {
+    "title": "Surf Koning",
+    "level": 3,
+    "description": "Zwembandjes heb je intussen al niet meer nodig, je bedwingt de zee van festivalgangers als een echte pro!",
+    "challenge_id": 2,
+    "challenge_name": "Geniet van de rit"
+  },
+  {
+    "title": "Leerling",
+    "level": 1,
+    "description": "Je hebt nog veel te leren, ga snel nog wat kennis opdoen op het festival!",
+    "challenge_id": 3,
+    "challenge_name": "Quiz"
+  },
+  {
+    "title": "Student",
+    "level": 2,
+    "description": "De meeste kennis is er al, nog even wat meer ervaring opdoen en je wordt een expert!",
+    "challenge_id": 3,
+    "challenge_name": "Quiz"
+  },
+  {
+    "title": "Meesterbrein",
+    "level": 3,
+    "description": "Zeker dat dit je eerste festival is? Want jij bent al goed op de hoogte!",
+    "challenge_id": 3,
+    "challenge_name": "Quiz"
+  }
+]

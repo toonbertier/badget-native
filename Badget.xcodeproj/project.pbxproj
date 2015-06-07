@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		642290951B2492550025A10B /* BadgesOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642290941B2492550025A10B /* BadgesOverviewView.swift */; };
+		642290971B2495760025A10B /* badges.json in Resources */ = {isa = PBXBuildFile; fileRef = 642290961B2495760025A10B /* badges.json */; };
+		642290991B2496420025A10B /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 642290981B2496420025A10B /* Badge.swift */; };
+		6422909D1B2496780025A10B /* BadgeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422909C1B2496780025A10B /* BadgeFactory.swift */; };
 		6422D2AB1B1DFCCC006E7A98 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */; };
 		6422D2AD1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2AC1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift */; };
 		6422D2AF1B1E0031006E7A98 /* ChallengeOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */; };
@@ -61,6 +65,10 @@
 
 /* Begin PBXFileReference section */
 		376ACB1B6AF81CD865E530A9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		642290941B2492550025A10B /* BadgesOverviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgesOverviewView.swift; sourceTree = "<group>"; };
+		642290961B2495760025A10B /* badges.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = badges.json; sourceTree = "<group>"; };
+		642290981B2496420025A10B /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		6422909C1B2496780025A10B /* BadgeFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeFactory.swift; sourceTree = "<group>"; };
 		6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		6422D2AC1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeOverviewViewController.swift; sourceTree = "<group>"; };
 		6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeOverviewView.swift; sourceTree = "<group>"; };
@@ -170,6 +178,7 @@
 			children = (
 				642A7E221B1B3B9100B54E7C /* SwiftyJSON.swift */,
 				642A7E1A1B1B366500B54E7C /* checklist.json */,
+				642290961B2495760025A10B /* badges.json */,
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
 				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
 				64441E691B2075D7001CB673 /* User.swift */,
@@ -214,6 +223,9 @@
 			isa = PBXGroup;
 			children = (
 				649D4B0D1B236C070041AD0C /* ChallengeScoreController.swift */,
+				642290981B2496420025A10B /* Badge.swift */,
+				6422909C1B2496780025A10B /* BadgeFactory.swift */,
+				642290941B2492550025A10B /* BadgesOverviewView.swift */,
 				64B1C3DB1B220BEE009AEDA5 /* BadgesOverviewViewController.swift */,
 				6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */,
 				6422D2B01B1E428D006E7A98 /* ChallengeExplanationViewController.swift */,
@@ -350,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				642A7E1B1B1B366500B54E7C /* checklist.json in Resources */,
+				642290971B2495760025A10B /* badges.json in Resources */,
 				646A877C1B14B1B1001F224D /* LaunchScreen.xib in Resources */,
 				646A87791B14B1B1001F224D /* Images.xcassets in Resources */,
 			);
@@ -425,6 +438,7 @@
 				6484340E1B20BEE200ED722C /* MissingLoginView.swift in Sources */,
 				6484340C1B20B4A400ED722C /* FBTutorialLoginView.swift in Sources */,
 				642A7E1D1B1B36AC00B54E7C /* ChecklistData.swift in Sources */,
+				6422909D1B2496780025A10B /* BadgeFactory.swift in Sources */,
 				642A7E231B1B3B9100B54E7C /* SwiftyJSON.swift in Sources */,
 				649D4B0C1B2366E00041AD0C /* PinData.swift in Sources */,
 				6422D2AD1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift in Sources */,
@@ -438,10 +452,12 @@
 				646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */,
 				6422D2AF1B1E0031006E7A98 /* ChallengeOverviewView.swift in Sources */,
 				64D306821B1F624500B7FD23 /* MissingViewController.swift in Sources */,
+				642290991B2496420025A10B /* Badge.swift in Sources */,
 				6422D2AB1B1DFCCC006E7A98 /* MainTabBarController.swift in Sources */,
 				645234A21B2262E500260247 /* MissingFriendsOverviewViewController.swift in Sources */,
 				6422D2B91B1E4B90006E7A98 /* QuizViewController.swift in Sources */,
 				647A60711B19FEEE001DBC0F /* ChecklistViewController.swift in Sources */,
+				642290951B2492550025A10B /* BadgesOverviewView.swift in Sources */,
 				649D4B0E1B236C070041AD0C /* ChallengeScoreController.swift in Sources */,
 				64B1C3DC1B220BEE009AEDA5 /* BadgesOverviewViewController.swift in Sources */,
 				64441E6E1B207D88001CB673 /* MissingView.swift in Sources */,

@@ -30,8 +30,8 @@ class StraightLineView: UIView {
     var pointLabel:UILabel!
     var bol:CAShapeLayer!
     var bound:CAShapeLayer!
-    var totalTime = Double(0)
-    var points = Double(0)
+    var totalTime:Double = 0.0
+    var points:Double = 0.0
     weak var delegate:StraightLineViewDelegate?
     
     override init(frame: CGRect) {

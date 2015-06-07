@@ -45,7 +45,12 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
         self.points = self.theView.points
         self.totalTime = self.theView.totalTime
         
-        let score = self.points!/self.totalTime!
+        var score:Double = 0
+        
+        if(self.totalTime > 0) {
+            score = self.points!/self.totalTime!
+        }
+        
         ChallengeScoreController.handleScore(score, challenge: .StraightLine)
         
     }

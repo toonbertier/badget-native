@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class BadgesOverviewViewController: UIViewController {
+    
+    var badgesArray:Array<Badge>! {
+        didSet {
+            for badge in badgesArray {
+                println(badge.description)
+            }
+        }
+    }
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -20,8 +29,22 @@ class BadgesOverviewViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func getBadges() {
+        var path = NSBundle.mainBundle().URLForResource("badges", withExtension: "json")
+        var jsonData = NSData(contentsOfURL: path!)
+        
+        let tmpArr = BadgeFactory.createArrayFromJSONData(jsonData!)
+        self.badgesArray = ChallengeScoreController.getBadgesForChallenges(tmpArr)
+    }
+    
+    override func loadView() {
+        self.view = BadgesOverviewView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112))
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getBadges()
 
         // Do any additional setup after loading the view.
     }
