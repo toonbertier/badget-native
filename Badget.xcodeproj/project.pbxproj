@@ -174,7 +174,6 @@
 				647A606E1B19FEDE001DBC0F /* FBLoginViewController.swift */,
 				64441E691B2075D7001CB673 /* User.swift */,
 				6422D2AA1B1DFCCC006E7A98 /* MainTabBarController.swift */,
-				64B1C3DD1B220BFA009AEDA5 /* Badges */,
 				64B1C3DA1B220A59009AEDA5 /* MissingFriends */,
 				64B1C3D91B220A4D009AEDA5 /* Challenges */,
 				6422D2A91B1DFBC0006E7A98 /* FirstTimeTutorial */,
@@ -214,6 +213,8 @@
 		64B1C3D91B220A4D009AEDA5 /* Challenges */ = {
 			isa = PBXGroup;
 			children = (
+				649D4B0D1B236C070041AD0C /* ChallengeScoreController.swift */,
+				64B1C3DB1B220BEE009AEDA5 /* BadgesOverviewViewController.swift */,
 				6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */,
 				6422D2B01B1E428D006E7A98 /* ChallengeExplanationViewController.swift */,
 				6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */,
@@ -222,7 +223,6 @@
 				6422D2B41B1E4B72006E7A98 /* StraightLineViewController.swift */,
 				6422D2B61B1E4B85006E7A98 /* CrowdSurfingViewController.swift */,
 				6422D2B81B1E4B90006E7A98 /* QuizViewController.swift */,
-				649D4B0D1B236C070041AD0C /* ChallengeScoreController.swift */,
 			);
 			name = Challenges;
 			sourceTree = "<group>";
@@ -240,14 +240,6 @@
 				645234A11B2262E500260247 /* MissingFriendsOverviewViewController.swift */,
 			);
 			name = MissingFriends;
-			sourceTree = "<group>";
-		};
-		64B1C3DD1B220BFA009AEDA5 /* Badges */ = {
-			isa = PBXGroup;
-			children = (
-				64B1C3DB1B220BEE009AEDA5 /* BadgesOverviewViewController.swift */,
-			);
-			name = Badges;
 			sourceTree = "<group>";
 		};
 		A9CCEF5D7221C02C6A2F0654 /* Pods */ = {

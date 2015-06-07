@@ -15,6 +15,15 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //fb login accesstoken hier pas beschikbaar -> check als user in database zit, anders nog eens proberen uploaden
+        if(NSUserDefaults.standardUserDefaults().boolForKey("userIsInDatabase") == false) {
+            if(FBSDKAccessToken.currentAccessToken() != nil) {
+                FBLoginViewController.uploadUserToDatabase()
+            } else {
+                TutorialViewController.uploadUserToDatabaseWithoutFacebook()
+            }
+        }
+        
         //subscriben voor notificaties als vriend vermist is
         if(FBSDKAccessToken.currentAccessToken() != nil) {
             println("[MainTAB] - subscribing to friend events")

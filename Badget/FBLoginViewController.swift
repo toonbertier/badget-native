@@ -32,8 +32,6 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
     
     var loginManager = FBSDKLoginManager()
     var pageIndex:Int!
-    var userName:String?
-    var facebookId:String?
     var viewToLoad:FBLoginViews!
     var theView:BadgetLoginView {
         get{
@@ -90,7 +88,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         else {
             if (result.grantedPermissions.contains("email") && result.grantedPermissions.contains("user_friends")){
                 println("permissions ok and user is logged in")
-                uploadUserToDatabase()
+                FBLoginViewController.uploadUserToDatabase()
                 FBLoginViewController.doActionOnFacebookFriends(FBLoginViewController.subscribeToFriendEvents)
                 
                 if(viewToLoad! == .MissingLoginView) {
@@ -104,7 +102,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
         println("user logged out with facebook")
     }
     
-    func uploadUserToDatabase() {
+    class func uploadUserToDatabase() {
         
         let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
         var name:String?
@@ -115,17 +113,17 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
                 println("Error: \(error)")
             }
             else {
-                self.userName = result.valueForKey("name") as? String
-                self.facebookId = result.valueForKey("id") as? String
-                self.uploadUserToDatabaseHandler()
+                var userName = result.valueForKey("name") as? String
+                var facebookId = result.valueForKey("id") as? String
+                FBLoginViewController.uploadUserToDatabaseHandler(userName, facebookId: facebookId)
             }
         })
     }
     
-    func uploadUserToDatabaseHandler() {
+    class func uploadUserToDatabaseHandler(userName:String?, facebookId:String?) {
         
-        if let user = self.userName {
-            if let id = self.facebookId {
+        if let user = userName {
+            if let id = facebookId {
                 
                 var params = ["name": user, "facebook_id": id, "device_id": UIDevice.currentDevice().identifierForVendor.UUIDString]
                 

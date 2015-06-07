@@ -102,6 +102,9 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
             if(self.step == 4) {
                 self.motionManager.stopAccelerometerUpdates()
                 println("updates stopped - all done")
+                if let totalDistanceUnwrapped = self.totalDistance {
+                    ChallengeScoreController.handleScore(self.totalDistance!, challenge: .CrowdSurfing)
+                }
             }
         }
     }

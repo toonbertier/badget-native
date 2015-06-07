@@ -11,7 +11,7 @@ import UIKit
 enum ChallengeName:String {
     
     case StraightLine = "In rechte lijn"
-    case CrowdSurfing = "Crowdsurfen"
+    case CrowdSurfing = "Geniet van de rit"
     case Quiz = "Quiz"
     
 }

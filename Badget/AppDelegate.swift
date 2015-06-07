@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         var tutorialVC = TutorialViewController()
         self.window?.rootViewController = tutorialVC
         
+        
         //TUTORIAL AL GEZIEN? -> DIRECT NAAR APP
         
         /*
@@ -107,7 +108,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
     
     func application(application: UIApplication, performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
         println("fetching")
+        self.pusherClient = PTPusher.pusherWithKey("652067c9e368032c2208", delegate: self)
         self.pusherClient.connect()
+        self.pusherChannel = self.pusherClient.subscribeToChannelNamed("MissingPeople")
         FBLoginViewController.doActionOnFacebookFriends(FBLoginViewController.subscribeToFriendEvents)
         completionHandler(.NewData)
     }
