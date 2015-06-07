@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
         var missingNavVC = UINavigationController(rootViewController: MissingViewController(nibName: nil, bundle: nil))
         
         //Badges
-        var badgesVC = BadgesOverviewViewController(nibName: nil, bundle: nil)
+        var badgesVC = BadgeViewController(nibName: nil, bundle: nil)
         
         self.viewControllers = [badgesVC, challengeNavVC, missingNavVC]
         

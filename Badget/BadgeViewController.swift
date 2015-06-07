@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class BadgesOverviewViewController: UIViewController {
+class BadgeViewController: UIViewController {
     
     var badgesArray:Array<Badge>! {
         didSet {
@@ -18,13 +18,13 @@ class BadgesOverviewViewController: UIViewController {
             }
         }
     }
-
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.title = "Badges"
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -34,35 +34,37 @@ class BadgesOverviewViewController: UIViewController {
         var jsonData = NSData(contentsOfURL: path!)
         
         let tmpArr = BadgeFactory.createArrayFromJSONData(jsonData!)
-        self.badgesArray = ChallengeScoreController.getBadgesForChallenges(tmpArr)
+        self.badgesArray = ChallengeScoreController.getBadgesForChallenges(tmpArr, challenges: ChallengeScoreController.fetchAllChallenges())
     }
     
     override func loadView() {
-        self.view = BadgesOverviewView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112))
+        self.view = BadgeView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112))
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        getBadges()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getBadges()
-
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }

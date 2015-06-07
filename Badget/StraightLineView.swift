@@ -32,6 +32,7 @@ class StraightLineView: UIView {
     var bound:CAShapeLayer!
     var totalTime:Double = 0.0
     var points:Double = 0.0
+    var stopButton:UIButton!
     weak var delegate:StraightLineViewDelegate?
     
     override init(frame: CGRect) {
@@ -60,10 +61,10 @@ class StraightLineView: UIView {
         
         self.layer.addSublayer(self.bol)
         
-        var stopButton = UIButton(frame: CGRectMake(self.center.x-50, frame.height, 100, 44))
-        stopButton.setTitle("Klaar!", forState: .Normal)
-        stopButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        stopButton.addTarget(self, action: "stopButtonTouched:", forControlEvents: .TouchUpInside)
+        self.stopButton = UIButton(frame: CGRectMake(self.center.x-50, frame.height, 100, 44))
+        self.stopButton.setTitle("Klaar!", forState: .Normal)
+        self.stopButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        self.stopButton.addTarget(self, action: "stopButtonTouched:", forControlEvents: .TouchUpInside)
         
         self.addSubview(stopButton)
         
@@ -92,6 +93,18 @@ class StraightLineView: UIView {
         
         self.pointLabel.text = String(format:"%.0f", points) + "/" + String(format:"%.0f", totalTime)
         
+    }
+    
+    func showBadgeButton() {
+        
+        self.stopButton.setTitle("Naar badge", forState: .Normal)
+        self.stopButton.removeTarget(self, action: "stopButtonTouched:", forControlEvents: .TouchUpInside)
+        self.stopButton.addTarget(self, action: "showBadgeController:", forControlEvents: .TouchUpInside)
+        
+    }
+    
+    func showBadgeController(sender:UIButton) {
+        //statische functie om badgecontroller te tonen
     }
     
     func valuesUpdated() {

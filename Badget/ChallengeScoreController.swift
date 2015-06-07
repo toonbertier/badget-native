@@ -29,12 +29,7 @@ class ChallengeScoreController: NSObject {
         ChallengeScoreController.sendScoreToDatabase(score, challengeId: challengeId)
     }
     
-    class func getBadgesForChallenges(badges:Array<Badge>) -> (Array<Badge>) {
-        let challenges = ChallengeScoreController.fetchAllChallenges()
-        
-        
-        println(badges)
-        
+    class func getBadgesForChallenges(badges:Array<Badge>, challenges:Array<NSManagedObject>) -> (Array<Badge>) {
         
         var array = [Badge]()
         
@@ -63,31 +58,31 @@ class ChallengeScoreController: NSObject {
     
     class func getBadgeForStraightLine(score:Double) -> (Int) {
         if(score > 0.9) {
-            return (1)
+            return (3)
         } else if (score > 0.75) {
             return (2)
         } else {
-            return (3)
+            return (1)
         }
     }
     
     class func getBadgeForCrowdsurfing(score:Double) -> (Int) {
         if(score > 200) {
-            return (1)
+            return (3)
         } else if (score > 100) {
             return (2)
         } else {
-            return (3)
+            return (1)
         }
     }
     
     class func getBadgeForQuiz(score:Double) -> (Int) {
         if(score > 0.66) {
-            return (1)
+            return (3)
         } else if (score > 0.33) {
             return (2)
         } else {
-            return (3)
+            return (1)
         }
     }
     

@@ -52,6 +52,7 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
         }
         
         ChallengeScoreController.handleScore(score, challenge: .StraightLine)
+        self.theView.showBadgeButton()
         
     }
     

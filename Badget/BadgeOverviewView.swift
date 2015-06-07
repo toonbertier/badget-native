@@ -1,5 +1,5 @@
 //
-//  BadgesOverviewView.swift
+//  BadgeView.swift
 //  Badget
 //
 //  Created by Toon Bertier on 07/06/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BadgesOverviewView: UIView {
+class BadgeView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
