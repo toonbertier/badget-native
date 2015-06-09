@@ -11,6 +11,7 @@ import CoreData
 
 class BadgeViewController: UIViewController {
     
+    var challengeId:Int?
     var badgesArray:Array<Badge>! {
         didSet {
             for badge in badgesArray {
@@ -18,15 +19,33 @@ class BadgeViewController: UIViewController {
             }
         }
     }
+    var theView:BadgeView {
+        get {
+            return self.view as! BadgeView
+        }
+    }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+    init(challengeId:Int?) {
+        super.init(nibName: nil, bundle: nil)
         self.title = "Badges"
+        
+        if let challengeIdUnwrapped = challengeId {
+             self.challengeId = challengeIdUnwrapped
+        }
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        self.view = BadgeView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112))
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        getBadges()
+        self.theView.setBadgesArray(self.badgesArray)
+        self.theView.renderBadges()
     }
     
     func getBadges() {
@@ -34,21 +53,12 @@ class BadgeViewController: UIViewController {
         var jsonData = NSData(contentsOfURL: path!)
         
         let tmpArr = BadgeFactory.createArrayFromJSONData(jsonData!)
-        self.badgesArray = ChallengeScoreController.getBadgesForChallenges(tmpArr, challenges: ChallengeScoreController.fetchAllChallenges())
-    }
-    
-    override func loadView() {
-        self.view = BadgeView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112))
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        getBadges()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        if let challengeIdUnwrapped = self.challengeId {
+            self.badgesArray = ChallengeScoreController.getBadgesForChallenges(tmpArr, challenges: ChallengeScoreController.fetchExistingChallenge(self.challengeId!))
+        } else {
+            self.badgesArray = ChallengeScoreController.getBadgesForChallenges(tmpArr, challenges: ChallengeScoreController.fetchAllChallenges())
+        }
         
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {

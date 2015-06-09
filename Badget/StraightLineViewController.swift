@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-class StraightLineViewController: UIViewController, StraightLineViewDelegate {
+class StraightLineViewController: UIViewController, StraightLineViewDelegate, BadgeViewDelegate {
 
     let motionManager = CMMotionManager()
     var timer:NSTimer!
@@ -39,6 +39,12 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
         // Do any additional setup after loading the view.
     }
     
+    func showBadge() {
+        let badgeVC = BadgeViewController(challengeId: 1)
+        badgeVC.theView.delegate = self
+        self.navigationController?.presentViewController(badgeVC, animated: true, completion: nil)
+    }
+    
     func stopTimer() {
         self.timer.invalidate()
         
@@ -58,6 +64,11 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate {
     
     func stopGyroData() {
         motionManager.stopDeviceMotionUpdates()
+    }
+    
+    func backToOverview() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     func startMotionUpdates() {

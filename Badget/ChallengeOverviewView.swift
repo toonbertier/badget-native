@@ -16,6 +16,8 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
     
     let scrollView:UIScrollView
     let challengeNames:Array<ChallengeName> = [.StraightLine, .CrowdSurfing, .Quiz]
+    let cardNames = ["rechte-lijn-kaart", "geniet-rit-kaart", "wikken-wegen-kaart"]
+    var cardWidth:CGFloat!
     weak var delegate:ChallengeOverviewViewDelegate?
     
     override init(frame: CGRect) {
@@ -43,13 +45,13 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
     
     func setScrollableTickets() {
         
-        var xPos = CGFloat(0)
+        var xPos = CGFloat(87)
         
         for(var i = 0; i <= 2; i++) {
             
-            let image = UIImage(named: "kaart")
+            let image = UIImage(named: self.cardNames[i])
             var imageView = UIImageView(image: image!)
-            imageView.frame = CGRectMake(CGFloat(xPos + 87), 40, image!.size.width, image!.size.height)
+            imageView.frame = CGRectMake(xPos, 40, image!.size.width, image!.size.height)
             imageView.userInteractionEnabled = true
             imageView.tag = i
             
@@ -61,11 +63,15 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
             swipeUpRecognizer.direction = UISwipeGestureRecognizerDirection.Up
             imageView.addGestureRecognizer(swipeUpRecognizer)
             
-            xPos += CGFloat(frame.width-110)
+            xPos += CGFloat(image!.size.width + 50)
             self.scrollView.addSubview(imageView)
+            
+            if(i == 2) {
+                self.cardWidth = image!.size.width
+            }
         }
         
-        self.scrollView.contentSize = CGSizeMake(xPos+110, 0)
+        self.scrollView.contentSize = CGSizeMake(xPos + 38, 0)
     }
     
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -75,9 +81,23 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
     func swipeDownHandler(sender:UISwipeGestureRecognizer) {
         
         var ticket = sender.view!
+        var centerX:CGFloat!
+        
+        if(self.scrollView.contentOffset.x >= 0 && self.scrollView.contentOffset.x < 95) {
+            println("eerste kaart")
+            centerX = 87 + cardWidth/2
+        } else if(self.scrollView.contentOffset.x > 95 && self.scrollView.contentOffset.x < 290) {
+            println("tweede kaart")
+            centerX = 135 + cardWidth*1.5
+        } else {
+            println("derde kaart")
+            centerX = 168 + cardWidth*2.5
+        }
+        
+        println(centerX)
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            ticket.center = CGPointMake(ticket.center.x, 390)
+            ticket.center = CGPointMake(centerX, 390)
         }) { (completion) -> Void in
             self.delegate?.didChooseChallenge(self.challengeNames[sender.view!.tag])
         }

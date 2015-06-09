@@ -54,6 +54,10 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
         self.locationManager.delegate = self
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        self.stopUpdatingLocation()
+    }
+    
     func setMissingInView() {
         if(FBSDKAccessToken.currentAccessToken() != nil) {
             var url = "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users/facebookids/" + FBSDKAccessToken.currentAccessToken().userID

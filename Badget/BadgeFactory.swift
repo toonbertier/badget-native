@@ -20,7 +20,7 @@ class BadgeFactory: NSObject {
             
             let title = subJson["title"].stringValue
             let level = subJson["level"].intValue
-            let descr = subJson["desc"].stringValue
+            let descr = subJson["description"].stringValue
             let challengeId = subJson["challenge_id"].intValue
             let challengeName = subJson["challenge_name"].stringValue
             

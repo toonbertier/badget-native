@@ -12,6 +12,7 @@ protocol StraightLineViewDelegate:class {
     
     func stopGyroData()
     func stopTimer()
+    func showBadge()
     
 }
 
@@ -104,7 +105,7 @@ class StraightLineView: UIView {
     }
     
     func showBadgeController(sender:UIButton) {
-        //statische functie om badgecontroller te tonen
+        self.delegate?.showBadge()
     }
     
     func valuesUpdated() {
