@@ -16,12 +16,20 @@ class ChecklistView: UIView {
     
     weak var delegate:ChecklistDelegate?
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, tableView:UITableView) {
         super.init(frame: frame)
         
-        let exitButton = UIButton(frame: CGRectMake(self.center.x-100, self.frame.height - 100, 200, 44))
-        exitButton.setTitle("All done", forState: .Normal)
-        exitButton.backgroundColor = UIColor.grayColor()
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
+        
+        let title = BadgetUI.makeTitle("Ben je er klaar voor?")
+        title.center = CGPointMake(self.center.x, 50)
+        self.addSubview(title)
+        
+        tableView.frame = CGRectMake(20, 85, 280, 360)
+        tableView.backgroundColor = UIColor.clearColor()
+        self.addSubview(tableView)
+        
+        let exitButton = BadgetUI.makeButton("IK BEN KLAAR!", center: CGPointMake(self.center.x, self.center.y + 180), width: 140)
         exitButton.addTarget(self, action: "exitTutorial", forControlEvents: .TouchUpInside)
         self.addSubview(exitButton)
         

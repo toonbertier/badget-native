@@ -30,14 +30,20 @@ class MainTabBarController: UITabBarController {
             FBLoginViewController.doActionOnFacebookFriends(FBLoginViewController.subscribeToFriendEvents)
         }
         
-        //Challenges
-        var challengeNavVC = UINavigationController(rootViewController: ChallengeOverviewViewController(nibName: nil, bundle: nil))
-        
-        //Vrienden kwijt
-        var missingNavVC = UINavigationController(rootViewController: MissingViewController(nibName: nil, bundle: nil))
+        self.tabBar.barTintColor = UIColor(red: 0.93, green: 0.84, blue: 0.38, alpha: 0.4)
+        self.tabBar.translucent = true
         
         //Badges
         var badgesVC = BadgeViewController(challengeId: nil)
+        badgesVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "badges-tab")!, tag: 1)
+        
+        //Challenges
+        var challengeNavVC = UINavigationController(rootViewController: ChallengeOverviewViewController(nibName: nil, bundle: nil))
+        challengeNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "challenges-tab")!, tag: 2)
+        
+        //Vrienden kwijt
+        var missingNavVC = UINavigationController(rootViewController: MissingViewController(nibName: nil, bundle: nil))
+        missingNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "vermist-tab")!, tag: 3)
         
         self.viewControllers = [badgesVC, challengeNavVC, missingNavVC]
         

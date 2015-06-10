@@ -17,10 +17,13 @@ class BadgeView: UIView, UIScrollViewDelegate {
     var scrollView:UIScrollView!
     var badges:Array<Badge>!
     var descriptionLabel:UILabel?
+    var titleLabel:UILabel?
     weak var delegate:BadgeViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
         
         self.scrollView = UIScrollView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 410))
         self.scrollView.delegate = self
@@ -84,20 +87,15 @@ class BadgeView: UIView, UIScrollViewDelegate {
         
         if let descrLabel = self.descriptionLabel {
             self.descriptionLabel!.removeFromSuperview()
+            self.titleLabel!.removeFromSuperview()
         }
         
-        let descrTxt = self.badges[index].descr as NSString
-        println(descrTxt)
+        self.titleLabel = BadgetUI.makeTitle(self.badges[index].title)
+        self.titleLabel?.center = CGPointMake(self.center.x, self.center.y + 50)
+        self.addSubview(self.titleLabel!)
         
-        let font = UIFont(name: "HelveticaNeue", size: 14)
-        
-        let boundingRect = descrTxt.boundingRectWithSize(CGSizeMake(self.frame.width - 60, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font!], context: nil)
-        
-        self.descriptionLabel = UILabel(frame: CGRectMake(50,300,boundingRect.size.width,boundingRect.size.height))
-        self.descriptionLabel?.text = descrTxt as String
-        self.descriptionLabel?.textAlignment = .Center
-        self.descriptionLabel?.numberOfLines = 0
-        self.descriptionLabel?.sizeToFit()
+        self.descriptionLabel = BadgetUI.makeDescription(self.badges[index].descr, highlights: [])
+        self.descriptionLabel?.center = CGPointMake(self.center.x, self.center.y + 100)
         self.addSubview(self.descriptionLabel!)
         
     }
@@ -117,9 +115,7 @@ class BadgeView: UIView, UIScrollViewDelegate {
     }
     
     func renderButtons() {
-        let backToOverview = UIButton(frame: CGRectMake(self.center.x - 100, self.frame.height, 200, 44))
-        backToOverview.setTitle("naar overzicht", forState: .Normal)
-        backToOverview.backgroundColor = .redColor()
+        let backToOverview = BadgetUI.makeButton("NAAR OVERZICHT", center: CGPointMake(self.center.x, self.center.y + 170), width: 200)
         backToOverview.addTarget(self, action: "backToOverview:", forControlEvents: .TouchUpInside)
         
         self.addSubview(backToOverview)

@@ -16,9 +16,13 @@ class ChecklistCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.Default, reuseIdentifier: reuseIdentifier)
         
+        self.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: 16)
+        
         self.checkBox = UIButton(frame: CGRectMake(0, 0, 28, 28))
         self.checkBox.setBackgroundImage(UIImage(named: "unchecked"), forState: .Normal)
         self.checkBox.addTarget(self, action: "checkboxTapped", forControlEvents: .TouchUpInside)
+        
+        self.backgroundColor = UIColor.clearColor()
         
         self.accessoryView = self.checkBox
     }
@@ -28,8 +32,6 @@ class ChecklistCell: UITableViewCell {
     }
     
     func checkboxTapped() {
-        println("tapped")
-        
         self.checked = !self.checked
         
         if(self.checked) {

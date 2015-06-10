@@ -29,7 +29,7 @@ class ChecklistViewController: UIViewController, TutorialContent, ChecklistDeleg
     }
     
     override func loadView() {
-        self.view = ChecklistView(frame: UIScreen.mainScreen().bounds)
+        self.view = ChecklistView(frame: UIScreen.mainScreen().bounds, tableView: self.tableVC.tableView)
         self.theView.delegate = self
     }
     
@@ -40,8 +40,6 @@ class ChecklistViewController: UIViewController, TutorialContent, ChecklistDeleg
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableVC.tableView.frame = CGRectMake(0, 20, self.theView.frame.width, self.theView.frame.height - 150)
-        self.theView.addSubview(self.tableVC.tableView)
         // Do any additional setup after loading the view.
     }
 

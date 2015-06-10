@@ -1,38 +1,30 @@
 [
   {
-    "title": "handdoek",
-    "checked": true,
-  },
-  {
-    "title": "washand",
-    "checked": true,
-  },
-  {
-    "title": "tandenborstel",
+    "title": "Je beste vrienden",
     "checked": false,
   },
   {
-    "title": "schoenen",
+    "title": "Kampeer materiaal",
     "checked": false,
   },
   {
-    "title": "tshirt",
+    "title": "Goed humeur",
     "checked": false,
   },
   {
-    "title": "deo",
+    "title": "Douche gerief",
     "checked": false,
   },
   {
-    "title": "tent",
+    "title": "Eten en drinken",
     "checked": false,
   },
   {
-    "title": "zonnebril",
+    "title": "Geld",
     "checked": false,
   },
   {
-    "title": "zonnecreme",
+    "title": "Planning",
     "checked": false,
   },
 ]

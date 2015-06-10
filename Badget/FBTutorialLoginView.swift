@@ -33,41 +33,12 @@ class FBTutorialLoginView: UIView, BadgetLoginView {
     
     func showText() {
         
-        let titleTxt = "De Lijn maakt van jou een echte festivalganger!" as NSString
-        
-        let font1 = UIFont(name: "Dosis-SemiBold", size: 20)
-        
-        Fonts.enumerateFonts()
-        
-        let boundingRect1 = titleTxt.boundingRectWithSize(CGSizeMake(250, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font1!], context: nil)
-        
-        let titleLabel = UILabel(frame: CGRectMake(60,50,boundingRect1.size.width,boundingRect1.size.height))
-        titleLabel.text = titleTxt as String
-        titleLabel.font = font1
-        titleLabel.textAlignment = .Center
-        titleLabel.numberOfLines = 0
-        titleLabel.sizeToFit()
+        let titleLabel = BadgetUI.makeTitle("De Lijn maakt van jou een echte festivalganger!")
+        titleLabel.center = CGPointMake(self.center.x, self.center.y - 220)
         self.addSubview(titleLabel)
         
-        let descrString = "Je eerste festival, je wilt een beleving om nooit te vergeten maar je voelt je wat onvoorbereid... Geen probleem! De Lijn is er om je op weg te helpen! Doe challenges, win gadgets en wordt een echte festivalganger!" as NSString
-        let descrAttrTxt = NSMutableAttributedString(string: descrString as String)
-        let range1 = descrString.rangeOfString("Doe challenges")
-        let range2 = descrString.rangeOfString("win gadgets")
-        
-        let yellow = UIColor(red: 0.93, green: 0.84, blue: 0.38, alpha: 0.8)
-        descrAttrTxt.addAttribute(NSBackgroundColorAttributeName, value: yellow, range: range1)
-        descrAttrTxt.addAttribute(NSBackgroundColorAttributeName, value: yellow, range: range2)
-        
-        let font2 = UIFont(name: "AvenirNext-Regular", size: 14)
-        
-        let boundingRect2 = descrString.boundingRectWithSize(CGSizeMake(250, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font2!], context: nil)
-        
-        let descrLabel = UILabel(frame: CGRectMake(40,70 + boundingRect1.size.height,boundingRect2.size.width,boundingRect2.size.height))
-        descrLabel.attributedText = descrAttrTxt
-        descrLabel.font = font2
-        descrLabel.textAlignment = .Center
-        descrLabel.numberOfLines = 0
-        descrLabel.sizeToFit()
+        let descrLabel = BadgetUI.makeDescription("Je eerste festival, je wilt een beleving om nooit te vergeten maar je voelt je wat onvoorbereid... Geen probleem! De Lijn is er om je op weg te helpen! Doe challenges, win gadgets en wordt een echte festivalganger!", highlights: ["Doe challenges", "win gadgets"])
+        descrLabel.center = CGPointMake(self.center.x, self.center.y - 120)
         self.addSubview(descrLabel)
     }
     
@@ -79,8 +50,7 @@ class FBTutorialLoginView: UIView, BadgetLoginView {
     }
     
     func showDetailButton() {
-        let detailButton = UIButton(frame: CGRectMake(0, 0, 26, 30))
-        detailButton.setBackgroundImage(UIImage(named: "detail-button")!, forState: .Normal)
+        let detailButton = BadgetUI.makeDetailButton()
         detailButton.center = CGPointMake(270, 460)
         detailButton.addTarget(self, action: "detailButtonTapped:", forControlEvents: .TouchUpInside)
         self.addSubview(detailButton)
@@ -99,9 +69,8 @@ class FBTutorialLoginView: UIView, BadgetLoginView {
     }
     
     func showErrorLabel() {
-        let errorLabel = UILabel(frame: CGRectMake(self.center.x - 100, self.center.y - 60, 200, 44))
-        errorLabel.textAlignment = .Center
-        errorLabel.text = "Er ging iets mis, probeer opnieuw"
+        let errorLabel = BadgetUI.makeErrorLabel("Er ging iets mis, probeer opnieuw")
+        errorLabel.center = CGPointMake(self.center.x, 485)
         self.addSubview(errorLabel)
     }
     

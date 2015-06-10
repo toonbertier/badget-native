@@ -50,12 +50,9 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.theView.checkInternetConnection()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
+        self.theView.checkInternetConnection()
     }
     
     override func viewDidDisappear(animated: Bool) {
