@@ -15,11 +15,10 @@ class IntroViewController: UIViewController, TutorialContent {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor.grayColor()
+        let image = UIImage(named: "intro")
+        let imageView = UIImageView(image: image!)
         
-        let label = UILabel(frame: CGRectMake(view.center.x-50, view.center.y-200, 100, 44))
-        label.text = "Intro-scherm"
-        view.addSubview(label)
+        self.view.addSubview(imageView)
         
         // Do any additional setup after loading the view.
     }

@@ -93,8 +93,6 @@ class ChallengeScoreController: NSObject {
         
         let challenge = ChallengeScoreController.fetchExistingChallenge(challengeId)
         
-        println(challenge.count)
-        
         if(challenge.count > 0) {
             
             println("challenge already in core data")

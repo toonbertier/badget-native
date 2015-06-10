@@ -38,12 +38,12 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
         self.view.addSubview(self.locationLabel)
         
         askForLocationServicePermission()
-        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
         if motionManager.accelerometerAvailable {
-            
             motionManager.accelerometerUpdateInterval = 0.5
             checkPosition()
-            
         }
     }
     

@@ -21,16 +21,42 @@ class MissingView: UIView {
             updateHelpButton()
         }
     }
+    var noConnection:Bool! {
+        didSet {
+            if(noConnection == true) {
+                showOfflineAlert()
+            }
+        }
+    }
     var helpButton:UIButton!
     var findFriends:UIButton!
+    var offlineLabel:UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        if(NSUserDefaults.standardUserDefaults().boolForKey("userIsMissing") == true) {
+            self.missing = 1
+        } else {
+            self.missing = 0
+        }
+        
+        showButtons()
+        checkInternetConnection()
+    }
+    
+    func checkInternetConnection() {
+        //internet connectie checken
+    }
+    
+    func showButtons() {
         
         self.helpButton = UIButton(frame: CGRectMake(self.center.x - 50, self.center.y - 100, 100, 44))
         self.helpButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         self.helpButton.backgroundColor = UIColor.redColor()
         self.helpButton.addTarget(self, action: "tappedHelp:", forControlEvents: .TouchUpInside)
+        
+        updateHelpButton()
         
         self.addSubview(self.helpButton)
         
@@ -41,6 +67,19 @@ class MissingView: UIView {
         self.findFriends.addTarget(self, action: "tappedFindFriends:", forControlEvents: .TouchUpInside)
         
         self.addSubview(self.findFriends)
+    }
+    
+    func showOfflineAlert() {
+        
+        let background = UIView(frame: CGRectMake(50, 100, self.frame.width - 100, self.frame.height - 200))
+        background.backgroundColor = .grayColor()
+        self.addSubview(background)
+        
+        self.offlineLabel = UILabel(frame: CGRectMake(self.center.x - 50, self.center.y, 100, 44))
+        self.offlineLabel.text = "Deze functie kan offline niet gebruikt worden, gelieve u met het internet te verbinden."
+        self.offlineLabel.textColor = .blackColor()
+        self.addSubview(offlineLabel)
+        
     }
     
     func tappedHelp(sender:UIButton) {

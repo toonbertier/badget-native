@@ -32,25 +32,11 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
         super.viewDidLoad()
         setupPageViewController()
         
-        //TODO: APARTE VIEW
-        let skipButton = UIButton(frame: CGRectMake(view.frame.width-100, view.frame.height-50, 80, 44))
+        let skipButton = UIButton(frame: CGRectMake(view.frame.width-85, view.frame.height - 40, 80, 44))
         skipButton.setTitle("SKIP", forState: .Normal)
         skipButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
         skipButton.addTarget(self, action: "tappedSkip", forControlEvents: .TouchUpInside)
         self.view.addSubview(skipButton)
-    }
-    
-    class func uploadUserToDatabaseWithoutFacebook() {
-        if(FBSDKAccessToken.currentAccessToken() == nil) {
-            Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users", parameters: ["device_id": UIDevice.currentDevice().identifierForVendor.UUIDString])
-                .response { (request, response, data, error) in
-                    if(response?.statusCode == 200) {
-                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsInDatabase")
-                    } else {
-                        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsInDatabase")
-                    }
-            }
-        }
     }
     
     func tappedSkip() {
@@ -62,10 +48,14 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
 
     func setupPageViewController() {
         self.pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        self.pageViewController.view.backgroundColor = UIColor.grayColor()
         self.pageViewController.delegate = self
         self.pageViewController.dataSource = self
-    
+        
+        let appearance = UIPageControl.appearance()
+        appearance.pageIndicatorTintColor = UIColor.lightGrayColor()
+        appearance.currentPageIndicatorTintColor = UIColor.darkGrayColor()
+        appearance.backgroundColor = UIColor(white: 1, alpha: 1)
+        
         let pageContentViewController = self.viewControllerAtIndex(0)
         self.pageViewController.setViewControllers([pageContentViewController!], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
     
@@ -139,6 +129,21 @@ class TutorialViewController: UIViewController, UIPageViewControllerDelegate, UI
     
     func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
         return 0
+    }
+    
+    
+    
+    class func uploadUserToDatabaseWithoutFacebook() {
+        if(FBSDKAccessToken.currentAccessToken() == nil) {
+            Alamofire.request(.POST, "http://student.howest.be/toon.bertier/20142015/MA4/BADGET/api/users", parameters: ["device_id": UIDevice.currentDevice().identifierForVendor.UUIDString])
+                .response { (request, response, data, error) in
+                    if(response?.statusCode == 200) {
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsInDatabase")
+                    } else {
+                        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsInDatabase")
+                    }
+            }
+        }
     }
     
 

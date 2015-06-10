@@ -1,0 +1,27 @@
+[ 
+  {
+    "question": "Deo is de ideale douche!",
+    "answer": false,
+    "descr-yes": "Een betere optie zijn bijvoorbeeld babywipes. Zo wordt het zweet en het vuil afgekuist en voel je je meteen stukken frisser.",
+  },
+  {
+    "question": "Bier zorgt er zeker voor dat je niet uitdroogt!",
+    "answer": false,
+    "descr": "Ook al doet een frisse pint deugt, is het toch aan te raden van of en toe eens over te stappen op wat water of een cola."
+  },
+  {
+    "question": "Met mijn duurste horloge mis ik zeker geen enkel optreden!",
+    "answer": false,
+    "descr": "Laat waardevolle spullen zoals dure horloges of sieraden gewoon thuis, je kan ze toch enkel maar kwijtraken"
+  },
+  {
+    "question": "Alle belangrijke telefoonnummers staan mooi op een briefje.",
+    "answer": true,
+    "descr": "De batterij van je gsm kan altijd leeg zijn, zorg er dus voor dat je belangrijke nummers op een briefje staan hebt, zodat je de telefoon van iemand anders kan gebruiken."
+  },
+  {
+    "question": "Ik ben dagen bezig geweest met mijn planning, goed toch?",
+    "answer": true,
+    "descr": "Het is aan te raden om vooraf je planning te maken, zo mis je geen enkel optreden die je echt wil zien en zul je des te meer van het festival genieten"
+  }
+]

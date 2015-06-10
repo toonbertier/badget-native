@@ -49,6 +49,10 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.theView.checkInternetConnection()
+    }
+    
     override func viewDidAppear(animated: Bool) {
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
@@ -66,8 +70,10 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
                 if let dataUnwrapped:AnyObject = data {
                     if(data!["missing"] as! Int == 1) {
                         self.theView.missing = 1
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsMissing")
                     } else {
                         self.theView.missing = 0
+                        NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsMissing")
                     }
                 }
             }

@@ -89,8 +89,6 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate, Ba
         var attitude = deviceMotion.attitude
         var roll = toDegrees(attitude.roll)
         var pitch = toDegrees(attitude.pitch)
-        // var yaw = toDegrees(attitude.yaw)
-        // println("Roll: \(roll), Pitch: \(pitch), Yaw: \(yaw)")
         
         self.theView.rollValue = roll
         self.theView.pitchValue = pitch

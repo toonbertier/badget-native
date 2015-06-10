@@ -131,6 +131,7 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
                          .response { (request, response, data, error) in
                             if(response?.statusCode == 200) {
                                 NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userIsInDatabase")
+                                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsMissing")
                             } else {
                                 NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userIsInDatabase")
                             }

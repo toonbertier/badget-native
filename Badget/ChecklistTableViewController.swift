@@ -12,12 +12,12 @@ class ChecklistTableViewController: UITableViewController {
     
     var checklistArray:Array<ChecklistData>?
     
-    override init!(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         loadJSON()
     }
     
-    required init!(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
