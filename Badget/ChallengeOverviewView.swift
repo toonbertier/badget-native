@@ -21,26 +21,30 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
     weak var delegate:ChallengeOverviewViewDelegate?
     
     override init(frame: CGRect) {
-        
+    
         self.scrollView = UIScrollView(frame: CGRectMake(0, 0, frame.width, frame.height))
         
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.whiteColor()
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
         
         setScrollableTickets()
-        
         self.scrollView.showsHorizontalScrollIndicator = false
         self.addSubview(self.scrollView)
         
-        let kaarthouderImage = UIImage(named: "kaarthouder")
-        let kaarthouder = UIImageView(image: kaarthouderImage)
-        kaarthouder.frame = CGRectMake(self.center.x - kaarthouderImage!.size.width/2, frame.height-kaarthouderImage!.size.height, kaarthouderImage!.size.width, kaarthouderImage!.size.height)
-        self.addSubview(kaarthouder)
+        showCardHolder()
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func showCardHolder() {
+        let kaarthouderImage = UIImage(named: "kaarthouder")
+        let kaarthouder = UIImageView(image: kaarthouderImage)
+        kaarthouder.frame = CGRectMake(self.center.x - kaarthouderImage!.size.width/2, 385, kaarthouderImage!.size.width, kaarthouderImage!.size.height)
+        self.addSubview(kaarthouder)
+        self.bringSubviewToFront(kaarthouder)
     }
     
     func setScrollableTickets() {
@@ -51,7 +55,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
             
             let image = UIImage(named: self.cardNames[i])
             var imageView = UIImageView(image: image!)
-            imageView.frame = CGRectMake(xPos, 40, image!.size.width, image!.size.height)
+            imageView.frame = CGRectMake(xPos, 90, image!.size.width, image!.size.height)
             imageView.userInteractionEnabled = true
             imageView.tag = i
             
@@ -112,7 +116,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
         var ticket = sender.view!
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            ticket.center = CGPointMake(ticket.center.x, 155)
+            ticket.center = CGPointMake(ticket.center.x, 205)
         })
         
         self.scrollView.scrollEnabled = true

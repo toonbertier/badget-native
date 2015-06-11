@@ -45,6 +45,9 @@
 		6483C4A81B225141007F6BAA /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6483C4A71B225141007F6BAA /* CoreLocation.framework */; };
 		6484340C1B20B4A400ED722C /* FBTutorialLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484340B1B20B4A400ED722C /* FBTutorialLoginView.swift */; };
 		6484340E1B20BEE200ED722C /* MissingLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6484340D1B20BEE200ED722C /* MissingLoginView.swift */; };
+		648AD6E11B29B5B4003A5DDA /* ChallengeExplanation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648AD6E01B29B5B4003A5DDA /* ChallengeExplanation.swift */; };
+		648AD6E31B29B62C003A5DDA /* ChallengeExplanationFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648AD6E21B29B62C003A5DDA /* ChallengeExplanationFactory.swift */; };
+		648AD6E51B29B9CA003A5DDA /* explanations.json in Resources */ = {isa = PBXBuildFile; fileRef = 648AD6E41B29B9CA003A5DDA /* explanations.json */; };
 		649D4B0A1B2346630041AD0C /* MissingFriendsOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D4B091B2346630041AD0C /* MissingFriendsOverviewView.swift */; };
 		649D4B0C1B2366E00041AD0C /* PinData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D4B0B1B2366E00041AD0C /* PinData.swift */; };
 		649D4B0E1B236C070041AD0C /* ChallengeScoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649D4B0D1B236C070041AD0C /* ChallengeScoreController.swift */; };
@@ -56,6 +59,7 @@
 		649F206E1B28AAD100F3A7B8 /* Dosis-DemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 649F206D1B28AAD100F3A7B8 /* Dosis-DemiBold.ttf */; };
 		649F20721B28B4C300F3A7B8 /* FBExplanationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F20711B28B4C300F3A7B8 /* FBExplanationView.swift */; };
 		649F20761B28CD2400F3A7B8 /* BadgetUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 649F20751B28CD2400F3A7B8 /* BadgetUI.swift */; };
+		64A91EFD1B2A14240075F4FB /* CrowdSurfingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A91EFC1B2A14240075F4FB /* CrowdSurfingView.swift */; };
 		64B1C3D81B220937009AEDA5 /* MissingFriendsOverviewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B1C3D71B220937009AEDA5 /* MissingFriendsOverviewTableViewController.swift */; };
 		64D306821B1F624500B7FD23 /* MissingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D306811B1F624500B7FD23 /* MissingViewController.swift */; };
 		64E7B3F51B277B1000D941A7 /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E7B3F41B277B1000D941A7 /* QuizView.swift */; };
@@ -117,6 +121,9 @@
 		6483C4A71B225141007F6BAA /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6484340B1B20B4A400ED722C /* FBTutorialLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBTutorialLoginView.swift; sourceTree = "<group>"; };
 		6484340D1B20BEE200ED722C /* MissingLoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingLoginView.swift; sourceTree = "<group>"; };
+		648AD6E01B29B5B4003A5DDA /* ChallengeExplanation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeExplanation.swift; sourceTree = "<group>"; };
+		648AD6E21B29B62C003A5DDA /* ChallengeExplanationFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeExplanationFactory.swift; sourceTree = "<group>"; };
+		648AD6E41B29B9CA003A5DDA /* explanations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = explanations.json; sourceTree = "<group>"; };
 		649D4B091B2346630041AD0C /* MissingFriendsOverviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingFriendsOverviewView.swift; sourceTree = "<group>"; };
 		649D4B0B1B2366E00041AD0C /* PinData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinData.swift; sourceTree = "<group>"; };
 		649D4B0D1B236C070041AD0C /* ChallengeScoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreController.swift; sourceTree = "<group>"; };
@@ -131,6 +138,7 @@
 		649F206D1B28AAD100F3A7B8 /* Dosis-DemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Dosis-DemiBold.ttf"; sourceTree = "<group>"; };
 		649F20711B28B4C300F3A7B8 /* FBExplanationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBExplanationView.swift; sourceTree = "<group>"; };
 		649F20751B28CD2400F3A7B8 /* BadgetUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgetUI.swift; sourceTree = "<group>"; };
+		64A91EFC1B2A14240075F4FB /* CrowdSurfingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrowdSurfingView.swift; sourceTree = "<group>"; };
 		64B1C3D71B220937009AEDA5 /* MissingFriendsOverviewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingFriendsOverviewTableViewController.swift; sourceTree = "<group>"; };
 		64D306811B1F624500B7FD23 /* MissingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MissingViewController.swift; sourceTree = "<group>"; };
 		64E7B3F41B277B1000D941A7 /* QuizView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
@@ -209,6 +217,7 @@
 				64E7B3F81B279E6D00D941A7 /* Reachability.swift */,
 				649F205F1B285B8200F3A7B8 /* quiz.json */,
 				642A7E1A1B1B366500B54E7C /* checklist.json */,
+				648AD6E41B29B9CA003A5DDA /* explanations.json */,
 				642290961B2495760025A10B /* badges.json */,
 				646A87731B14B1B1001F224D /* AppDelegate.swift */,
 				649F20751B28CD2400F3A7B8 /* BadgetUI.swift */,
@@ -259,12 +268,15 @@
 				6422909C1B2496780025A10B /* BadgeFactory.swift */,
 				64322D341B24E66B004589BD /* BadgeView.swift */,
 				64322D321B24E583004589BD /* BadgeViewController.swift */,
+				648AD6E01B29B5B4003A5DDA /* ChallengeExplanation.swift */,
+				648AD6E21B29B62C003A5DDA /* ChallengeExplanationFactory.swift */,
 				6422D2B21B1E457B006E7A98 /* ChallengeExplanationView.swift */,
 				6422D2B01B1E428D006E7A98 /* ChallengeExplanationViewController.swift */,
 				6422D2AE1B1E0031006E7A98 /* ChallengeOverviewView.swift */,
 				6422D2AC1B1DFF8C006E7A98 /* ChallengeOverviewViewController.swift */,
 				6422D2BA1B1E4FFD006E7A98 /* StraightLineView.swift */,
 				6422D2B41B1E4B72006E7A98 /* StraightLineViewController.swift */,
+				64A91EFC1B2A14240075F4FB /* CrowdSurfingView.swift */,
 				6422D2B61B1E4B85006E7A98 /* CrowdSurfingViewController.swift */,
 				649F20611B285B9900F3A7B8 /* Question.swift */,
 				649F20651B285EFF00F3A7B8 /* QuestionFactory.swift */,
@@ -284,8 +296,8 @@
 				6483C4A31B224593007F6BAA /* MissingFriendCell.swift */,
 				64B1C3D71B220937009AEDA5 /* MissingFriendsOverviewTableViewController.swift */,
 				649D4B091B2346630041AD0C /* MissingFriendsOverviewView.swift */,
-				649D4B0B1B2366E00041AD0C /* PinData.swift */,
 				645234A11B2262E500260247 /* MissingFriendsOverviewViewController.swift */,
+				649D4B0B1B2366E00041AD0C /* PinData.swift */,
 			);
 			name = MissingFriends;
 			sourceTree = "<group>";
@@ -398,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				642A7E1B1B1B366500B54E7C /* checklist.json in Resources */,
+				648AD6E51B29B9CA003A5DDA /* explanations.json in Resources */,
 				649F20601B285B8200F3A7B8 /* quiz.json in Resources */,
 				642290971B2495760025A10B /* badges.json in Resources */,
 				646A877C1B14B1B1001F224D /* LaunchScreen.xib in Resources */,
@@ -492,6 +505,7 @@
 				6483C4A41B224593007F6BAA /* MissingFriendCell.swift in Sources */,
 				6422D2B31B1E457B006E7A98 /* ChallengeExplanationView.swift in Sources */,
 				646A87741B14B1B1001F224D /* AppDelegate.swift in Sources */,
+				64A91EFD1B2A14240075F4FB /* CrowdSurfingView.swift in Sources */,
 				649F20621B285B9900F3A7B8 /* Question.swift in Sources */,
 				6422D2AF1B1E0031006E7A98 /* ChallengeOverviewView.swift in Sources */,
 				649F20761B28CD2400F3A7B8 /* BadgetUI.swift in Sources */,
@@ -504,9 +518,11 @@
 				645234A21B2262E500260247 /* MissingFriendsOverviewViewController.swift in Sources */,
 				6422D2B91B1E4B90006E7A98 /* QuizViewController.swift in Sources */,
 				647A60711B19FEEE001DBC0F /* ChecklistViewController.swift in Sources */,
+				648AD6E31B29B62C003A5DDA /* ChallengeExplanationFactory.swift in Sources */,
 				649D4B0E1B236C070041AD0C /* ChallengeScoreController.swift in Sources */,
 				64441E6E1B207D88001CB673 /* MissingView.swift in Sources */,
 				647A606F1B19FEDE001DBC0F /* FBLoginViewController.swift in Sources */,
+				648AD6E11B29B5B4003A5DDA /* ChallengeExplanation.swift in Sources */,
 				64322D331B24E583004589BD /* BadgeViewController.swift in Sources */,
 				647A607B1B1A6730001DBC0F /* ChecklistView.swift in Sources */,
 				6422D2B71B1E4B85006E7A98 /* CrowdSurfingViewController.swift in Sources */,

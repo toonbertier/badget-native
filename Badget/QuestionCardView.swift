@@ -19,7 +19,6 @@ class QuestionCardView: UIView {
         self.data = data
         self.answer = data.answer
         
-        self.backgroundColor = .grayColor()
         let degr = arc4random_uniform(3)
         println(degr)
         let rads = radiansToDegrees(Double(degr))
@@ -30,17 +29,15 @@ class QuestionCardView: UIView {
     
     func renderQuestionLabel() {
         
-        let questionTxt = self.data.question as NSString
+        let bgImage = UIImage(named: "fb-info-bg")
+        let bg = UIImageView(frame: self.frame)
+        bg.center = CGPointMake(self.center.x, self.center.y)
+        bg.image = bgImage
+        bg.contentMode = UIViewContentMode.Center
+        self.addSubview(bg)
         
-        let font = UIFont(name: "HelveticaNeue", size: 14)
-        
-        let boundingRect = questionTxt.boundingRectWithSize(CGSizeMake(self.frame.width - 60, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font!], context: nil)
-        
-        let questionLabel = UILabel(frame: CGRectMake(10,10,boundingRect.size.width,boundingRect.size.height))
-        questionLabel.text = questionTxt as String
-        questionLabel.textAlignment = .Center
-        questionLabel.numberOfLines = 0
-        questionLabel.sizeToFit()
+        let questionLabel = BadgetUI.makeDescription(self.data.question, width: 140,highlights: [])
+        questionLabel.center = CGPointMake(self.center.x, self.center.y)
         self.addSubview(questionLabel)
     }
 

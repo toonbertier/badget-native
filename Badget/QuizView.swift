@@ -27,6 +27,8 @@ class QuizView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -38,14 +40,16 @@ class QuizView: UIView {
             for card in cards {
                 card.removeFromSuperview()
             }
-            cards = Array<QuestionCardView>()
+            self.cards = Array<QuestionCardView>()
+            self.count = 2
         }
     }
     
     func makeCards(arr:Array<Question>) {
         for(var i = 0; i < arr.count; i++) {
             let data = arr[i]
-            let card = QuestionCardView(frame: CGRectMake(self.center.x - 100, self.center.y - 100, 200, 200), data: data)
+            let card = QuestionCardView(frame: CGRectMake(0, 0, 140, 90), data: data)
+            card.center = CGPointMake(self.center.x, self.center.y)
             cards.append(card)
             self.addSubview(card)
         }
@@ -60,11 +64,11 @@ class QuizView: UIView {
             switch direction {
             case "right":
                 println("moving card right")
-                cards[count].center = CGPointMake(self.frame.width + 100, self.center.y)
+                cards[count].center = CGPointMake(self.frame.width + 200, self.center.y)
                 answer = true
             case "left":
                 println("moving card left")
-                cards[count].center = CGPointMake(-self.frame.width - 100, self.center.y)
+                cards[count].center = CGPointMake(-self.frame.width - 200, self.center.y)
                 answer = false
             default:
                 ()

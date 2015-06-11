@@ -12,23 +12,32 @@ import MapKit
 class MissingFriendsOverviewView: UIView {
     
     var mapView:MKMapView!
-    var mapPull:UIView!
+    var tableView:UITableView!
+    var mapPull:UIImageView!
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, tableView:UITableView) {
         super.init(frame: frame)
+        
+        self.tableView = tableView
+        self.tableView.frame = CGRectMake(0, 68, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height/4)
+        self.tableView.backgroundColor = .clearColor()
+        self.addSubview(self.tableView)
+        self.sendSubviewToBack(self.tableView)
         
         self.mapView = MKMapView(frame: CGRectMake(0, self.frame.height - 150, self.frame.width, self.frame.height))
         self.addSubview(self.mapView)
         self.bringSubviewToFront(self.mapView)
         
-        var panRecognizer = UIPanGestureRecognizer(target: self, action: "panHandler:")
-        
-        self.mapPull = UIView(frame: CGRectMake(self.center.x-25, self.frame.height-160, 50, 20))
-        self.mapPull.backgroundColor = .redColor()
+        self.mapPull = UIImageView(frame: CGRectMake(0, 0, 60, 30))
+        self.mapPull.image = UIImage(named: "map-pull")!
+        self.mapPull.center = CGPointMake(self.center.x, self.center.y)
+        self.mapPull.userInteractionEnabled = true
         self.addSubview(self.mapPull)
         self.bringSubviewToFront(self.mapPull)
         
         UIView.setAnimationDuration(0)
+        UIView.setAnimationDelay(0)
+        UIView.setAnimationCurve(.Linear)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -40,11 +49,13 @@ class MissingFriendsOverviewView: UIView {
         let touch = touches.first as! UITouch
         let location = touch.locationInView(self)
         
-        UIView.beginAnimations("draggingMapPull", context: nil)
-        self.mapPull.frame = CGRectMake(self.center.x - 25, location.y, 50, 20)
-        self.mapView.frame = CGRectMake(0, location.y + 10, self.frame.width, self.frame.height)
-        UIView.commitAnimations()
-    
+        let mapPullCenter = self.mapPull.center
+        if(location.x > mapPullCenter.x - 30 && location.x < mapPullCenter.x + 30 && location.y > mapPullCenter.y - 15 && location.y < mapPullCenter.y + 15) {
+            UIView.beginAnimations("draggingMapPull", context: nil)
+            self.mapPull.center = CGPointMake(self.center.x, location.y)
+            self.mapView.frame = CGRectMake(0, location.y + 10, self.frame.width, self.frame.height)
+            UIView.commitAnimations()
+        }
     }
     
     func updateMap(location:CLLocationCoordinate2D) {

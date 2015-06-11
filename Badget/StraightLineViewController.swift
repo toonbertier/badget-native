@@ -40,7 +40,7 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate, Ba
     }
     
     func showBadge() {
-        let badgeVC = BadgeViewController(challengeId: 1)
+        let badgeVC = BadgeViewController(challengeId: 1, afterChallenge: true)
         badgeVC.theView.delegate = self
         self.navigationController?.presentViewController(badgeVC, animated: true, completion: nil)
     }

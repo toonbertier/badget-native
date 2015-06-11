@@ -14,26 +14,48 @@ protocol ChallengeExplanationViewDelegate:class {
 
 class ChallengeExplanationView: UIView {
     
+    var data:ChallengeExplanation!
     weak var delegate:ChallengeExplanationViewDelegate?
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, data:ChallengeExplanation) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.whiteColor()
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
+        self.data = data
         
-        let expLabel = UILabel(frame: CGRectMake(self.center.x - 50, self.center.y - 100, 100, 44))
-        expLabel.textAlignment = .Center
-        expLabel.text = "uitleg uitleg"
-        self.addSubview(expLabel)
-        
-        let startButton = UIButton(frame: CGRectMake(self.center.x-75, self.center.y+50, 150, 44))
-        startButton.backgroundColor = UIColor.redColor()
-        startButton.setTitle("Start challenge", forState: .Normal)
-        startButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        showExpImage()
+        showExpDescr()
+        showSteps()
+        showStartButton()
+    }
+    
+    func showExpImage() {
+        let image = UIImage(named: "\(self.data.image)")
+        let imageView = UIImageView(image: image!)
+        imageView.center = CGPointMake(self.center.x, 150)
+        self.addSubview(imageView)
+    }
+    
+    func showExpDescr() {
+        let descrLabel = BadgetUI.makeDescription(self.data.descr, width:250, highlights: [])
+        descrLabel.center = CGPointMake(self.center.x, self.center.y - 20)
+        self.addSubview(descrLabel)
+    }
+    
+    func showSteps() {
+        let labels = BadgetUI.makeList([self.data.stap1, self.data.stap2, self.data.stap3])
+        for (i, label) in enumerate(labels) {
+            label.center = CGPointMake(self.center.x, self.center.y + 70 + CGFloat(i*30))
+            self.addSubview(label)
+        }
+    }
+    
+    func showStartButton() {
+        let startButton = BadgetUI.makeButton("START", center: CGPointMake(self.center.x, self.center.y + 190), width: 100)
         startButton.addTarget(self, action: "tappedStart:", forControlEvents: .TouchUpInside)
         self.addSubview(startButton)
     }
-
+    
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -100,27 +100,15 @@ class QuizViewController: UIViewController, QuestionCardViewDelegate {
             
             var x = data.acceleration.x
             
-            println(x)
+            println("test")
             
-            if(x > 1.3 && x < 1.5) {
-                //println("right")
-                //println(x)
-            } else if (x < -1.3 && x > -1.5) {
-                //println("left")
-                //println(x)
-            }
-            
-            /*
-            
-            if(x > 1.3) {
+            if(x > 1.1 && x < 1.4) {
                 println("throw right")
                 self.theView.moveTopCard("right")
-            } else if (x < -1.3) {
+            } else if (x < -1.1 && x > -1.4) {
                 println("throw left")
                 self.theView.moveTopCard("left")
             }
-
-            */
             
         })
     }

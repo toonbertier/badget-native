@@ -18,6 +18,8 @@ class BadgeView: UIView, UIScrollViewDelegate {
     var badges:Array<Badge>!
     var descriptionLabel:UILabel?
     var titleLabel:UILabel?
+    var noBadgeTitle:UILabel?
+    var noBadgeDescr:UILabel?
     weak var delegate:BadgeViewDelegate?
     
     override init(frame: CGRect) {
@@ -37,12 +39,33 @@ class BadgeView: UIView, UIScrollViewDelegate {
         self.badges = badges
     }
     
-    func renderBadges() {
+    func renderBadges(afterChallenge:Bool) {
+        removeNoBadgeLabels()
         if(self.badges.count > 1) {
             renderScrollingBadges()
-        } else {
+        } else if(self.badges.count == 1) {
             renderAfterChallengeBadge()
+            if(afterChallenge) {
+                renderBackToOverviewButton()
+            }
+        } else {
+            showNoBadgeLabels()
         }
+    }
+    
+    func showNoBadgeLabels() {
+        self.noBadgeTitle = BadgetUI.makeTitle("NOG GEEN BADGES")
+        self.noBadgeTitle?.center = CGPointMake(self.center.x, self.center.y - 100)
+        self.addSubview(self.noBadgeTitle!)
+        
+        self.noBadgeDescr = BadgetUI.makeDescription("Begin vlug aan de challenges en grijp die hoogste badges! Wanneer je de challenges tot een goed einde hebt gebracht, kun je aan onze stand enkele festivalgoodies afhalen!", width: 250, highlights: ["badges", "festivalgoodies afhalen"])
+        self.noBadgeDescr?.center = CGPointMake(self.center.x, self.center.y)
+        self.addSubview(self.noBadgeDescr!)
+    }
+    
+    func removeNoBadgeLabels() {
+        self.noBadgeDescr?.removeFromSuperview()
+        self.noBadgeTitle?.removeFromSuperview()
     }
     
     func renderScrollingBadges() {
@@ -94,7 +117,7 @@ class BadgeView: UIView, UIScrollViewDelegate {
         self.titleLabel?.center = CGPointMake(self.center.x, self.center.y + 50)
         self.addSubview(self.titleLabel!)
         
-        self.descriptionLabel = BadgetUI.makeDescription(self.badges[index].descr, highlights: [])
+        self.descriptionLabel = BadgetUI.makeDescription(self.badges[index].descr, width:250, highlights: [])
         self.descriptionLabel?.center = CGPointMake(self.center.x, self.center.y + 100)
         self.addSubview(self.descriptionLabel!)
         
@@ -110,11 +133,10 @@ class BadgeView: UIView, UIScrollViewDelegate {
         
         self.addSubview(imageView)
         
-        renderButtons()
         renderDescription(0)
     }
     
-    func renderButtons() {
+    func renderBackToOverviewButton() {
         let backToOverview = BadgetUI.makeButton("NAAR OVERZICHT", center: CGPointMake(self.center.x, self.center.y + 170), width: 200)
         backToOverview.addTarget(self, action: "backToOverview:", forControlEvents: .TouchUpInside)
         

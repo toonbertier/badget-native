@@ -29,8 +29,8 @@ class StraightLineView: UIView {
         }
     }
     var pointLabel:UILabel!
-    var bol:CAShapeLayer!
-    var bound:CAShapeLayer!
+    var balanceCircle:CALayer!
+    var bound:CALayer!
     var totalTime:Double = 0.0
     var points:Double = 0.0
     var stopButton:UIButton!
@@ -40,39 +40,49 @@ class StraightLineView: UIView {
         
         super.init(frame: frame)
         
-        var boundaryRect = CAShapeLayer()
-        boundaryRect.fillColor = UIColor.grayColor().CGColor
-        boundaryRect.path = UIBezierPath(rect: CGRectMake(frame.width/8, frame.height/4, frame.width/8*6, frame.height/8*6)).CGPath
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
+        self.addSubview(UIImageView(image: UIImage(named: "stripes-bg")!))
         
-        self.layer.addSublayer(boundaryRect)
+        showBound()
+        showBalanceCircle()
+        showStopButton()
+        showPoints()
         
-        self.bound = CAShapeLayer()
-        self.bound.lineWidth = 1
-        self.bound.fillColor = nil
-        self.bound.strokeColor = UIColor.blackColor().CGColor
+    }
+    
+    func showBound() {
+        self.bound = CALayer()
+        let boundImage = UIImage(named: "balance-bound")!
+        self.bound.contents = boundImage.CGImage
+        self.bound.bounds = CGRectMake(0, 0, boundImage.size.width, boundImage.size.height)
         self.bound.position = self.center
-        self.bound.path = UIBezierPath(ovalInRect: CGRectMake(-75, -75, 150, 150)).CGPath
         
         self.layer.addSublayer(bound)
+    }
+    
+    func showBalanceCircle() {
+        self.balanceCircle = CALayer()
+        let circleImage = UIImage(named: "balance-circle")!
+        self.balanceCircle.contents = circleImage.CGImage
+        self.balanceCircle.bounds = CGRectMake(0, 0, circleImage.size.width, circleImage.size.height)
+        self.balanceCircle.position = self.center
         
-        self.bol = CAShapeLayer()
-        self.bol.fillColor = UIColor.redColor().CGColor
-        self.bol.position = self.center
-        self.bol.path = UIBezierPath(ovalInRect: CGRectMake(-25, -25, 50, 50)).CGPath
-        
-        self.layer.addSublayer(self.bol)
-        
-        self.stopButton = UIButton(frame: CGRectMake(self.center.x-50, frame.height, 100, 44))
-        self.stopButton.setTitle("Klaar!", forState: .Normal)
-        self.stopButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        self.layer.addSublayer(self.balanceCircle)
+    }
+    
+    func showStopButton() {
+        self.stopButton = BadgetUI.makeButton("STOP", center: CGPointMake(self.center.x, self.center.y + 180), width: 80)
         self.stopButton.addTarget(self, action: "stopButtonTouched:", forControlEvents: .TouchUpInside)
-        
         self.addSubview(stopButton)
-        
-        self.pointLabel = UILabel(frame: CGRectMake(40, 80, 100, 44))
+    }
+    
+    func showPoints() {
+        self.pointLabel = UILabel(frame: CGRectMake(0, 0, 100, 44))
+        self.pointLabel.center = CGPointMake(self.center.x, self.center.y - 60)
+        self.pointLabel.textAlignment = .Center
         self.pointLabel.textColor = UIColor.blackColor()
+        self.pointLabel.font = UIFont(name: "AvenirNext-DemiBold", size: 20)
         self.addSubview(self.pointLabel)
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -83,8 +93,8 @@ class StraightLineView: UIView {
         
         self.totalTime++
         
-        var x1 = self.bol.position.x
-        var y1 = self.bol.position.y
+        var x1 = self.balanceCircle.position.x
+        var y1 = self.balanceCircle.position.y
         var x = self.bound.position.x
         var y = self.bound.position.y
         
@@ -97,11 +107,10 @@ class StraightLineView: UIView {
     }
     
     func showBadgeButton() {
-        
-        self.stopButton.setTitle("Naar badge", forState: .Normal)
-        self.stopButton.removeTarget(self, action: "stopButtonTouched:", forControlEvents: .TouchUpInside)
+        self.stopButton.removeFromSuperview()
+        self.stopButton = BadgetUI.makeButton("NAAR BADGE", center: CGPointMake(self.center.x, self.center.y + 180), width: 160)
         self.stopButton.addTarget(self, action: "showBadgeController:", forControlEvents: .TouchUpInside)
-        
+        self.addSubview(stopButton)
     }
     
     func showBadgeController(sender:UIButton) {
@@ -119,29 +128,12 @@ class StraightLineView: UIView {
         var yPos = CGFloat(frameHeightHalf + frameHeightHalf/100*pitchPercentage*3)
         var newPosition = CGPointMake(xPos, yPos)
         
-        self.bol.position = newPosition
-        checkBoundaryHits()
+        self.balanceCircle.position = newPosition
     }
     
     func stopButtonTouched(sender:UIButton) {
-        self.bound.strokeStart = CGFloat(0.0)
-        self.bound.strokeEnd = CGFloat(Double(self.points)/Double(self.totalTime))
-        
         self.delegate?.stopGyroData()
         self.delegate?.stopTimer()
-    }
-    
-    func checkBoundaryHits() {
-        
-        if(self.bol.position.x < frame.width/8
-            || self.bol.position.x > frame.width - frame.width/8
-            || self.bol.position.y < frame.height/4
-            || self.bol.position.y > frame.height - frame.height/4) {
-                
-                self.delegate?.stopGyroData()
-                self.delegate?.stopTimer()
-        }
-        
     }
     
     /*

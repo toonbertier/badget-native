@@ -109,6 +109,7 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
         if(self.missingFriends.count > 0) {
             self.tableView.separatorStyle = .SingleLine
             self.tableView.backgroundView = nil
+            self.tableView.backgroundColor = .clearColor()
             return 1
         } else {
             let label = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))

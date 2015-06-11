@@ -19,18 +19,13 @@ class MissingFriendsOverviewViewController: UIViewController, MissingFriendsOver
     }
     
     override func loadView() {
-        self.view = MissingFriendsOverviewView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112))
+        self.tableVC = MissingFriendsOverviewTableViewController(nibName: nil, bundle: nil)
+        self.tableVC.delegate = self
+        self.view = MissingFriendsOverviewView(frame: CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 112), tableView: self.tableVC.tableView)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableVC = MissingFriendsOverviewTableViewController(nibName: nil, bundle: nil)
-        self.tableVC.tableView.frame = CGRectMake(0, 64, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height/4)
-        self.view.addSubview(self.tableVC.tableView)
-        self.view.sendSubviewToBack(self.tableVC.tableView)
-        self.tableVC.delegate = self
-        
         self.theView.mapView.delegate = self
     }
     
@@ -51,7 +46,7 @@ class MissingFriendsOverviewViewController: UIViewController, MissingFriendsOver
         
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "pin")
-            pinView.image = UIImage(named: "checked")
+            pinView.image = UIImage(named: "help-map")
         }
         
         return pinView

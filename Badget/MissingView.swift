@@ -35,6 +35,8 @@ class MissingView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
+        
         if(NSUserDefaults.standardUserDefaults().boolForKey("userIsMissing") == true) {
             self.missing = 1
         } else {
@@ -51,21 +53,20 @@ class MissingView: UIView {
     
     func showButtons() {
         
-        self.helpButton = UIButton(frame: CGRectMake(self.center.x - 50, self.center.y - 100, 100, 44))
-        self.helpButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        self.helpButton.backgroundColor = UIColor.redColor()
+        let helpImage = UIImage(named: "help-button")!
+        self.helpButton = UIButton(frame: CGRectMake(0, 0, helpImage.size.width, helpImage.size.height))
+        self.helpButton.center = CGPointMake(self.center.x, self.center.y - 80)
+        self.helpButton.setBackgroundImage(helpImage, forState: .Normal)
         self.helpButton.addTarget(self, action: "tappedHelp:", forControlEvents: .TouchUpInside)
-        
         updateHelpButton()
-        
         self.addSubview(self.helpButton)
         
-        self.findFriends = UIButton(frame: CGRectMake(self.center.x - 100, self.center.y + 100, 200, 44))
-        self.findFriends.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        self.findFriends.backgroundColor = UIColor.blueColor()
-        self.findFriends.setTitle("Vind je vrienden", forState: .Normal)
-        self.findFriends.addTarget(self, action: "tappedFindFriends:", forControlEvents: .TouchUpInside)
+        let ofLabel = BadgetUI.makeTitle("OF")
+        ofLabel.center = CGPointMake(self.center.x, self.center.y + 80)
+        self.addSubview(ofLabel)
         
+        self.findFriends = BadgetUI.makeButton("VIND JE VRIENDEN", center: CGPointMake(self.center.x, self.center.y + 160), width: 180)
+        self.findFriends.addTarget(self, action: "tappedFindFriends:", forControlEvents: .TouchUpInside)
         self.addSubview(self.findFriends)
     }
     
@@ -92,9 +93,9 @@ class MissingView: UIView {
     
     func updateHelpButton() {
         if self.missing == 1 {
-            self.helpButton.setTitle("Terecht", forState: .Normal)
+            self.helpButton.setBackgroundImage(UIImage(named: "terecht-button")!, forState: .Normal)
         } else {
-            self.helpButton.setTitle("Help!", forState: .Normal)
+            self.helpButton.setBackgroundImage(UIImage(named: "help-button")!, forState: .Normal)
         }
     }
 

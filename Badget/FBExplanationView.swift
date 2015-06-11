@@ -34,7 +34,7 @@ class FBExplanationView: UIView {
         title.center = CGPointMake(self.center.x, self.center.y - 90)
         self.addSubview(title)
         
-        let descrLabel = BadgetUI.makeDescription("Wij gebruiken uw Facebook enkel om uw vriendenlijst te raadplegen indien u of een van uw vrienden zoek raakt tijdens het festival. Wij posten in geen geval iets onder uw naam.", highlights: [])
+        let descrLabel = BadgetUI.makeDescription("Wij gebruiken uw Facebook enkel om uw vriendenlijst te raadplegen indien u of een van uw vrienden zoek raakt tijdens het festival. Wij posten in geen geval iets onder uw naam.", width:250, highlights: [])
         descrLabel.center = CGPointMake(self.center.x, self.center.y - 15)
         self.addSubview(descrLabel)
         

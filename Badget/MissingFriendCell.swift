@@ -12,6 +12,8 @@ class MissingFriendCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: UITableViewCellStyle.Subtitle, reuseIdentifier: reuseIdentifier)
+        
+        self.backgroundColor = .clearColor()
     }
     
     required init(coder aDecoder: NSCoder) {

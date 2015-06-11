@@ -12,6 +12,7 @@ import CoreData
 class BadgeViewController: UIViewController {
     
     var challengeId:Int?
+    var afterChallenge:Bool!
     var badgesArray:Array<Badge>! {
         didSet {
             for badge in badgesArray {
@@ -25,9 +26,10 @@ class BadgeViewController: UIViewController {
         }
     }
     
-    init(challengeId:Int?) {
+    init(challengeId:Int?, afterChallenge:Bool) {
         super.init(nibName: nil, bundle: nil)
         self.title = "Badges"
+        self.afterChallenge = afterChallenge
         
         if let challengeIdUnwrapped = challengeId {
              self.challengeId = challengeIdUnwrapped
@@ -45,7 +47,7 @@ class BadgeViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         getBadges()
         self.theView.setBadgesArray(self.badgesArray)
-        self.theView.renderBadges()
+        self.theView.renderBadges(afterChallenge)
     }
     
     func getBadges() {

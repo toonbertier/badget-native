@@ -27,17 +27,16 @@ class BadgetUI: NSObject {
         return titleLabel
     }
     
-    class func makeDescription(text:String, highlights:Array<String>) -> UILabel {
+    class func makeDescription(text:String, width:CGFloat, highlights:Array<String>) -> UILabel {
         
         let descrString = text as NSString
         let descrAttrTxt = NSMutableAttributedString(string: descrString as String)
-        let yellow = UIColor(red: 0.93, green: 0.84, blue: 0.38, alpha: 0.8)
         for highlight in highlights {
             let range = descrString.rangeOfString(highlight)
-            descrAttrTxt.addAttribute(NSBackgroundColorAttributeName, value: yellow, range: range)
+            descrAttrTxt.addAttribute(NSBackgroundColorAttributeName, value: BadgetUI.getYellow(0.8), range: range)
         }
         let font = UIFont(name: "AvenirNext-Regular", size: 14)
-        let boundingRect = descrString.boundingRectWithSize(CGSizeMake(250, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font!], context: nil)
+        let boundingRect = descrString.boundingRectWithSize(CGSizeMake(width, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font!], context: nil)
         let descrLabel = UILabel(frame: CGRectMake(0,0,boundingRect.size.width,boundingRect.size.height))
         descrLabel.attributedText = descrAttrTxt
         descrLabel.font = font
@@ -46,6 +45,28 @@ class BadgetUI: NSObject {
         descrLabel.sizeToFit()
         
         return descrLabel
+    }
+    
+    class func makeList(items:Array<String>) -> Array<UILabel> {
+        
+        var arr = Array<UILabel>()
+        
+        for (index, item) in enumerate(items) {
+            let label = UILabel(frame: CGRectMake(0, 0, 250, 44))
+            let stringIndex = String(index + 1)
+            let string = "\(stringIndex ). \(item)" as NSString
+            
+            let attrString = NSMutableAttributedString(string: string as String)
+            let range = string.rangeOfString("\(stringIndex).")
+            attrString.addAttribute(NSForegroundColorAttributeName, value: BadgetUI.getYellow(1), range: range)
+            
+            label.font = UIFont(name: "AvenirNext-Regular", size: 14)
+            label.attributedText = attrString
+            label.textAlignment = .Center
+            arr.append(label)
+        }
+        
+        return arr
     }
     
     class func makeErrorLabel(text:String) -> UILabel {
@@ -76,6 +97,24 @@ class BadgetUI: NSObject {
         let detailButton = UIButton(frame: CGRectMake(0, 0, 26, 30))
         detailButton.setBackgroundImage(UIImage(named: "detail-button")!, forState: .Normal)
         return detailButton
+    }
+    
+    //CONTROLLERS
+    
+    class func makeNavigationController(rootViewController:UIViewController, tabBarImage:UIImage, tag:Int) -> UINavigationController {
+        var navController = UINavigationController(rootViewController: rootViewController)
+        navController.navigationBar.barTintColor = BadgetUI.getYellow(0.5)
+        navController.navigationBar.translucent = true
+        navController.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Dosis-SemiBold", size: 20)!]
+        navController.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: tag)
+        return navController
+    }
+    
+    //COLORS
+    
+    class func getYellow(alpha:CGFloat) -> UIColor {
+        let yellow = UIColor(red: 0.93, green: 0.84, blue: 0.38, alpha: alpha)
+        return yellow
     }
     
     /*

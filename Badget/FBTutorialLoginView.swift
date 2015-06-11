@@ -37,7 +37,7 @@ class FBTutorialLoginView: UIView, BadgetLoginView {
         titleLabel.center = CGPointMake(self.center.x, self.center.y - 220)
         self.addSubview(titleLabel)
         
-        let descrLabel = BadgetUI.makeDescription("Je eerste festival, je wilt een beleving om nooit te vergeten maar je voelt je wat onvoorbereid... Geen probleem! De Lijn is er om je op weg te helpen! Doe challenges, win gadgets en wordt een echte festivalganger!", highlights: ["Doe challenges", "win gadgets"])
+        let descrLabel = BadgetUI.makeDescription("Je eerste festival, je wilt een beleving om nooit te vergeten maar je voelt je wat onvoorbereid... Geen probleem! De Lijn is er om je op weg te helpen! Doe challenges, win gadgets en wordt een echte festivalganger!", width:250, highlights: ["Doe challenges", "win gadgets"])
         descrLabel.center = CGPointMake(self.center.x, self.center.y - 120)
         self.addSubview(descrLabel)
     }

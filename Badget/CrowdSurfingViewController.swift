@@ -14,7 +14,7 @@ import MapKit
 import CoreMotion
 import AudioToolbox
 
-class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
+class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, BadgeViewDelegate, CLLocationManagerDelegate {
     
     var locationManager = CLLocationManager()
     var motionManager = CMMotionManager()
@@ -23,19 +23,23 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
     var locationLabel:UILabel!
     var step = 1
     var hasVibratedWhenLayingDown:Bool = false
+    var theView:CrowdSurfingView {
+        get {
+            return self.view as! CrowdSurfingView
+        }
+    }
+    
+    override func loadView() {
+        self.view = CrowdSurfingView(frame: CGRectMake(0, 44, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 93))
+        self.theView.delegate = self
+        self.theView.showExplanation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.frame = CGRectMake(0, 44, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 93)
-        
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.delegate = self
-        
-        self.locationLabel = UILabel(frame: CGRectMake(self.view.center.x-150, self.view.frame.height, 300, 44))
-        self.locationLabel.textAlignment = .Center
-        self.locationLabel.text = "Yet to calculate distance"
-        self.view.addSubview(self.locationLabel)
         
         askForLocationServicePermission()
     }
@@ -50,6 +54,17 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showBadge() {
+        let badgeVC = BadgeViewController(challengeId: 2, afterChallenge: true)
+        badgeVC.theView.delegate = self
+        self.navigationController?.presentViewController(badgeVC, animated: true, completion: nil)
+    }
+    
+    func backToOverview() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     //MOTION FUNCTIES
@@ -113,10 +128,16 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
             
             if(!self.hasVibratedWhenLayingDown) {
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                self.theView.removeExplanation()
+                self.theView.showDistance()
                 self.hasVibratedWhenLayingDown = true
             }
             
             startUpdatingLocation()
+            
+            if let totalDistanceUnwrapped = self.totalDistance {
+                self.theView.updateDistanceLabel(totalDistanceUnwrapped)
+            }
             
         } else{
             if(self.step == 3) {
@@ -124,6 +145,7 @@ class CrowdSurfingViewController: UIViewController, CLLocationManagerDelegate {
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 stopUpdatingLocation()
                 self.step = 4
+                self.theView.showBadgeButton()
             }
         }
     }

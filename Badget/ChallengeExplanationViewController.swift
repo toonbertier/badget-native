@@ -11,6 +11,7 @@ import UIKit
 class ChallengeExplanationViewController: UIViewController, ChallengeExplanationViewDelegate {
     
     var challengeName:ChallengeName = .StraightLine
+    var explanations:Array<ChallengeExplanation>!
     
     var theView:ChallengeExplanationView {
         get {
@@ -24,10 +25,22 @@ class ChallengeExplanationViewController: UIViewController, ChallengeExplanation
         
         self.challengeName = name
         self.title = self.challengeName.rawValue
+        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: self.navigationController, action: nil)
+        backButton.tintColor = .blackColor()
+        self.navigationController?.navigationItem.leftBarButtonItem = backButton
+        
+        loadExplanations()
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func loadExplanations() {
+        var path = NSBundle.mainBundle().URLForResource("explanations", withExtension: "json")
+        var jsonData = NSData(contentsOfURL: path!)
+        
+        self.explanations = ChallengeExplanationFactory.createArrayFromJSONData(jsonData!)
     }
     
     func didStartChallenge() {
@@ -52,7 +65,18 @@ class ChallengeExplanationViewController: UIViewController, ChallengeExplanation
     }
     
     override func loadView() {
-        self.view = ChallengeExplanationView(frame: UIScreen.mainScreen().bounds)
+        switch (self.challengeName) {
+            
+        case .StraightLine:
+            self.view = ChallengeExplanationView(frame: UIScreen.mainScreen().bounds, data: self.explanations[0])
+            
+        case .CrowdSurfing:
+            self.view = ChallengeExplanationView(frame: UIScreen.mainScreen().bounds, data: self.explanations[1])
+            
+        case .Quiz:
+            self.view = ChallengeExplanationView(frame: UIScreen.mainScreen().bounds, data: self.explanations[2])
+            
+        }
         self.theView.delegate = self
     }
 
