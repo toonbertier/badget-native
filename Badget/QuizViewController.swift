@@ -102,10 +102,10 @@ class QuizViewController: UIViewController, QuestionCardViewDelegate {
             
             println("test")
             
-            if(x > 1.1 && x < 1.4) {
+            if(x > 1.3) {
                 println("throw right")
                 self.theView.moveTopCard("right")
-            } else if (x < -1.1 && x > -1.4) {
+            } else if (x < -1.3) {
                 println("throw left")
                 self.theView.moveTopCard("left")
             }

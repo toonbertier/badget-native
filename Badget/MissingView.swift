@@ -30,7 +30,7 @@ class MissingView: UIView {
     }
     var helpButton:UIButton!
     var findFriends:UIButton!
-    var offlineLabel:UILabel!
+    var offlineLabel:UILabel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,7 +48,12 @@ class MissingView: UIView {
     }
     
     func checkInternetConnection() {
-        //internet connectie checken
+        
+        if Reachability.isConnectedToNetwork() == false {
+            showOfflineAlert()
+        } else {
+            removeOfflineAlert()
+        }
     }
     
     func showButtons() {
@@ -72,15 +77,15 @@ class MissingView: UIView {
     
     func showOfflineAlert() {
         
-        let background = UIView(frame: CGRectMake(50, 100, self.frame.width - 100, self.frame.height - 200))
-        background.backgroundColor = .grayColor()
-        self.addSubview(background)
-        
         self.offlineLabel = UILabel(frame: CGRectMake(self.center.x - 50, self.center.y, 100, 44))
-        self.offlineLabel.text = "Deze functie kan offline niet gebruikt worden, gelieve u met het internet te verbinden."
-        self.offlineLabel.textColor = .blackColor()
-        self.addSubview(offlineLabel)
+        self.offlineLabel!.text = "Deze functie kan offline niet gebruikt worden, gelieve u met het internet te verbinden."
+        self.offlineLabel!.textColor = .blackColor()
+        self.addSubview(offlineLabel!)
         
+    }
+    
+    func removeOfflineAlert() {
+        self.offlineLabel?.removeFromSuperview()
     }
     
     func tappedHelp(sender:UIButton) {

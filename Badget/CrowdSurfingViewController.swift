@@ -51,6 +51,10 @@ class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, Bad
         }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        motionManager.stopDeviceMotionUpdates()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,10 +95,10 @@ class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, Bad
                 self.checkIfLayingDown(xAcc, y: yAcc, z: zAcc)
             case 4:
                 //check user weer recht en stoppen met afstand en beweging meten
-                self.checkIfStraightUp(xAcc, y: yAcc, z: zAcc)
+                self.backUp()
                 
             default:
-                println("do nothing")
+                ()
             }
             
         })
@@ -111,44 +115,74 @@ class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, Bad
             }
             
             if(self.step == 4) {
-                self.motionManager.stopAccelerometerUpdates()
-                println("updates stopped - all done")
-                if let totalDistanceUnwrapped = self.totalDistance {
-                    ChallengeScoreController.handleScore(self.totalDistance!, challenge: .CrowdSurfing)
-                }
+                println("done")
             }
         }
     }
     
     func checkIfLayingDown(x:Double, y:Double, z:Double) {
         
-        if(x > -0.60 && x < 0.60 && y > -0.60 && y < 0.60 && z > 0.70) {
-            println("down")
-            self.step = 3
-            
-            if(!self.hasVibratedWhenLayingDown) {
+        if(!self.hasVibratedWhenLayingDown) {
+            if(x > -0.80 && x < 0.80 && y > -0.80 && y < 0.80 && z > 0.80) {
+                println("down")
+                self.step = 3
                 AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
                 self.theView.removeExplanation()
                 self.theView.showDistance()
                 self.hasVibratedWhenLayingDown = true
-            }
-            
-            startUpdatingLocation()
-            
-            if let totalDistanceUnwrapped = self.totalDistance {
-                self.theView.updateDistanceLabel(totalDistanceUnwrapped)
-            }
-            
-        } else{
-            if(self.step == 3) {
-                println("back up!")
-                AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-                stopUpdatingLocation()
-                self.step = 4
-                self.theView.showBadgeButton()
+           
+                startUpdatingLocation()
+                startGyroUpdates()
             }
         }
     }
+    
+    func backUp() {
+        println("back up!")
+        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        stopUpdatingLocation()
+        self.motionManager.stopDeviceMotionUpdates()
+        self.motionManager.stopAccelerometerUpdates()
+        self.theView.showBadgeButton()
+        if let totalDistanceUnwrapped = self.totalDistance {
+            ChallengeScoreController.handleScore(self.totalDistance!, challenge: .CrowdSurfing)
+        }
+        println("updates stopped - all done")
+    }
+    
+    func startGyroUpdates() {
+        motionManager.deviceMotionUpdateInterval = 0.5
+        motionManager.startDeviceMotionUpdatesToQueue(
+            NSOperationQueue.currentQueue(), withHandler: {
+                (deviceMotion, error) -> Void in
+                
+                if(error == nil) {
+                    self.handleDeviceMotionUpdate(deviceMotion)
+                } else {
+                    println(error)
+                }
+        })
+    }
+    
+    func handleDeviceMotionUpdate(deviceMotion:CMDeviceMotion) {
+        var attitude = deviceMotion.attitude
+        var roll = toDegrees(attitude.roll)
+        var pitch = toDegrees(attitude.pitch)
+        var yaw = toDegrees(attitude.yaw)
+        
+        println(pitch)
+        
+        if(roll < -120 || roll < 90 || pitch < -60 || pitch > 60) {
+            self.step = 4
+        }
+        
+    }
+    
+    func toDegrees(radians:Double) -> Double {
+        return 180 / M_PI * radians
+    }
+    
+
     
     //LOCATION FUNCTIES
     
@@ -201,19 +235,25 @@ class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, Bad
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
         if let pointAUnwrapped = pointA {
+            let pointB = locations.last as? CLLocation
             
-            let pointB = locations.last as! CLLocation
-            let d = pointB.distanceFromLocation(pointAUnwrapped)
-            println(d)
-            
-            if let totalDistanceUnwrapped = self.totalDistance {
-                self.totalDistance! += d
-                self.locationLabel.text = "D: " + self.totalDistance!.description
-            } else {
-                self.totalDistance = 0
+            if let pointBUnwrapped = pointB {
+                
+                let d = pointBUnwrapped.distanceFromLocation(pointAUnwrapped)
+                
+                if let totalDistanceUnwrapped = self.totalDistance {
+                    println(d)
+                    if(d < 5) {
+                        self.totalDistance! += d
+                        self.theView.updateDistanceLabel(totalDistanceUnwrapped)
+                    }
+                } else {
+                    self.totalDistance = 0
+                    self.theView.updateDistanceLabel(self.totalDistance!)
+                }
+                
+                pointA = pointBUnwrapped
             }
-            
-            pointA = pointB
             
         } else {
             
