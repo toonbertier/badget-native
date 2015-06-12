@@ -29,6 +29,8 @@ class QuizView: UIView {
         super.init(frame: frame)
         
         self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
+        UIView.setAnimationDuration(2)
+        UIView.setAnimationCurve(.EaseIn)
     }
 
     required init(coder aDecoder: NSCoder) {

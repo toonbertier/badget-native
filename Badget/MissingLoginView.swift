@@ -10,10 +10,15 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 
+protocol MissingLoginViewDelegate:class {
+    func didSelectDismissViewController()
+}
+
 class MissingLoginView: UIView, BadgetLoginView {
     
     var loginButton:FBSDKLoginButton!
     var popViewControllerAfterLogin = true
+    weak var delegate:MissingLoginViewDelegate?
     
     override required init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,7 +79,7 @@ class MissingLoginView: UIView, BadgetLoginView {
     }
     
     func goBackButtonTapped(sender:UIButton) {
-        println("go back")
+        self.delegate?.didSelectDismissViewController()
     }
     
     func showErrorLabel() {

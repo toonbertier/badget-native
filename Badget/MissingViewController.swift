@@ -13,7 +13,7 @@ import Pusher
 import Alamofire
 import CoreLocation
 
-class MissingViewController: UIViewController, MissingViewDelegate, CLLocationManagerDelegate {
+class MissingViewController: UIViewController, MissingViewDelegate, FBLoginViewControllerDelegate, CLLocationManagerDelegate {
     
     var theView:MissingView {
         get {
@@ -22,6 +22,7 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
     }
     var locationManager:CLLocationManager!
     var location:CLLocation?
+    var FBLoginVC:FBLoginViewController?
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -42,11 +43,15 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(FBSDKAccessToken.currentAccessToken() == nil) {
-            self.parentViewController!.presentViewController(FBLoginViewController(viewToLoad: .MissingLoginView), animated: true, completion: nil)
-        }
-        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if(FBSDKAccessToken.currentAccessToken() == nil) {
+            self.FBLoginVC = FBLoginViewController(viewToLoad: .MissingLoginView)
+            self.FBLoginVC!.delegate = self
+            self.parentViewController!.presentViewController(self.FBLoginVC!, animated: true, completion: nil)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -57,6 +62,11 @@ class MissingViewController: UIViewController, MissingViewDelegate, CLLocationMa
     
     override func viewDidDisappear(animated: Bool) {
         self.stopUpdatingLocation()
+    }
+    
+    func doDismissViewController() {
+        self.parentViewController!.dismissViewControllerAnimated(false, completion: nil)
+        self.tabBarController?.selectedIndex = 0
     }
     
     func setMissingInView() {

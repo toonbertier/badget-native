@@ -15,6 +15,8 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ChallengeScoreController.debugChallenges()
+        
         //fb login accesstoken hier pas beschikbaar -> check als user in database zit, anders nog eens proberen uploaden
         if(NSUserDefaults.standardUserDefaults().boolForKey("userIsInDatabase") == false) {
             if(FBSDKAccessToken.currentAccessToken() != nil) {

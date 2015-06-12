@@ -24,11 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         // Override point for customization after application launch.
         
         //TIJDELIJKE TUTORIAL
-    
         
         var tutorialVC = TutorialViewController()
         self.window?.rootViewController = tutorialVC
-        
         
         //TUTORIAL AL GEZIEN? -> DIRECT NAAR APP
         
@@ -61,9 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         
         var notificationCategory:UIMutableUserNotificationCategory = UIMutableUserNotificationCategory()
         notificationCategory.identifier = "missingCategory"
-        //genoeg plaats voor alle acties
+        //genoeg plaats om alle acties weer te geven
         notificationCategory .setActions([notificationActionCancel,notificationActionOk], forContext: UIUserNotificationActionContext.Default)
-        //weinig plaats voor om acties weer te geven
+        //weinig plaats om acties weer te geven
         notificationCategory .setActions([notificationActionCancel,notificationActionOk], forContext: UIUserNotificationActionContext.Minimal)
         
         application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Sound | .Alert | .Badge, categories: NSSet(array:[notificationCategory]) as Set<NSObject> ))
@@ -123,9 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        
-        
-        
     }
 
     func applicationWillEnterForeground(application: UIApplication) {

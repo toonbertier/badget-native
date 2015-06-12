@@ -143,6 +143,7 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        println("tapped accessory button")
         let data = self.missingFriends[indexPath.row]
         self.delegate?.didSelectMissingFriend(data)
     }

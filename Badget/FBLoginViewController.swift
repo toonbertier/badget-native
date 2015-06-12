@@ -28,7 +28,11 @@ protocol BadgetLoginView {
     
 }
 
-class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, TutorialContent, PTPusherDelegate {
+protocol FBLoginViewControllerDelegate:class {
+    func doDismissViewController()
+}
+
+class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, MissingLoginViewDelegate, TutorialContent, PTPusherDelegate {
     
     var loginManager = FBSDKLoginManager()
     var pageIndex:Int!
@@ -38,11 +42,17 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
             return self.view as! BadgetLoginView
         }
     }
+    var missingLoginView:MissingLoginView {
+        get {
+            return self.view as! MissingLoginView
+        }
+    }
     var appDelegate:AppDelegate {
         get {
             return UIApplication.sharedApplication().delegate as! AppDelegate
         }
     }
+    weak var delegate:FBLoginViewControllerDelegate?
     
     init(viewToLoad:FBLoginViews) {
         super.init(nibName: nil, bundle: nil)
@@ -70,8 +80,14 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Tutoria
                 self.view = FBTutorialLoginView(frame: UIScreen.mainScreen().bounds)
             case .MissingLoginView:
                 self.view = MissingLoginView(frame: UIScreen.mainScreen().bounds)
+                self.missingLoginView.delegate = self
         }
         
+    }
+    
+    func didSelectDismissViewController() {
+        println("tapped dismiss")
+        self.delegate?.doDismissViewController()
     }
     
     override func didReceiveMemoryWarning() {

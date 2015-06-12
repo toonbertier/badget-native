@@ -89,7 +89,7 @@ class QuizViewController: UIViewController, QuestionCardViewDelegate {
     
     override func viewDidAppear(animated: Bool) {
         if motionManager.accelerometerAvailable {
-            motionManager.accelerometerUpdateInterval = 0.1
+            motionManager.accelerometerUpdateInterval = 0.05
             checkMovement()
         }
     }
@@ -100,12 +100,12 @@ class QuizViewController: UIViewController, QuestionCardViewDelegate {
             
             var x = data.acceleration.x
             
-            println("test")
+            println(x)
             
-            if(x > 1.3) {
+            if(x > 1.8 && x < 2.5) {
                 println("throw right")
                 self.theView.moveTopCard("right")
-            } else if (x < -1.3) {
+            } else if (x < -1.8 && x > -2.5) {
                 println("throw left")
                 self.theView.moveTopCard("left")
             }

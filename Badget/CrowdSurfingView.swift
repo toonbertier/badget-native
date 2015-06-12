@@ -66,7 +66,6 @@ class CrowdSurfingView: UIView {
     }
     
     func updateDistanceLabel(distance:Double) {
-        println("test")
         self.distanceLabel.text = String(format:"%.0f", distance)
     }
     

@@ -29,6 +29,12 @@ class ChallengeScoreController: NSObject {
         ChallengeScoreController.sendScoreToDatabase(score, challengeId: challengeId)
     }
     
+    class func debugChallenges() {
+        ChallengeScoreController.handleScore(0.78, challenge: ChallengeName.StraightLine)
+        ChallengeScoreController.handleScore(78, challenge: ChallengeName.CrowdSurfing)
+        ChallengeScoreController.handleScore(0.66, challenge: ChallengeName.Quiz)
+    }
+    
     class func getBadgesForChallenges(badges:Array<Badge>, challenges:Array<NSManagedObject>) -> (Array<Badge>) {
         
         var array = [Badge]()

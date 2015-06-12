@@ -151,7 +151,7 @@ class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, Bad
     }
     
     func startGyroUpdates() {
-        motionManager.deviceMotionUpdateInterval = 0.5
+        motionManager.deviceMotionUpdateInterval = 0.2
         motionManager.startDeviceMotionUpdatesToQueue(
             NSOperationQueue.currentQueue(), withHandler: {
                 (deviceMotion, error) -> Void in
@@ -170,9 +170,7 @@ class CrowdSurfingViewController: UIViewController, CrowdSurfinViewDelegate, Bad
         var pitch = toDegrees(attitude.pitch)
         var yaw = toDegrees(attitude.yaw)
         
-        println(pitch)
-        
-        if(roll < -120 || roll < 90 || pitch < -60 || pitch > 60) {
+        if(roll > -100 && roll < 100 || pitch < -80 || pitch > 80) {
             self.step = 4
         }
         
