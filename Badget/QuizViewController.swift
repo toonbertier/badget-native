@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-class QuizViewController: UIViewController, QuestionCardViewDelegate {
+class QuizViewController: UIViewController, QuizViewDelegate, BadgeViewDelegate {
 
     let motionManager = CMMotionManager()
     var questions = Array<Question>()
@@ -85,6 +85,17 @@ class QuizViewController: UIViewController, QuestionCardViewDelegate {
     func allCardsDone() {
         let score = Double(self.points/3)
         ChallengeScoreController.handleScore(score, challenge: .Quiz)
+    }
+    
+    func showBadge() {
+        let badgeVC = BadgeViewController(challengeId: 3, afterChallenge: true)
+        badgeVC.theView.delegate = self
+        self.navigationController?.presentViewController(badgeVC, animated: true, completion: nil)
+    }
+    
+    func backToOverview() {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
     override func viewDidAppear(animated: Bool) {

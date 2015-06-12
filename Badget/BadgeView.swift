@@ -97,7 +97,7 @@ class BadgeView: UIView, UIScrollViewDelegate {
         var offset = self.scrollView.contentOffset
         println(offset)
         
-        if(offset.x == 400) {
+        if(offset.x > 465 && offset.x < 475) {
             renderDescription(2)
         } else if(offset.x > 235 && offset.x < 245) {
             renderDescription(1)

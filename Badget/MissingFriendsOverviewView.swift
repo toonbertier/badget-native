@@ -34,10 +34,6 @@ class MissingFriendsOverviewView: UIView {
         self.mapPull.userInteractionEnabled = true
         self.addSubview(self.mapPull)
         self.bringSubviewToFront(self.mapPull)
-        
-        UIView.setAnimationDuration(0)
-        UIView.setAnimationDelay(0)
-        UIView.setAnimationCurve(.Linear)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -52,6 +48,9 @@ class MissingFriendsOverviewView: UIView {
         let mapPullCenter = self.mapPull.center
         if(location.x > mapPullCenter.x - 30 && location.x < mapPullCenter.x + 30 && location.y > mapPullCenter.y - 15 && location.y < mapPullCenter.y + 15) {
             UIView.beginAnimations("draggingMapPull", context: nil)
+            UIView.setAnimationDuration(0)
+            UIView.setAnimationDelay(0)
+            UIView.setAnimationCurve(.Linear)
             self.mapPull.center = CGPointMake(self.center.x, location.y)
             self.mapView.frame = CGRectMake(0, location.y + 10, self.frame.width, self.frame.height)
             UIView.commitAnimations()

@@ -19,34 +19,34 @@ class QuestionCardView: UIView {
         self.data = data
         self.answer = data.answer
         
-        let degr = arc4random_uniform(3)
+        let degr = arc4random_uniform(10)
         println(degr)
-        let rads = radiansToDegrees(Double(degr))
-        //self.transform = CGAffineTransformMakeRotation(rads);
+        let rads = degreesToRadians(CGFloat(degr))
+        self.transform = CGAffineTransformMakeRotation(rads);
         
         renderQuestionLabel()
     }
     
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func renderQuestionLabel() {
         
-        let bgImage = UIImage(named: "fb-info-bg")
+        let bgImage = UIImage(named: "card-bg")
         let bg = UIImageView(frame: self.frame)
         bg.center = CGPointMake(self.center.x, self.center.y)
         bg.image = bgImage
-        bg.contentMode = UIViewContentMode.Center
+        bg.contentMode = UIViewContentMode.ScaleAspectFill
         self.addSubview(bg)
         
         let questionLabel = BadgetUI.makeDescription(self.data.question, width: 140,highlights: [])
         questionLabel.center = CGPointMake(self.center.x, self.center.y)
         self.addSubview(questionLabel)
     }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
-    func radiansToDegrees (value:Double) -> Double {
-        return value * 180.0 / M_PI
+    func degreesToRadians (value:CGFloat) -> CGFloat {
+        return value * CGFloat(M_PI / 180.0)
     }
     
     
