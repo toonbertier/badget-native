@@ -40,11 +40,19 @@ class MissingFriendsOverviewViewController: UIViewController, MissingFriendsOver
     }
     
     func didSelectMissingFriend(data: User) {
-        
         if(data.latitude != 0) {
             self.theView.updateMap(CLLocationCoordinate2DMake(data.latitude, data.longitude))
         }
-        
+    }
+    
+    func showLoadingView() {
+        println("showing")
+        self.theView.showLoadingView()
+    }
+    
+    func removeLoadingView() {
+        println("removing")
+        self.theView.removeLoadingView()
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {

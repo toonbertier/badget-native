@@ -14,14 +14,18 @@ import Alamofire
 protocol MissingFriendsOverviewTableViewControllerDelegate:class {
     
     func didSelectMissingFriend(data:User)
+    func showLoadingView()
+    func removeLoadingView()
     
 }
 
 class MissingFriendsOverviewTableViewController: UITableViewController {
     
+    var loadingView:UIView?
     var missingFriends:Array<User>! {
         didSet {
             loadProfilePictures()
+            removeLoadingView()
         }
     }
     var refreshC:UIRefreshControl!
@@ -35,6 +39,14 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
 
     required init(coder aDecoder: NSCoder!) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func showLoadingView() {
+        self.delegate?.showLoadingView()
+    }
+    
+    func removeLoadingView() {
+        self.delegate?.removeLoadingView()
     }
     
     func loadMissingFriends() {
@@ -60,14 +72,14 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
                     println("\(error)")
                 }
                 
-                if(index == self.missingFriends.count-1) {
-                    self.tableView.reloadData()
-                }
+                self.tableView.reloadData()
             })
         }
     }
     
     func checkForMissingFriends(friends:NSArray) {
+        
+        showLoadingView()
         
         for friend in friends {
             var friendId = friend["id"] as! String
@@ -143,7 +155,7 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
     }
     
     func showNoMissingFriendsLabel() {
-        let label = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        let label = UILabel(frame: self.tableView.frame)
         label.text = "Er loopt niemand verloren. Geniet van Pukkelpop!"
         label.numberOfLines = 0
         label.textAlignment = .Center
@@ -165,7 +177,10 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
         
         let data = self.missingFriends[indexPath.row]
         cell.textLabel?.text = data.name
-        cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+        
+        if(data.latitude != 0) {
+            cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+        }
         
         if let picture = data.picture {
             let stringUrl = picture

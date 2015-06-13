@@ -11,6 +11,7 @@ import MapKit
 
 class MissingFriendsOverviewView: UIView {
     
+    var loadingView:UIView?
     var mapView:MKMapView!
     var tableView:UITableView!
     var mapPull:UIImageView!
@@ -39,6 +40,19 @@ class MissingFriendsOverviewView: UIView {
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func showLoadingView() {
+        self.loadingView = UIView(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        self.loadingView?.backgroundColor = BadgetUI.getYellow(0.8)
+        let loadingImg = UIImage(named: "loader")
+        let imgView = UIImageView(image: loadingImg!)
+        self.loadingView?.addSubview(imgView)
+        self.addSubview(self.loadingView!)
+    }
+    
+    func removeLoadingView() {
+        self.loadingView?.removeFromSuperview()
     }
     
     override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {

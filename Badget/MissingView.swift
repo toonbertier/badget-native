@@ -47,11 +47,10 @@ class MissingView: UIView {
     }
     
     func checkInternetConnection() {
-        
-        if Reachability.isConnectedToNetwork() == false {
-            showOfflineAlert()
-        } else {
+        if Reachability.isConnectedToNetwork() {
             removeOfflineAlert()
+        } else {
+            showOfflineAlert()
         }
     }
     

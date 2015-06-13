@@ -54,12 +54,13 @@ class MissingViewController: UIViewController, MissingViewDelegate, FBLoginViewC
             self.FBLoginVC!.delegate = self
             self.parentViewController!.presentViewController(self.FBLoginVC!, animated: true, completion: nil)
         }
+        
+        self.theView.checkInternetConnection()
     }
     
     override func viewWillAppear(animated: Bool) {
         self.locationManager = CLLocationManager()
         self.locationManager.delegate = self
-        self.theView.checkInternetConnection()
     }
     
     override func viewDidDisappear(animated: Bool) {

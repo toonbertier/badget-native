@@ -41,12 +41,15 @@ class MainTabBarController: UITabBarController {
         //Badges
         var badgesVC = BadgeViewController(challengeId: nil, afterChallenge: false)
         badgesVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "badges-tab")!, tag: 1)
+        badgesVC.tabBarItem.selectedImage = UIImage(named: "badges-tab-selected")!
         
         //Challenges
         var challengeNavVC = BadgetUI.makeNavigationController(ChallengeOverviewViewController(nibName: nil, bundle: nil), tabBarImage: UIImage(named: "challenges-tab")!, tag: 2)
+        challengeNavVC.tabBarItem.selectedImage = UIImage(named: "challenges-tab-selected")!
         
         //Vrienden kwijt
         var missingNavVC = BadgetUI.makeNavigationController(MissingViewController(nibName: nil, bundle: nil), tabBarImage: UIImage(named: "vermist-tab")!, tag: 3)
+        missingNavVC.tabBarItem.selectedImage = UIImage(named: "vermist-tab-selected")!
         
         self.viewControllers = [badgesVC, challengeNavVC, missingNavVC]
     }
