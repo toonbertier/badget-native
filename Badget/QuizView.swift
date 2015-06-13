@@ -78,18 +78,21 @@ class QuizView: UIView {
             UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 1/5, animations: {
                 imageView.center = CGPointMake(self.center.x, self.center.y + 190)
             })
-            UIView.addKeyframeWithRelativeStartTime(1/5, relativeDuration: 1/5, animations: {
+            UIView.addKeyframeWithRelativeStartTime(1.5/5, relativeDuration: 0.4/5, animations: {
                 UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
                 imageView.transform = CGAffineTransformMakeRotation(rotation)
             })
-            UIView.addKeyframeWithRelativeStartTime(2/5, relativeDuration: 1/5, animations: {
+            UIView.addKeyframeWithRelativeStartTime(1.9/5, relativeDuration: 0.8/5, animations: {
                 UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
-                imageView.transform = CGAffineTransformMakeRotation(-rotation)
-            })
-            UIView.addKeyframeWithRelativeStartTime(3/5, relativeDuration: 1/5, animations: {
                 imageView.transform = CGAffineTransformMakeRotation(0)
             })
-            UIView.addKeyframeWithRelativeStartTime(4/5, relativeDuration: 1/5, animations: {
+            UIView.addKeyframeWithRelativeStartTime(2.7/5, relativeDuration: 0.4/5, animations: {
+                imageView.transform = CGAffineTransformMakeRotation(-rotation)
+            })
+            UIView.addKeyframeWithRelativeStartTime(3.1/5, relativeDuration: 0.8/5, animations: {
+                imageView.transform = CGAffineTransformMakeRotation(0)
+            })
+            UIView.addKeyframeWithRelativeStartTime(4.2/5, relativeDuration: 0.4/5, animations: {
                 imageView.center = CGPointMake(self.center.x, self.center.y + 320)
             })
             

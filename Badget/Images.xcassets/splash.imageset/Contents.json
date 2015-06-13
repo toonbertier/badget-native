@@ -3,12 +3,11 @@
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "badges-tab@2x.png"
+      "filename" : "splash@2x.png"
     }
   ],
   "info" : {
     "version" : 1,
-    "author" : "xcode",
-    "template-rendering-intent" : "original"
+    "author" : "xcode"
   }
 }

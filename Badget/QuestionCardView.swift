@@ -19,11 +19,6 @@ class QuestionCardView: UIView {
         self.data = data
         self.answer = data.answer
         
-        let degr = arc4random_uniform(10)
-        println(degr)
-        let rads = degreesToRadians(CGFloat(degr))
-        self.transform = CGAffineTransformMakeRotation(rads);
-        
         renderQuestionLabel()
     }
     
