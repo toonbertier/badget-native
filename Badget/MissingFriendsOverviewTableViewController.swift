@@ -21,7 +21,7 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
     
     var missingFriends:Array<User>! {
         didSet {
-            self.tableView.reloadData()
+            loadProfilePictures()
         }
     }
     var refreshC:UIRefreshControl!
@@ -40,6 +40,31 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
     func loadMissingFriends() {
         self.missingFriends = Array<User>()
         FBLoginViewController.doActionOnFacebookFriends(checkForMissingFriends)
+    }
+    
+    func loadProfilePictures() {
+        for (index, friend) in enumerate(self.missingFriends) {
+            var path = "/\(friend.facebookId)/picture?type=small&redirect=false"
+            
+            let pictureRequest = FBSDKGraphRequest(graphPath: path, parameters: nil)
+            pictureRequest.startWithCompletionHandler({
+                (connection, result, error: NSError!) -> Void in
+                if error == nil {
+                    if let resultUnwrapped:AnyObject = result {
+                        let resultDict = resultUnwrapped as! NSDictionary
+                        let data = resultDict["data"] as! NSDictionary
+                        let url = data["url"] as! String
+                        self.missingFriends[index].picture = url
+                    }
+                } else {
+                    println("\(error)")
+                }
+                
+                if(index == self.missingFriends.count-1) {
+                    self.tableView.reloadData()
+                }
+            })
+        }
     }
     
     func checkForMissingFriends(friends:NSArray) {
@@ -112,15 +137,19 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
             self.tableView.backgroundColor = .clearColor()
             return 1
         } else {
-            let label = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
-            label.text = "Er loopt niemand verloren. Geniet van Pukkelpop!"
-            label.numberOfLines = 0
-            label.textAlignment = .Center
-            
-            self.tableView.backgroundView = label as UIView
-            self.tableView.separatorStyle = .None
+            showNoMissingFriendsLabel()
         }
         return 0
+    }
+    
+    func showNoMissingFriendsLabel() {
+        let label = UILabel(frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height))
+        label.text = "Er loopt niemand verloren. Geniet van Pukkelpop!"
+        label.numberOfLines = 0
+        label.textAlignment = .Center
+        
+        self.tableView.backgroundView = label as UIView
+        self.tableView.separatorStyle = .None
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -137,6 +166,14 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
         let data = self.missingFriends[indexPath.row]
         cell.textLabel?.text = data.name
         cell.accessoryType = UITableViewCellAccessoryType.DetailButton
+        
+        if let picture = data.picture {
+            let stringUrl = picture
+            let url = NSURL(string: stringUrl)
+            let contents = NSData(contentsOfURL: url!)
+            let image = UIImage(data: contents!)
+            cell.imageView?.image = image
+        }
         
         return cell
         

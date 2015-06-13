@@ -18,19 +18,20 @@ class MissingFriendsOverviewView: UIView {
     init(frame: CGRect, tableView:UITableView) {
         super.init(frame: frame)
         
+        self.addSubview(UIImageView(image: UIImage(named: "white-bg")!))
+        
         self.tableView = tableView
-        self.tableView.frame = CGRectMake(0, 68, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height/4)
+        self.tableView.frame = CGRectMake(0, 68, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height/2)
         self.tableView.backgroundColor = .clearColor()
         self.addSubview(self.tableView)
-        self.sendSubviewToBack(self.tableView)
         
-        self.mapView = MKMapView(frame: CGRectMake(0, self.frame.height - 150, self.frame.width, self.frame.height))
+        self.mapView = MKMapView(frame: CGRectMake(0, self.center.x + 215, self.frame.width, self.frame.height))
         self.addSubview(self.mapView)
         self.bringSubviewToFront(self.mapView)
         
         self.mapPull = UIImageView(frame: CGRectMake(0, 0, 60, 30))
         self.mapPull.image = UIImage(named: "map-pull")!
-        self.mapPull.center = CGPointMake(self.center.x, self.center.y)
+        self.mapPull.center = CGPointMake(self.center.x, self.center.y + 70)
         self.mapPull.userInteractionEnabled = true
         self.addSubview(self.mapPull)
         self.bringSubviewToFront(self.mapPull)

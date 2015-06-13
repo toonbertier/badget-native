@@ -16,6 +16,7 @@ class User: NSObject {
     var missing:Int
     var latitude:Double
     var longitude:Double
+    var picture:String?
     
     init(deviceId:String, facebookId:String, name:String, missing:Int, latitude:Double, longitude:Double) {
         self.deviceId = deviceId
