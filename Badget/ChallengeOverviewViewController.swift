@@ -28,6 +28,8 @@ class ChallengeOverviewViewController: UIViewController, ChallengeOverviewViewDe
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.title = "Challenges"
+        let backItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
     }
 
     required init(coder aDecoder: NSCoder) {

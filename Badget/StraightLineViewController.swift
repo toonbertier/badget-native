@@ -22,6 +22,15 @@ class StraightLineViewController: UIViewController, StraightLineViewDelegate, Ba
         }
     }
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        self.title = "In rechte lijn"
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         self.view = StraightLineView(frame: CGRectMake(0, 44, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height - 93))
         self.theView.delegate = self

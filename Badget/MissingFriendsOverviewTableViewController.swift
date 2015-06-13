@@ -44,7 +44,7 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
     
     func loadProfilePictures() {
         for (index, friend) in enumerate(self.missingFriends) {
-            var path = "/\(friend.facebookId)/picture?type=small&redirect=false"
+            var path = "/\(friend.facebookId)/picture?type=normal&redirect=false"
             
             let pictureRequest = FBSDKGraphRequest(graphPath: path, parameters: nil)
             pictureRequest.startWithCompletionHandler({

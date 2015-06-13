@@ -18,6 +18,16 @@ class MissingFriendsOverviewViewController: UIViewController, MissingFriendsOver
         }
     }
     
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        self.title="Overzicht"
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         self.tableVC = MissingFriendsOverviewTableViewController(nibName: nil, bundle: nil)
         self.tableVC.delegate = self

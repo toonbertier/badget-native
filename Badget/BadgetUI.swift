@@ -14,12 +14,15 @@ class BadgetUI: NSObject {
     
     class func makeTitle(title:String) -> UILabel {
         
-        let titleTxt = title as NSString
-        let font1 = UIFont(name: "Dosis-SemiBold", size: 20)
-        let boundingRect = titleTxt.boundingRectWithSize(CGSizeMake(250, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font1!], context: nil)
+        let textRange = NSMakeRange(0, count(title))
+        let titleAttrText = NSMutableAttributedString(string: title)
+        titleAttrText.addAttribute(NSUnderlineStyleAttributeName , value:NSUnderlineStyle.StyleSingle.rawValue, range: textRange)
+        
+        let font = UIFont(name: "Dosis-SemiBold", size: 20)
+        let boundingRect = title.boundingRectWithSize(CGSizeMake(250, CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font!], context: nil)
         let titleLabel = UILabel(frame: CGRectMake(0,0,boundingRect.size.width,boundingRect.size.height))
-        titleLabel.text = titleTxt as String
-        titleLabel.font = font1
+        titleLabel.attributedText = titleAttrText
+        titleLabel.font = font
         titleLabel.textAlignment = .Center
         titleLabel.numberOfLines = 0
         titleLabel.sizeToFit()

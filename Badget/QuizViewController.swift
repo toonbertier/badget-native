@@ -23,6 +23,7 @@ class QuizViewController: UIViewController, QuizViewDelegate, BadgeViewDelegate 
     init() {
         super.init(nibName: nil, bundle: nil)
         loadQuestions()
+        self.title = "Quiz"
     }
     
     required init(coder aDecoder: NSCoder) {

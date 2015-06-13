@@ -28,6 +28,8 @@ class MissingViewController: UIViewController, MissingViewDelegate, FBLoginViewC
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
         self.title = "Vermist"
+        let backItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
     }
 
     required init(coder aDecoder: NSCoder) {

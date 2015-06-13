@@ -24,10 +24,9 @@ class ChallengeExplanationViewController: UIViewController, ChallengeExplanation
         super.init(nibName: nil, bundle: nil)
         
         self.challengeName = name
-        self.title = self.challengeName.rawValue
-        let backButton = UIBarButtonItem(title: "", style: UIBarButtonItemStyle.Plain, target: self.navigationController, action: nil)
-        backButton.tintColor = .blackColor()
-        self.navigationController?.navigationItem.leftBarButtonItem = backButton
+        self.title = "Uitleg"
+        let backItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
         
         loadExplanations()
     }
