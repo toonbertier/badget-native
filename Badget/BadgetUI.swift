@@ -104,6 +104,7 @@ class BadgetUI: NSObject {
     class func makeNavigationController(rootViewController:UIViewController, tabBarImage:UIImage, tag:Int) -> UINavigationController {
         var navController = UINavigationController(rootViewController: rootViewController)
         navController.navigationBar.barTintColor = BadgetUI.getYellow(0.5)
+        navController.navigationBar.tintColor = .blackColor()
         navController.navigationBar.translucent = true
         navController.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Dosis-SemiBold", size: 20)!]
         navController.tabBarItem = UITabBarItem(title: "", image: tabBarImage, tag: tag)
