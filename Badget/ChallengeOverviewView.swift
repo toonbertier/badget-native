@@ -12,12 +12,13 @@ protocol ChallengeOverviewViewDelegate:class {
     func didChooseChallenge(name:ChallengeName)
 }
 
-class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
+class ChallengeOverviewView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     let scrollView:UIScrollView
     let challengeNames:Array<ChallengeName> = [.StraightLine, .CrowdSurfing, .Quiz]
     let cardNames = ["rechte-lijn-kaart", "geniet-rit-kaart", "wikken-wegen-kaart"]
     var cardWidth:CGFloat!
+    var originalCenterX:CGFloat!
     weak var delegate:ChallengeOverviewViewDelegate?
     
     override init(frame: CGRect) {
@@ -86,19 +87,15 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
         
         var ticket = sender.view!
         var centerX:CGFloat!
+        self.originalCenterX = ticket.center.x
         
         if(self.scrollView.contentOffset.x >= 0 && self.scrollView.contentOffset.x < 95) {
-            println("eerste kaart")
-            centerX = 87 + cardWidth/2
+            centerX = self.scrollView.contentSize.width/3 + self.scrollView.contentOffset.x - 75
         } else if(self.scrollView.contentOffset.x > 95 && self.scrollView.contentOffset.x < 290) {
-            println("tweede kaart")
-            centerX = 135 + cardWidth*1.5
+            centerX = self.scrollView.contentSize.width/3 * 2 + self.scrollView.contentOffset.x - (94 + cardWidth*1.5)
         } else {
-            println("derde kaart")
-            centerX = 168 + cardWidth*2.5
+            centerX = self.scrollView.contentSize.width/3 * 3 + self.scrollView.contentOffset.x - (187 + cardWidth*2.5)
         }
-        
-        println(centerX)
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
             ticket.center = CGPointMake(centerX, 390)
@@ -116,7 +113,7 @@ class ChallengeOverviewView: UIView, UIGestureRecognizerDelegate {
         var ticket = sender.view!
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            ticket.center = CGPointMake(ticket.center.x, 205)
+            ticket.center = CGPointMake(self.originalCenterX, 205)
         })
         
         self.scrollView.scrollEnabled = true
