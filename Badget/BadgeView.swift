@@ -15,6 +15,7 @@ protocol BadgeViewDelegate:class {
 class BadgeView: UIView, UIScrollViewDelegate {
     
     var scrollView:UIScrollView!
+    var singleBadge:UIImageView?
     var badges:Array<Badge>!
     var descriptionLabel:UILabel?
     var titleLabel:UILabel?
@@ -71,6 +72,7 @@ class BadgeView: UIView, UIScrollViewDelegate {
     func renderScrollingBadges() {
         
         self.scrollView.subviews.map({ $0.removeFromSuperview() })
+        self.singleBadge?.removeFromSuperview()
         
         self.scrollView.showsHorizontalScrollIndicator = false
         self.addSubview(self.scrollView)
@@ -128,10 +130,10 @@ class BadgeView: UIView, UIScrollViewDelegate {
         let challenge_id = self.badges[0].valueForKey("challengeId") as! Int
         
         let image = UIImage(named: "\(challenge_id.description)-\(level.description)")
-        var imageView = UIImageView(image: image!)
-        imageView.frame = CGRectMake(58, 40, image!.size.width, image!.size.height)
+        self.singleBadge = UIImageView(image: image!)
+        singleBadge!.frame = CGRectMake(58, 40, image!.size.width, image!.size.height)
         
-        self.addSubview(imageView)
+        self.addSubview(singleBadge!)
         
         renderDescription(0)
     }

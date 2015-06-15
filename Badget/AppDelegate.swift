@@ -25,19 +25,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         
         //TIJDELIJKE TUTORIAL
         
+        /*
         var tutorialVC = TutorialViewController()
         self.window?.rootViewController = tutorialVC
+        */
         
         //TUTORIAL AL GEZIEN? -> DIRECT NAAR APP
         
-        /*
         if(NSUserDefaults.standardUserDefaults().boolForKey("tutorialSeen") == true) {
             println("tutorial seen")
+            var tabBarVC = MainTabBarController()
+            self.window?.rootViewController = tabBarVC
         } else {
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "tutorialSeen")
             println("tutorial not seen")
+            var tutorialVC = TutorialViewController()
+            self.window?.rootViewController = tutorialVC
         }
-        */
         
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
