@@ -53,6 +53,17 @@ class QuizViewController: UIViewController, QuizViewDelegate, BadgeViewDelegate 
         self.theView.makeCards(cards)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        if motionManager.accelerometerAvailable {
+            motionManager.accelerometerUpdateInterval = 0.05
+            checkMovement()
+        }
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        motionManager.stopAccelerometerUpdates()
+    }
+    
     func getRandomCards() -> Array<Question> {
         
         let randomIndexes = getRandomIndexes(self.questions, range: 3)
@@ -99,25 +110,20 @@ class QuizViewController: UIViewController, QuizViewDelegate, BadgeViewDelegate 
         self.navigationController?.popToRootViewControllerAnimated(true)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        if motionManager.accelerometerAvailable {
-            motionManager.accelerometerUpdateInterval = 0.05
-            checkMovement()
-        }
-    }
-    
     func checkMovement() {
         motionManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue(), withHandler: {
             (data: CMAccelerometerData!, error: NSError!) in
             
             var x = data.acceleration.x
+            var y = data.acceleration.y
+            var z = data.acceleration.z
             
-            println(x)
+            println(z)
             
-            if(x > 1.8 && x < 2.5) {
+            if(x > 1.4 && x < 1.9) {
                 println("throw right")
                 self.theView.moveTopCard("right")
-            } else if (x < -1.8 && x > -2.5) {
+            } else if (x < -1.4 && x > -1.9) {
                 println("throw left")
                 self.theView.moveTopCard("left")
             }

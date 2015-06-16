@@ -25,7 +25,6 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
     var missingFriends:Array<User>! {
         didSet {
             loadProfilePictures()
-            removeLoadingView()
         }
     }
     var refreshC:UIRefreshControl!
@@ -91,6 +90,7 @@ class MissingFriendsOverviewTableViewController: UITableViewController {
             })
         }
         
+        removeLoadingView()
         self.refreshC.endRefreshing()
     }
     

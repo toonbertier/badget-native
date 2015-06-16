@@ -101,6 +101,11 @@ class FBLoginViewController: UIViewController, FBSDKLoginButtonDelegate, Missing
             println(error.description)
             self.theView.showErrorLabel()
         }
+        else if (result.isCancelled) {
+            if(viewToLoad == .MissingLoginView) {
+                self.delegate?.doDismissViewController()
+            }
+        }
         else {
             if (result.grantedPermissions.contains("email") && result.grantedPermissions.contains("user_friends")){
                 println("permissions ok and user is logged in")

@@ -73,9 +73,9 @@ class ChallengeScoreController: NSObject {
     }
     
     class func getBadgeForCrowdsurfing(score:Double) -> (Int) {
-        if(score > 200) {
+        if(score > 100) {
             return (3)
-        } else if (score > 100) {
+        } else if (score > 50) {
             return (2)
         } else {
             return (1)

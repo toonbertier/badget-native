@@ -23,13 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PTPusherDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
         
-        //TIJDELIJKE TUTORIAL
-        
-        /*
-        var tutorialVC = TutorialViewController()
-        self.window?.rootViewController = tutorialVC
-        */
-        
         //TUTORIAL AL GEZIEN? -> DIRECT NAAR APP
         
         if(NSUserDefaults.standardUserDefaults().boolForKey("tutorialSeen") == true) {
